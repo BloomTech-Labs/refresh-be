@@ -40,12 +40,12 @@ gitHubRouter.get(
     failureRedirect: "/login",
     session: false,
   }),
-  (req, res) => {
+  async (req, res) => {
     console.log("req",req.user);
     //...So, not sure how to deal with escaping very well. R-J
     delete req.user._raw
     delete req.user._json
-    const token = jwt.genToken(req.user.emails[0].value)
+    const token = await jwt.genToken(req.user.emails[0].value)
     const setToken = `
     <script>
       (function(){
