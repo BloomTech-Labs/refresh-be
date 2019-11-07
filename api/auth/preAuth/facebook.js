@@ -1,7 +1,6 @@
 const facebookRouter = require("express").Router();
 const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
-const jwt = require('./jwt');
 
 //Config facebook Auth
 const fbId = process.env.FACEBOOK_APP_ID;
@@ -38,8 +37,6 @@ facebookRouter.get("/return",
   passport.authenticate("facebook", {failureRedirect: "/login",session:false }),
   (req, res) => {
     delete req.user._raw
-    const token = jwt.genToken(req.user.emails[0].value)
-    console.log('token',token)
     const setToken = `
     <script>
       (function(){
