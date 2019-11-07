@@ -8,22 +8,19 @@ module.exports = {
 };
 
 //Creates a new JWT Token
- function genToken(email) {
-  console.log(email)
+function genToken(user) {
+
   const payload = {
     tokenType: "Basic ",
-    email
+    ...user
   };
 
   const options = {
     expiresIn: tokenTTL
   };
 
-  const token = jwt.sign(payload, secret, options);
-
-  return token
+  return jwt.sign(payload, secret, options);
 }
-
 function chkRole(role){
     return (req,res,next)=>{
         //Gets req.user from chkToken
