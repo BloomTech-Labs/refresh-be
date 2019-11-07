@@ -5,7 +5,7 @@ const FacebookStrategy = require("passport-facebook").Strategy;
 //Config facebook Auth
 const fbId = process.env.FACEBOOK_APP_ID;
 const fbSecret = process.env.FACEBOOK_CLIENT_SECRET;
-const fbRedirect = "https://apidevnow.com/facebookAuth/return";
+const fbRedirect = "https://refresh-yo.herokuapp.com/facebookAuth/return";
 
 //Bring in the userModel
 const User = require("../authModel");
