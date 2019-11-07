@@ -1,6 +1,7 @@
 const gitHubRouter = require("express").Router();
 const passport = require("passport");
 const GitHubStrategy = require("passport-github").Strategy;
+const jwt = require('./jwt');
 
 //Config GitHub Auth
 const gitId = process.env.GITHUB_CLIENT_ID;
@@ -21,7 +22,6 @@ passport.use(
       clientSecret: gitSecret,
       callbackURL: gitRedirect,
       session: false,
-      scope: ['email']
     },
     function(accessToken, refreshToken, profile, done) {
       console.log(accessToken);
@@ -41,14 +41,15 @@ gitHubRouter.get(
     session: false,
   }),
   (req, res) => {
-    console.log("req");
+    console.log("req",req.user);
     //...So, not sure how to deal with escaping very well. R-J
     delete req.user._raw
     delete req.user._json
+    const token = jwt.genToken(req.user)
     const setToken = `
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify(req.user)}');
+        window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
         window.close()
       })()
     </script>`
