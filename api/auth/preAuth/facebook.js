@@ -39,7 +39,6 @@ facebookRouter.get("/return",
     console.log("req", req.user);
     delete req.user._raw
     const setToken = `
-    <h1>Thank You ${req.user.displayName}
     <script>
       (function(){
         window.opener.postMessage('${JSON.stringify(req.user)}', "*");
