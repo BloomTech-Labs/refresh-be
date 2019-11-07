@@ -47,7 +47,7 @@ facebookRouter.get("/return",
     </script>`
     res.set('Content-Type', 'text/html');
     res.send(Buffer.from(setToken))
-  });
+  })
 
   facebookRouter.get("/terms", (req,res) =>{
     res.status(200).json({message:'Pretty much, we use your email to create your account, if you want to disconnect from your registration median, select forgot password and you will be switched to our local auth stratagey. If you want to nuke your account, go to settings and click the nuke button. We will do our best to protect your data, however, where there is a will there is a way. That being said, we take zeor liablity for any data breaches. Your data may be used for internal and external purposes, but, mainly to improve our product for you.'});
