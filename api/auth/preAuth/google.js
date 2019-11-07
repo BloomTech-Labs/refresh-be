@@ -1,7 +1,8 @@
 const googleRouter = require("express").Router();
 const passport = require("passport");
 const GoogleStrategy = require("passport-google-oauth2").Strategy;
-const jwt = require(_jwt);
+const jwt = require('./jwt');
+
 //Config GitHub Auth
 const googleId = process.env.GOOGLE_CLIENT_ID;
 const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
@@ -53,10 +54,11 @@ googleRouter.get(
     //...So, not sure how to deal with escaping very well. R-J
     delete req.user._raw;
     delete req.user._json.bio;
+    const token = jwt.genToken(req.user.email)
     const setToken = `
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify(req.user)}', "*");
+        window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
         window.close()
       })()
     </script>`;
