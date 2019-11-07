@@ -57,7 +57,7 @@ googleRouter.get(
     const setToken = `
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
+        window.opener.postMessage('${JSON.stringify(req.user)}', "*");
         window.close()
       })()
     </script>`;
