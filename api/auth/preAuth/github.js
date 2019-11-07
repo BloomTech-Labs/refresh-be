@@ -41,7 +41,7 @@ gitHubRouter.get(
     session: false,
   }),
   (req, res) => {
-    console.log("req");
+    console.log("req",req.user);
     //...So, not sure how to deal with escaping very well. R-J
     delete req.user._raw
     delete req.user._json
