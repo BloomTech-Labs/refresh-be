@@ -24,8 +24,11 @@ passport.use(
       session: false
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken);
-      done(null, profile, accessToken);
+      User.findOrCreateByEmail(profile.emails[0].value)
+      .then(res =>{
+        console.log(res)//Expecting usr{email,id,pw}
+        done(null, {...profile,user:{...res}}, accessToken)
+      })
     }
   )
 );
@@ -52,8 +55,6 @@ googleRouter.get(
   (req, res) => {
     console.log("req");
     //...So, not sure how to deal with escaping very well. R-J
-    delete req.user._raw;
-    delete req.user._json.bio;
     const token = jwt.genToken(req.user.email)
     const setToken = `
     <script>

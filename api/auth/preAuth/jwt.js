@@ -47,7 +47,7 @@ function chkToken() {
             });
         } else {
             req.user = decoded;
-            next();
+            next()
         }
       });
     //No Token, No Pass

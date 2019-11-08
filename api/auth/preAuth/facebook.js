@@ -24,8 +24,11 @@ passport.use(
       enableProof: true
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken);
-      done(null, profile, accessToken);
+      User.findOrCreateByEmail(profile.emails[0].value)
+      .then(res =>{
+        console.log(res)//Expecting usr{email,id,pw}
+        done(null, {...profile,user:{...res}}, accessToken)
+      })
     }
   )
 );
