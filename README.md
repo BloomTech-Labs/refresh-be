@@ -13,16 +13,14 @@ To get the server running locally:
 
 ### Backend framework goes here
 
-🚫 Why did you choose this framework?
+This System is built on Node.js and utilzes Passport.js for it Auth Stratagies
 
--    Point One
+-    Node is an efficent method for building back ends that allows for parallel processing through child process'
 -    Point Two
 -    Point Three
 -    Point Four
 
-## 2️⃣ Endpoints
-
-🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
+## Endpoints
 
 #### Authorization Routes
 
