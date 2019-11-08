@@ -24,13 +24,14 @@ To get the server running locally:
 
 🚫This is a placeholder, replace the endpoints, access controll, and descriptioin to match your project
 
-#### Organization Routes
+#### Authorization Routes
 
 | Method | Endpoint                | Access Control | Description                                  |
 | ------ | ----------------------- | -------------- | -------------------------------------------- |
-| GET    | `/organizations/:orgId` | all users      | Returns the information for an organization. |
-| PUT    | `/organizatoins/:orgId` | owners         | Modify an existing organization.             |
-| DELETE | `/organizations/:orgId` | owners         | Delete an organization.                      |
+| GET    | `/facebooAuth`          | all users      | Create New User, returns token & user data.  |
+| GET    | `/googleAuth`           | all users      | Create New User, returns token & user data.  |
+| POST   | `/register`             | all users      | Create New User, returns token & user data.  |
+| POST   | `/login`                | all users      | Logs a user in, returns token & user data.   |  
 
 #### User Routes
 
