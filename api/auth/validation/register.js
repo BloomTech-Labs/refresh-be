@@ -3,14 +3,15 @@ module.exports = async (req, res, next) => {
   const errors = [];
 
   function validateNewUser(user) {
+    
     //Check For Keys
     const u = user
-    !u.username && errors.push({ username: "required" });
+    !u.email && errors.push({ email: "required" });
     !u.password && errors.push({ password: "required" });
 
     //Validate Char Length
     Object.keys(user).map(x => {
-      if (x === "password" || x === "username") {
+      if (x === "password" || x === "email") {
         const key = u[x].length;
 
         //Verifiy Length Min
@@ -22,6 +23,13 @@ module.exports = async (req, res, next) => {
         if (key > 50 && x) {
           errors.push({ [x]: "Must be a maximum of 50 chars" });
         }
+
+        if (x === "email") {
+          //Cats got your keyboard... When in dbout, RegEx it out
+          !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(u[x]) &&
+            errors.push({[x]: "Unexpected Eamil Address" });
+        }
+
       } else {
         //Why except dirty keys
         errors.push({ error: `Unexpected key: [${x}] provide` });
@@ -33,11 +41,12 @@ module.exports = async (req, res, next) => {
   //Does the user exist?
   if (!errors.length) {
     await dbModel
-      .findByName(req.body.username)
+      .findByEmail(req.body.email)
       .then(
-        user => user && errors.push({ username: "Username Already Exists" })
+        user => user && errors.push({ email: "User Already Exists" })
       );
   }
+  
   //OK We are probably safe to move on
-  errors.length < 1 ? next() : res.status(401).json({ errors: errors });
+  errors.length < 1 ? next() : res.status(200).json({ errors });
 };

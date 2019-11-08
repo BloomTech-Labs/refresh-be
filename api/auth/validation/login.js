@@ -8,11 +8,11 @@ module.exports = async (req, res, next) => {
   function validateLogin(user) {
     const u = req.body;
 
-    !u.username && errors.push({ username: "required" });
+    !u.email && errors.push({ email: "required" });
     !u.password && errors.push({ password: "required" });
 
     Object.keys(user).map(x => {
-      if (x === "password" || x === "username") {
+      if (x === "password" || x === "email") {
         const key = u[x].length;
 
         //Verifiy Length Min
@@ -32,9 +32,9 @@ module.exports = async (req, res, next) => {
   }
 
   if(!errors.length){
-    req.user = await dbModel.findByName(user.username)
+    req.user = await dbModel.findByEmail(user.email)
   }
 
   validateLogin(user);
-  errors.length < 1 ? next() : res.status(401).json({ errors: errors });
+  errors.length < 1 ? next() : res.status(200).json({ errors });
 };
