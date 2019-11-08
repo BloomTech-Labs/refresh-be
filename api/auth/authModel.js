@@ -25,6 +25,6 @@ function findByEmail(email) {
 
 function addUser(obj) {
   return db(table)
-    .insert(obj)
+    .insert(obj, "id")
     .then(([id]) => findById(id));
 }
