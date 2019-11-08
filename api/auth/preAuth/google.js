@@ -59,14 +59,14 @@ googleRouter.get(
     const setToken = `
     <script>
       (function(){
-        window.opener.postMessage('${JSON.stringify({...req.user._json,token})}', "*");
+        window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
         window.close()
       })()
     </script>`;
     res.set("Content-Type", "text/html");
     res.send(Buffer.from(setToken));
   }
-)
+);
 
 googleRouter.get("/terms", (req, res) => {
   res
