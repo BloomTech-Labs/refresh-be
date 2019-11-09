@@ -23,11 +23,11 @@ passport.use(
       profileFields: ['id', 'displayName', 'name', 'photos', 'email'],
       enableProof: true
     },
-    function(accessToken, refreshToken, profile, done) {
-      User.findOrCreateByEmail(profile.emails[0].value)
+    function(accessToken, refreshToken, profile, done) {  
+      User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile,user:{...res}}, accessToken)
+        done(null, {...profile._json,user:{...res}}, accessToken)
       })
     }
   )
@@ -40,18 +40,14 @@ facebookRouter.get("/", passport.authenticate("facebook",{scope: ['email', 'publ
 facebookRouter.get("/return",
   passport.authenticate("facebook", {failureRedirect: "/login",session:false }),
   (req, res) => {
-    console.log("req");
-    delete req.user._raw
-    const token = jwt.genToken(req.user.emails[0].value)
+    const token = jwt.genToken(req.user.email.value)
     const setToken = `
     <script>
-      (function(){
         window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
         window.close()
-      })()
     </script>`
     res.set('Content-Type', 'text/html');
-    res.send(Buffer.from(setToken))
+    res.send(setToken)
   })
 
   facebookRouter.get("/terms", (req,res) =>{

@@ -1,4 +1,7 @@
 const db = require(_dbConfig);
+const Profile = require('../private/profile/profileModle')
+const bcrypt = require('bcrypt')
+
 module.exports = {
   addUser,
   findByEmail,
@@ -10,7 +13,6 @@ module.exports = {
 const table = "users";
 
 function findById(id) {
-  console.log(id);
   return db(table)
     .select("*")
     .where({ id })
@@ -24,14 +26,24 @@ function findByEmail(email) {
     .first();
 }
 
-async function findOrCreateByEmail(email) {
+async function findOrCreateByEmail(profile) {
+  
+  const email=profile.email
   const user = await db(table)
     .where({ email })
     .first();
     if(user){
-      return {...user,message:"Welcome Back"}
+      return {...user,...profile,message:"Welcome Back"}
     }else{
-      addUser({email,password:'afiou89273928309w8e093279868723hrf876t32ur874r9y87'})
+      return addUser(
+        {email,
+          password: bcrypt.hashSync(Date.now() + email, 14)
+        })
+      .then(res =>{
+        delete res.password
+        profile = {...profile,user:{...res}}
+        return profile
+      })
     }
 }
 
