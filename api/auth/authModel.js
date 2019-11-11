@@ -1,4 +1,5 @@
 const db = require(_dbConfig);
+const Profile = require('../private/profile/profileModle')
 module.exports = {
   addUser,
   findByEmail,
@@ -24,7 +25,9 @@ function findByEmail(email) {
     .first();
 }
 
-async function findOrCreateByEmail(email) {
+async function findOrCreateByEmail(profile) {
+  
+  const email=profile.email
   const user = await db(table)
     .where({ email })
     .first();

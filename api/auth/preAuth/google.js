@@ -24,10 +24,10 @@ passport.use(
       session: false
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOrCreateByEmail(profile.emails[0].value)
+      User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile,user:{...res}}, accessToken)
+        done(null, {...profile._json,user:{...res}}, accessToken)
       })
     }
   )
