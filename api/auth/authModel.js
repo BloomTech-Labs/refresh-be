@@ -1,6 +1,6 @@
 const db = require(_dbConfig);
-const Profile = require('../private/profile/profileModle')
-const bcrypt = require('bcrypt')
+const Profile = require("../private/profile/profileModle");
+const bcrypt = require("bcrypt");
 
 module.exports = {
   addUser,
@@ -27,24 +27,29 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
-  
-  const email=profile.email
+  const email = profile.email;
   const user = await db(table)
+    .select("email", "id")
     .where({ email })
     .first();
-    if(user){
-      return {...user,...profile,message:"Welcome Back"}
-    }else{
-      return addUser(
-        {email,
-          password: bcrypt.hashSync(Date.now() + email, 14)
-        })
-      .then(res =>{
-        delete res.password
-        profile = {...profile,user:{...res}}
-        return profile
-      })
-    }
+
+  //If the user exist
+  if (user) {
+    return { ...user, ...profile, message: "Welcome Back" };
+  } else {
+    //Encrypt Password, consider doing off AccessToken
+    const password = bcrypt.hashSync(Date.now() + email, 14);
+    
+    const newUser = await addUser({email,password})
+    
+    delete profile.email
+    const newProfil = await Profile.createProfile({
+      user_id:newUser.id,
+      ...profile
+    })
+
+    return {user:{...newUser},profile:{...newProfil}}
+  }
 }
 
 function addUser(obj) {

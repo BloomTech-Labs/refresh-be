@@ -8,8 +8,9 @@ const googleId = process.env.GOOGLE_CLIENT_ID;
 const googleSecret = process.env.GOOGLE_CLIENT_SECRET;
 const googleRedirect = "https://apidevnow.com/googleAuth/return";
 
-//Bring in the userModel
+//Bring in the userModel and profileScrubber
 const User = require("../authModel");
+const profileScrubber = require('../profileScrubber')
 
 //InitialIze PassPort
 googleRouter.use(passport.initialize());
@@ -24,10 +25,11 @@ passport.use(
       session: false
     },
     function(accessToken, refreshToken, profile, done) {
-      User.findOrCreateByEmail(profile._json)
+      profile = profileScrubber(profile)
+      User.findOrCreateByEmail(profile)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile._json,user:{...res}}, accessToken)
+        done(null, {...profile,user:{...res}}, accessToken)
       })
     }
   )

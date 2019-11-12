@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const dbModel = require("./profileModle");
+const dbModel = require("./adminModel");
 router.get("/", (req, res) => {
   return dbModel
     .findAll()

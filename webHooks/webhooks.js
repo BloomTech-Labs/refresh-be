@@ -48,6 +48,7 @@ router.post("/client", (req, res) => {
     
     exec("sh ./webHooks/updateClient.sh");
     //No Debugging Here
+    console.log('HERE')
     return res.status(200).json({ thankyou: "github" });
   } else {
     res

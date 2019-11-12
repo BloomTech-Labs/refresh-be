@@ -5,8 +5,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-*.production
-*.staging
+*.production/
+*.staging/
+
 # Runtime data
 pids
 *.pid
@@ -37,6 +38,8 @@ build/Release
 # Dependency directories
 node_modules/
 jspm_packages/
+.git-staging/
+.vscode/
 
 # TypeScript v1 declaration files
 typings/
