@@ -1,4 +1,4 @@
-const db = require(dbConfig);
+const db = require(_dbConfig);
 
 module.exports = {
   findAll,
@@ -6,10 +6,10 @@ module.exports = {
   remove,
   register,
   editById,
-  findByQuestion
+  findByUsername
 };
 
-const table = 'questions';
+const table = "user";
 function findAll() {
   return db(table);
 }
@@ -23,10 +23,10 @@ function findById(id) {
     .catch(res => console.log(res));
 }
 
-function findByQuestion(question) {
-  if (question) {
+function findByUsername(username) {
+  if (username) {
     return db(table)
-      .where({ question })
+      .where({ username })
       .first();
   }
 }
@@ -39,7 +39,7 @@ function remove(id) {
 function editById(id, update) {
   return db(table)
     .where({ id })
-    .update(update, '*');
+    .update(update, "*");
 }
 function register(obj) {
   return db(table)

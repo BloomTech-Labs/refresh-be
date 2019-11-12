@@ -3,7 +3,7 @@ exports.up = function(knex) {
   return knex.schema.createTable('profile',col=>{
       col.increments()
       col
-        .string('displayName',30)
+        .string('display_name',30)
       col
         .string('profile_pic',200)
       col

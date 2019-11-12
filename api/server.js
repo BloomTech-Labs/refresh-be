@@ -12,7 +12,7 @@ const authRouter = require("./auth/auth")
 //Implement Routes
 primaryRouter.use('/',authRouter)
 primaryRouter.use('/public',publicRouter)
-primaryRouter.use('/private',jwt.chkToken(),privateRouter)
+primaryRouter.use('/private',privateRouter)
 
 
 

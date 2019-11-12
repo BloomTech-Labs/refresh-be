@@ -25,11 +25,11 @@ passport.use(
       scope: ['email']
     },
     function(accessToken, refreshToken, profile, done) {
-      console.log(accessToken);
+      delete profile._raw
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
-        console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile._json,user:{...res}}, accessToken)
+        console.log('res',res)
+        done(null, {...res,...profile}, accessToken)
       })
     }
   )
@@ -46,19 +46,17 @@ gitHubRouter.get(
     session: false,
   }),
   (req, res) => {
-    console.log("req");
     //...So, not sure how to deal with escaping very well. R-J
   
     const token = jwt.genToken(req.user.email)
+    const id = Date.now()
     const setToken = `
-    <script>
-      (function(){
+    <script >
         window.opener.postMessage('${JSON.stringify({...req.user,token})}',"*");
         window.close()
-      })()
     </script>`
     res.set('Content-Type', 'text/html');
-    res.send(Buffer.from(setToken))
-  });
+    res.send(setToken)
+  })
 
 module.exports = gitHubRouter;
