@@ -25,10 +25,11 @@ passport.use(
       scope: ['email']
     },
     function(accessToken, refreshToken, profile, done) {
+      delete profile._raw
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
         console.log('res',res)
-        done(null, res, accessToken)
+        done(null, {...res,...profile}, accessToken)
       })
     }
   )

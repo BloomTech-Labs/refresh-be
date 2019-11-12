@@ -8,9 +8,9 @@ const fbId = process.env.FACEBOOK_APP_ID;
 const fbSecret = process.env.FACEBOOK_CLIENT_SECRET;
 const fbRedirect = "https://apidevnow.com/facebookAuth/return";
 
-//Bring in the userModel
+//Bring in the userModel and Data Scrubber
 const User = require("../authModel");
-
+const profileScrubber = require('../profileScrubber')
 //InitialIze PassPort
 facebookRouter.use(passport.initialize());
 //Declare Strategy Vars
@@ -20,14 +20,15 @@ passport.use(
       clientID: fbId,
       clientSecret: fbSecret,
       callbackURL: fbRedirect,
-      profileFields: ['id', 'displayName', 'name', 'photos', 'email'],
+      profileFields: ['id', 'displayName', 'name', 'email','picture.type(large)','gender'],
       enableProof: true
     },
-    function(accessToken, refreshToken, profile, done) {  
-      User.findOrCreateByEmail(profile._json)
+    function(accessToken, refreshToken, profile, done) { 
+      profile = profileScrubber(profile)
+      User.findOrCreateByEmail(profile)
       .then(res =>{
         console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile._json,user:{...res}}, accessToken)
+        done(null, {...profile,user:{...res}}, accessToken)
       })
     }
   )
@@ -40,7 +41,7 @@ facebookRouter.get("/", passport.authenticate("facebook",{scope: ['email', 'publ
 facebookRouter.get("/return",
   passport.authenticate("facebook", {failureRedirect: "/login",session:false }),
   (req, res) => {
-    const token = jwt.genToken(req.user.email.value)
+    const token = jwt.genToken(req.user.email)
     const setToken = `
     <script>
         window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");
