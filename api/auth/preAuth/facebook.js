@@ -27,8 +27,7 @@ passport.use(
       profile = profileScrubber(profile)
       User.findOrCreateByEmail(profile)
       .then(res =>{
-        console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile,user:{...res}}, accessToken)
+        done(null, res, accessToken)
       })
     }
   )
