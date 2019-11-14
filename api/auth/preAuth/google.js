@@ -28,8 +28,7 @@ passport.use(
       profile = profileScrubber(profile)
       User.findOrCreateByEmail(profile)
       .then(res =>{
-        console.log(res)//Expecting usr{email,id,pw}
-        done(null, {...profile,user:{...res}}, accessToken)
+        done(null,res, accessToken)
       })
     }
   )
@@ -56,6 +55,8 @@ googleRouter.get(
   }),
   (req, res) => {
     //...So, not sure how to deal with escaping very well. R-J
+    console.log("I am The Response",req.user)
+
     const token = jwt.genToken(req.user.email)
     const setToken = `
     <script>

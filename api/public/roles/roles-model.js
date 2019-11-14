@@ -4,18 +4,13 @@ module.exports = {
   findAll,
   findById,
   remove,
-  register,
+  addAdmin,
   editById,
-  findByUsername
 };
 
-const table = "users";
+const table = 'roles';
 function findAll() {
-  return db(table + " as u ")
-  .join("user_roles as ur", "ur.role_id", "u.id")
-  .join("roles as rt", "ur.role_id", "ur.id")
-  .select("*")
-  // .where("u.id", "ur.user_id")
+  return db(table);
 }
 
 function findById(id) {
@@ -27,13 +22,6 @@ function findById(id) {
     .catch(res => console.log(res));
 }
 
-function findByUsername(username) {
-  if (username) {
-    return db(table)
-      .where({ username })
-      .first();
-  }
-}
 
 function remove(id) {
   return db(table)
@@ -43,10 +31,11 @@ function remove(id) {
 function editById(id, update) {
   return db(table)
     .where({ id })
-    .update(update, "*");
+    .update(update, '*');
 }
-function register(obj) {
+function addAdmin(obj) {
   return db(table)
     .insert(obj)
     .then(([id]) => findById(id));
 }
+
