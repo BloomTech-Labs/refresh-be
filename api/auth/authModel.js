@@ -39,7 +39,6 @@ async function findOrCreateByEmail(profile) {
   } else {
     //Encrypt Password, consider doing off AccessToken
     const password = bcrypt.hashSync(Date.now() + email, 14);
-    
     const newUser = await addUser({email,password})
     
     delete profile.email
