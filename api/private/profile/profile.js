@@ -4,7 +4,20 @@ const dbModel = require("./profileModle");
 router.get("/", (req, res) => {
   console.log(req.user)
   return dbModel
-    .findByUserId(req.user.id)
+    .findAll()
+    .then(p => {
+      res.status(200).json({ message: `SUCCESS`, ...p });
+    })
+    .catch(e => {
+      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+    });
+});
+
+router.get("/:id", (req, res) => {
+  //console.log(req.user)
+  const {id} = req.params
+  return dbModel
+    .findByProfileId(id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

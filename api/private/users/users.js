@@ -4,7 +4,7 @@ router.get("/", (req, res) => {
   return dbModel
     .findAll()
     .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+      res.status(200).json({ message: `SUCCESS`, roles:[...p] });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });

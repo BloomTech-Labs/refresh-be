@@ -1,16 +1,26 @@
 const db = require(_dbConfig);
 
 module.exports = {
+  findAllRolesById,
   findAll,
   findById,
   remove,
-  addAdmin,
+  addUserRole,
   editById,
 };
 
 const table = 'roles';
-function findAll() {
-  return db(table);
+const userRoles = "user_roles";
+function findAllRolesById(userId) {
+ return db(userRoles + " as ur ")
+  .select("rt.id")
+  .join("users as u", "u.id", "ur.user_id")
+  .join("roles as rt", "rt.id", "ur.role_id")
+  .where("ur.user_id", userId)
+}
+
+function findAll(){
+  return db(table)
 }
 
 function findById(id) {
@@ -18,8 +28,6 @@ function findById(id) {
   return db(table)
     .where({ id })
     .first()
-    .then(res => console.log(res))
-    .catch(res => console.log(res));
 }
 
 
@@ -33,9 +41,8 @@ function editById(id, update) {
     .where({ id })
     .update(update, '*');
 }
-function addAdmin(obj) {
-  return db(table)
-    .insert(obj)
-    .then(([id]) => findById(id));
+function addUserRole(obj) {
+  return db(userRoles)
+    .insert(obj,'id')
 }
 
