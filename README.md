@@ -7,9 +7,12 @@
 | Method | Endpoint       | Explanation |
 | :----: | :------------: | :---------- |
 | GET |/roles | GET to see the user roles |
-| GET |/users | GET to see the users |
 | GET |/roles/:id | GET to see the user's role where :id is user's id |
+| GET |/users | GET to see the users |
+| GET |/users/:id | GET to see the users |
 | GET |/missions | GET to see the missions |
+| GET |/missions/:id | GET to see the missions |
+| GET |/answers | GET to see the missions |
 
 
 #### Implementation and Docs deployed at [Apidevnow](https://client.apidevnow.com/) <br>
