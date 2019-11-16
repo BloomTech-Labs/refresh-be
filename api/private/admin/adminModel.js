@@ -19,8 +19,6 @@ function findById(id) {
   return db(table)
     .where({ id })
     .first()
-    .then(res => console.log(res))
-    .catch(res => console.log(res));
 }
 
 function findByUserName(admin) {
