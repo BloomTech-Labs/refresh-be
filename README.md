@@ -2,7 +2,7 @@
 
 #### Backend deployed at [Heroku](https://refresh-yo.herokuapp.com/) <br>
 
-##Endpoints
+## Endpoints
 
 | Method | Endpoint       | Explanation |
 | :----: | :------------: | :---------- |
