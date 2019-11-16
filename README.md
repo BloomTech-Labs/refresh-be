@@ -28,7 +28,6 @@ Those in the tech industry are always looking for ways to optimize their output 
 * [ReactJS](https://reactjs.org/) 
 * [NodeJS](https://nodejs.org/en/) 
 * [Google APIs](https://developers.google.com/apis-explorer) 
-* [Twilio](https://www.twilio.com/docs/api)
 * [oAuth2](https://oauth.net/2/)
 
 ### Authors
