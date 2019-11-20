@@ -36,6 +36,7 @@ module.exports = async (req, res, next) => {
       }
     });
   }
+  
   //Invoke the above function
   validateNewUser(req.body);
   //Does the user exist?

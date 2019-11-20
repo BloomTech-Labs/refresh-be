@@ -17,7 +17,7 @@ const addProp = (prop, value) =>{
 !!profile.name.givenName && addProp('fname',profile.name.givenName)//facebook,google
 
 //Profile Picture
-!!profile.photos[0].value && addProp('profile_pic', profile.photos[0].value)//facebook
+!!profile.photos[0].value && addProp('avatar', profile.photos[0].value)//facebook
 console.log('Clean Profile',cleanProfile)
 return cleanProfile
 }

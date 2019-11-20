@@ -3,10 +3,7 @@ const db = require(_dbConfig);
 module.exports = {
   findAll,
   findById
-  //   remove,
-  //   register,
-  //   editById,
-  //   findByUserName
+
 };
 
 const table = "question_groups";

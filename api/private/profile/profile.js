@@ -2,24 +2,12 @@ const router = require("express").Router();
 const dbModel = require("./profileModle");
 
 router.get("/", (req, res) => {
-  console.log(req.user)
+  const id = req.user.userId
   return dbModel
-    .findAll()
+    .findByUserId(id)
     .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
-    })
-    .catch(e => {
-      res.status(404).json({ message: "SOMEMESSAGE", ...e });
-    });
-});
-
-router.get("/:id", (req, res) => {
-  //console.log(req.user)
-  const {id} = req.params
-  return dbModel
-    .findByProfileId(id)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+      console.log(p)
+      res.status(200).json({ message: `SUCCESS`, profile:{...p} });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -32,7 +20,7 @@ router.put("/", (req, res) => {
   const { body } = req;
 
   return dbModel
-    .editById(req.user.id)
+    .editByUserId(req.user.userId)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

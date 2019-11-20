@@ -9,6 +9,7 @@
 | GET | /users | GET to see the users |
 | GET | /roles/:id | GET to see the user's role where :id is user's id |
 | GET | /missions | GET to see the missions |
+| GET | /answers | GET to see the answers - token req |
 
 
 #### Implementation and Docs deployed at [Apidevnow](https://client.apidevnow.com/) <br>
