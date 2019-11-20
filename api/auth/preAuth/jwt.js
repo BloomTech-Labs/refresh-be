@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
 const secret = process.env.JWT_SECRET;
-const tokenTTL = process.env.TOKEN_TTL || '1d'
+const tokenTTL = process.env.TOKEN_TTL || "1d";
 module.exports = {
   genToken,
   chkToken,
@@ -8,12 +8,13 @@ module.exports = {
 };
 
 //Creates a new JWT Token
-function genToken(email, role) {
-
+function genToken(user) {
+  console.log("hasdhfpiohlewnrfodhjksmfns", user);
+  const { user_id, userRoles } = user;
   const payload = {
     tokenType: "Basic ",
-    email,
-    role
+    userId: user_id,
+    userRoles
   };
 
   const options = {
@@ -24,16 +25,19 @@ function genToken(email, role) {
 }
 
 //Checks Role
-function chkRole(role){
-    return (req,res,next)=>{
-        //Gets req.user from chkToken
-        if(req.user && role === req.user.role){
-            next()
-        } else {
-            res.status(401).json({errors:[{token:'Invalid Access'}]});
-        }
-    }
+function chkRole(role) {
+  return (req, res, next) => {
+    let access = false
+    req.user.userRoles.forEach(userRole => {
+      if (userRole.id === role) {
+          access = true
+          next();
+      }
+    });
+    !access && next({token:'Invalid Access, You do not have permission to be here'})
+  };
 }
+
 //Verifies Existing Role and JWT token
 function chkToken() {
   return (req, res, next) => {
@@ -43,20 +47,13 @@ function chkToken() {
       jwt.verify(token, secret, async (err, decoded) => {
         if (err) {
           //Needs Time Validation
-          res
-            .status(401)
-            .json({
-              errors: [{ token: "Invalid Token, you will need to Log back in" }]
-            });
+          next({ token: "Invalid Token, you will need to Log back in" });
         } else {
-            req.user = decoded;
-            next()
+          req.user = { ...req.user, ...decoded };
+          next();
         }
       });
     //No Token, No Pass
-    !token &&
-      res
-        .status(401)
-        .json({ error: "No Token Provided, you will need to Login" });
+    !token && next({ token: "No Token Provided, you will need to Login" });
   };
 }

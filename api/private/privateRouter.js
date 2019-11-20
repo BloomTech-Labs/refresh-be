@@ -11,7 +11,7 @@ const questionGroupsRouter = require("./questionsgroups/questionsGroups")
 const jwt = require(_jwt);
 
 //all routes https://apidevnow.com/<route>    
-privateRouter.use("/admin", adminRouter);
+privateRouter.use("/admin",jwt.chkRole(1), adminRouter);
 privateRouter.use('/answers',answersRouter)
 privateRouter.use("/mailerYo", mailRouter);
 privateRouter.use("/missions", missionRouter);

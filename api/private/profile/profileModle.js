@@ -13,7 +13,7 @@ function findAll() {
 }
 function findByUserId(id) {
   return db(table)
-    .where({ id })
+    .where("user_id", id)
     .first();
 }
 
@@ -29,7 +29,7 @@ function removeByUserId(id) {
 }
 function editByUserId(id, update) {
   return db(table)
-    .where({ id })
+    .where("user_id", id)
     .update(update, "*");
 }
 function createProfile(obj) {

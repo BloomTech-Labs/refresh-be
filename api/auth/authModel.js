@@ -37,7 +37,7 @@ async function findOrCreateByEmail(profile) {
   //If the user exist
   if (user) {
     const  getUserRoles = await rolesModel.findAllRolesById(user.id)
-    return { ...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
+    return {user_id:user.id,...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
   } else {//CREATE NEW USER
     
     //Encrypt Password, consider doing off AccessToken
@@ -58,7 +58,7 @@ async function findOrCreateByEmail(profile) {
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id)
 
     delete newProfile.id
-    return {...newProfile, userRole:[...getUserRoles], newUser:'Welcome New User'}
+    return {...newProfile, userRoles:[...getUserRoles], newUser:'Welcome New User'}
   }
 }
 

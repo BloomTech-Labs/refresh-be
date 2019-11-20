@@ -8,7 +8,8 @@ module.exports={
 }
 const table='missions'
 function findAll(){
-    return db(table)
+    return db(table + ' as m')
+    .join('questions as q','q.id','m.question')
 }
 function findById(id){
     return db(table)
