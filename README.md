@@ -2,15 +2,21 @@
 
 #### Backend deployed at [Heroku](https://refresh-yo.herokuapp.com/) <br>
 
+
+
 ## Endpoints
 
-| Method | Endpoint | Explanation |
-| :----: | :------------: | :------------------------------------- |
-| GET | /roles | GET to see the user roles |
-| GET | /users | GET to see the users |
-| GET | /roles/:id | GET to see the user's role where :id is user's id |
-| GET | /missions | GET to see the missions |
-| GET | /answers | GET to see the answers - token req |
+| Method | Endpoint       | Explanation |
+| :----: | :------------: | :---------- |
+| GET |/roles | GET to see the user roles |
+| GET |/roles/:id | GET to see the user's role where :id is user's id |
+| GET |/users | GET to see the users |
+| GET |/users/:id | GET to see the users |
+| GET |/missions | GET to see the missions |
+| GET |/missions/:id | GET to see the missions |
+| GET |/answers | GET to see the missions |
+
+
 
 
 #### Implementation and Docs deployed at [Apidevnow](https://client.apidevnow.com/) <br>
@@ -26,7 +32,6 @@ Those in the tech industry are always looking for ways to optimize their output 
 * [ReactJS](https://reactjs.org/) 
 * [NodeJS](https://nodejs.org/en/) 
 * [Google APIs](https://developers.google.com/apis-explorer) 
-* [Twilio](https://www.twilio.com/docs/api)
 * [oAuth2](https://oauth.net/2/)
 
 ### Authors
