@@ -45,8 +45,5 @@ function add(obj) {
     .then(([id]) => findById(id));
 }
 
-function add(obj) {
-    return db(table)
-      .insert(obj, "id")
-  }
+
   
