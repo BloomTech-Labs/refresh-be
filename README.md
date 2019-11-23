@@ -2,7 +2,8 @@
 
 #### Backend deployed at [Heroku](https://refresh-yo.herokuapp.com/) <br>
 
-##Endpoints
+## Endpoints
+
 | Method | Endpoint | Explanation |
 | :----: | :------------: | :------------------------------------- |
 | GET | /roles | GET to see the user roles |

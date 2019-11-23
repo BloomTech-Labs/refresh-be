@@ -15,11 +15,7 @@ exports.up = function(knex) {
       col.dateTime("start_date");
       col.dateTime("ending_date");
       col.integer("daily_reminders");
-      col
-        .integer("user_id")
-        .references("id")
-        .inTable("users")
-        .onDelete("CASCADE");
+   
     });
 };
 

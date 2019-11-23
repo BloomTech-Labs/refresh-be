@@ -4,7 +4,7 @@ module.exports = {
   findAll,
   findByUserId,
   add,
-  findByDateRang,
+  findByDateRange,
   findAllByQuestionId,
   add
 };
@@ -27,10 +27,10 @@ function findAllByQuestionId(id) {
     .first();
 }
 
-function findByDateRang(startDate, endDate) {
+function findByDateRange(startDate, endDate) {
   return db(table)
     .whereBetween("answer_date", [startDate, endDate])
-    .orderBy("question_id");
+    .orderBy("user_id")
 }
 
 function findByUserId(id) {
