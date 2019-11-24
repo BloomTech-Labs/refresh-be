@@ -7,6 +7,7 @@ const questionsRouter = require("./questions/questions");
 const profileRouter = require("./profile/profile");
 const missionRouter = require("./missions/missions");
 const questionGroupsRouter = require("./questionsgroups/questionsGroups")
+const userMissionsRouter = require('./user_missions/userMissions')
 
 const jwt = require(_jwt);
 
@@ -19,6 +20,7 @@ privateRouter.use("/profile", profileRouter);
 privateRouter.use("/users", userRouter);
 privateRouter.use("/questions", questionsRouter);
 privateRouter.use("/questiongroups", questionGroupsRouter)
+privateRouter.use("/userMissions", userMissionsRouter)
 
 
 
