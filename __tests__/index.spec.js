@@ -3,12 +3,11 @@ const supertest = require("supertest");
 const req = supertest(app);
 
 describe("Renders Without Crashing", () => {
-
   it("Default Route", async done => {
-     const res = await req.get("/")
+    const res = await req.get("/");
 
-     expect(res.status).toBe(200);
-    
+    expect(res.status).toBe(200);
+
     done();
   });
 });
