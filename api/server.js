@@ -14,6 +14,6 @@ const authRouter = require("./auth/auth");
 //Implement Routes
 primaryRouter.use("/", authRouter);
 primaryRouter.use("/", publicRouter);
-primaryRouter.use("/", privateRouter);
+primaryRouter.use("/",jwt.chkToken(), privateRouter);
 
 module.exports = primaryRouter;

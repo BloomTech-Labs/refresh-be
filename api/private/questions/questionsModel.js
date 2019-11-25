@@ -28,5 +28,5 @@ function editById(id, update) {
 function add(obj) {
   return db(table)
     .insert(obj, "id")
-    .then(([id]) => findById(id));
+    .then(([id]) =>id);
 }

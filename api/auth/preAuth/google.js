@@ -57,7 +57,7 @@ googleRouter.get(
     //...So, not sure how to deal with escaping very well. R-J
     console.log("I am The Response",req.user)
 
-    const token = jwt.genToken(req.user.email)
+    const token = jwt.genToken(req.user)
     const setToken = `
     <script>
         window.opener.postMessage('${JSON.stringify({...req.user,token})}', "*");

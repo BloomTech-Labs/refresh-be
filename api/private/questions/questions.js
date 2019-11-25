@@ -4,7 +4,7 @@ router.get("/", (req, res) => {
   return dbModel
     .findAll()
     .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+      res.status(200).json({ message: `SUCCESS`, questions:[...p] });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -13,7 +13,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
-    .findAllById(id)
+    .findById(id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

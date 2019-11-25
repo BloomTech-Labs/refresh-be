@@ -6,7 +6,10 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest",
+    "seed": "heroku run knex seed:run -a refresh-yo-beta",
+    "migrate": "heroku run knex migrate:latest -a refresh-yo-beta",
+    "drop": "heroku run knex migrate:rollback -a refresh-yo-beta"
   },
   "repository": {
     "type": "git",
@@ -42,6 +45,9 @@
     "web-push": "^3.4.1"
   },
   "devDependencies": {
-    "nodemon": "^1.19.4"
+    "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "nodemon": "^1.19.4",
+    "supertest": "^4.0.2"
   }
 }
