@@ -26,7 +26,9 @@ module.exports = async (req, res, next) => {
           user_id: "User Id is Required, something is a bit shifty here..."
         });
 
-    errors.length < 0 && addProp("answer_date", new Date());
+    errors.length < 1 && addProp("answer_date", new Date());
+    console.log('Clean Answers',cleanAnswer)
+
     //return cleanObj
     return cleanAnswer;
   };
@@ -37,8 +39,9 @@ module.exports = async (req, res, next) => {
       req.body.push(cleaner(a));
     });
   } else {
-    //Answer
-    req.body = cleaner(answers);
+
+    req.body = {...cleaner(answers)};
+
   }
 
   if (errors.length > 0) {
