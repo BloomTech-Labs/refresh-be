@@ -7,14 +7,17 @@ exports.up = function(knex) {
           .notNullable()
           .references("id")
           .inTable("users")
-          .unsigned();
+          .unsigned()
+          .onDelete("CASCADE")
+          
         col.integer("points");
         col
-        .integer("answer_id")
-        .notNullable()
-        .references("id")
-        .inTable("answers")
-        .onDelete("CASCADE");
+          .integer("answer_id")
+          .notNullable()
+          .references("id")
+          .inTable("answers")
+          .onDelete("CASCADE")
+        
       });
   };
   

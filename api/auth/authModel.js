@@ -3,6 +3,7 @@ const Profile = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
 const rolesModel = require("../public/roles/roles-model")
 
+
 module.exports = {
   addUser,
   findByEmail,
@@ -28,6 +29,7 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
+  
   const email = profile.email;
   const user = await db(table)
     .select("email", "id")
@@ -41,23 +43,27 @@ async function findOrCreateByEmail(profile) {
   } else {//CREATE NEW USER
     
     //Encrypt Password, consider doing off AccessToken
-    const password = bcrypt.hashSync(Date.now() + email, 14);
-
+    const password = profile.password || bcrypt.hashSync(Date.now() + email, 14);
+    delete profile.password //Clean For Profile Creation
+    
     //Create New User
     const newUser = await addUser({email,password})
+    delete profile.email //Clean For Profile Creation
 
     //Assign User Role
     const userRole = await rolesModel.addUserRole({user_id: newUser.id, role_id: 2})
-    delete profile.email
     
+    //Create User Profile
     const newProfile = await Profile.createProfile({
       user_id:newUser.id,
       ...profile,
     })
+
+    delete newProfile.id //Clean For Profile Creation
     
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id)
 
-    delete newProfile.id
+    
     return {...newProfile, userRoles:[...getUserRoles], newUser:'Welcome New User'}
   }
 }

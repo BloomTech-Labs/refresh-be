@@ -1,5 +1,4 @@
 const authRouter = require("express").Router();
-const axios = require("axios");
 
 //Authenication Stratagies
 const jwt = require(_jwt);
@@ -27,26 +26,26 @@ authRouter.post("/register", validateNewUser, (req, res) => {
   const hash = bcrypt.hashSync(user.password, HashFactor);
   user.password = hash;
   dbModel
-    .addUser(user)
+    .findOrCreateByEmail(user)
     .then(newUser => {
-      //Just to Be sure
-      delete newUser.password;
+      console.log(newUser)
       payload = {
         ...newUser,
         token_type: "Basic ",
         token: jwt.genToken(newUser)
       };
-      console.log("payload", payload);
+     
       res.status(201).send({ message: "Welcome da the Club Yo!", ...payload });
     })
     .catch(err => res.status(400).json({ errors: err }));
 });
 
 //Register ->Requires{username:'',password:''}
-authRouter.post("/login", validateLogin, (req, res) => {
+authRouter.post("/login", validateLogin, async (req, res) => {
   const { password } = req.body;
-  const user = req.user;
+  let user = req.user;
   if (user && bcrypt.compareSync(password, user.password)) {
+    user = await dbModel.findOrCreateByEmail(user)
     delete user.password;
     payload = {
       ...user,

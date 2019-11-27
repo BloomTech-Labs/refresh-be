@@ -1,49 +1,41 @@
 const db = require(_dbConfig);
 module.exports = {
-  find,
-  findAll,
-  findByUserId,
   add,
+  editById,
+  findAllByUserId,
   findByDateRange,
-  findAllByQuestionId,
-  add
+  findAllByQuestionId
 };
+
 const table = "answers";
 
-function find(){
-  return db(table);
+
+function findAllByUserId(id) {
+  return db(table)
+    .where("user_id", id)
+  
 }
 
-function findAll(id) {
-    return db(table)
-      .where("user_id", id)
-      .first();
-  }
-
-function findAllByQuestionId(id) {
+function findAllByQuestionId(user_id,id) {
   return db(table)
     .where({ id })
-    .where("user_id", req.user.userId)
-    .first();
+    .where("user_id", user_id)
 }
 
-function findByDateRange(startDate, endDate) {
+function findByDateRange(id, startDate, endDate) {
   return db(table)
     .whereBetween("answer_date", [startDate, endDate])
     .orderBy("user_id")
-}
-
-function findByUserId(id) {
-  return db(table)
-    .where("user_id", id)
-    .orderBy("answer_date");
+    .where("user_id", id);
 }
 
 function add(obj) {
-  return db(table)
-    .insert(obj, "id")
-    .then(([id]) => findById(id));
+  return db(table).insert(obj, "id");
 }
 
-
-  
+function editById(user_id,id){
+  return db(table)
+  .where({id})
+  .andWhere({user_id})
+  .update(update, "*");
+}

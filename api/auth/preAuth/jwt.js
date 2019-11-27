@@ -9,7 +9,7 @@ module.exports = {
 
 //Creates a new JWT Token
 function genToken(user) {
-  console.log("hasdhfpiohlewnrfodhjksmfns", user);
+  
   const { user_id, userRoles } = user;
   const payload = {
     tokenType: "Basic ",

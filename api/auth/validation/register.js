@@ -3,7 +3,7 @@ module.exports = async (req, res, next) => {
   const errors = [];
 
   function validateNewUser(user) {
-    
+    console.log(user)
     //Check For Keys
     const u = user
     !u.email && errors.push({ email: "required" });

@@ -20,7 +20,7 @@ privateRouter.use("/profile", profileRouter);
 privateRouter.use("/users", userRouter);
 privateRouter.use("/questions", questionsRouter);
 privateRouter.use("/questiongroups", questionGroupsRouter)
-privateRouter.use("/userMissions", userMissionsRouter)
+privateRouter.use("/usermissions", userMissionsRouter)
 
 
 
