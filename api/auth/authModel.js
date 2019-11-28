@@ -1,8 +1,8 @@
 const db = require(_dbConfig);
 const Profile = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
-const rolesModel = require("../public/roles/roles-model")
-
+const rolesModel = require("../public/roles/roles-model");
+const userMissionsModel = require("../private/user_missions/userMissionsModel");
 
 module.exports = {
   addUser,
@@ -29,7 +29,6 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
-  
   const email = profile.email;
   const user = await db(table)
     .select("email", "id")
@@ -38,33 +37,48 @@ async function findOrCreateByEmail(profile) {
 
   //If the user exist
   if (user) {
-    const  getUserRoles = await rolesModel.findAllRolesById(user.id)
-    return {user_id:user.id,...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
-  } else {//CREATE NEW USER
-    
+    const getUserRoles = await rolesModel.findAllRolesById(user.id);
+    const user_missions = await userMissionsModel.findAll(user.id);
+    return {
+      user_id: user.id,
+      ...profile,
+      userRoles: [...getUserRoles],
+      ...user_missions,
+      message: "Welcome Back"
+    };
+  } else {
+    //CREATE NEW USER
+
     //Encrypt Password, consider doing off AccessToken
-    const password = profile.password || bcrypt.hashSync(Date.now() + email, 14);
-    delete profile.password //Clean For Profile Creation
-    
+    const password =
+      profile.password || bcrypt.hashSync(Date.now() + email, 14);
+    delete profile.password; //Clean For Profile Creation
+
     //Create New User
-    const newUser = await addUser({email,password})
-    delete profile.email //Clean For Profile Creation
+    const newUser = await addUser({ email, password });
+    delete profile.email; //Clean For Profile Creation
 
     //Assign User Role
-    const userRole = await rolesModel.addUserRole({user_id: newUser.id, role_id: 2})
-    
+    const userRole = await rolesModel.addUserRole({
+      user_id: newUser.id,
+      role_id: 2
+    });
+
     //Create User Profile
     const newProfile = await Profile.createProfile({
-      user_id:newUser.id,
-      ...profile,
-    })
+      user_id: newUser.id,
+      ...profile
+    });
 
-    delete newProfile.id //Clean For Profile Creation
-    
-    const getUserRoles = await rolesModel.findAllRolesById(newUser.id)
+    delete newProfile.id; //Clean For Profile Creation
 
-    
-    return {...newProfile, userRoles:[...getUserRoles], newUser:'Welcome New User'}
+    const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
+
+    return {
+      ...newProfile,
+      userRoles: [...getUserRoles],
+      newUser: "Welcome New User"
+    };
   }
 }
 
