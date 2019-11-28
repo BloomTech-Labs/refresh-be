@@ -1,5 +1,5 @@
 const db = require(_dbConfig);
-const Profile = require("../private/profile/profileModle");
+const profileModel = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
 const rolesModel = require("../public/roles/roles-model");
 const userMissionsModel = require("../private/user_missions/userMissionsModel");
@@ -29,6 +29,9 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
+
+
+  //Get the proposed user
   const email = profile.email;
   const user = await db(table)
     .select("email", "id")
@@ -37,11 +40,12 @@ async function findOrCreateByEmail(profile) {
 
   //If the user exist
   if (user) {
-    const getUserRoles = await rolesModel.findAllRolesById(user.id);
     const user_missions = await userMissionsModel.findAll(user.id);
+    const getUserRoles = await rolesModel.findAllRolesById(user.id);
+    const user_profile = await profileModel.findByUserId(user.id)
     return {
       user_id: user.id,
-      ...profile,
+      user_profile,
       userRoles: [...getUserRoles],
       ...user_missions,
       message: "Welcome Back"
@@ -56,6 +60,7 @@ async function findOrCreateByEmail(profile) {
 
     //Create New User
     const newUser = await addUser({ email, password });
+    const user_missions = await userMissionsModel.findAll(newUser.id);
     delete profile.email; //Clean For Profile Creation
 
     //Assign User Role
@@ -65,7 +70,7 @@ async function findOrCreateByEmail(profile) {
     });
 
     //Create User Profile
-    const newProfile = await Profile.createProfile({
+    const newProfile = await profileModel.createProfile({
       user_id: newUser.id,
       ...profile
     });
@@ -75,7 +80,8 @@ async function findOrCreateByEmail(profile) {
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
 
     return {
-      ...newProfile,
+      user_profile:{...newProfile},
+      ...user_missions,
       userRoles: [...getUserRoles],
       newUser: "Welcome New User"
     };
