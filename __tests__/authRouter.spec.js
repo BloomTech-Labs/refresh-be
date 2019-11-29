@@ -10,7 +10,7 @@ describe("It should Register and Log in a user", () => {
     });
 
     
-    expect(res.status).toBe(201);
+    expect(res.status).toBe(200);
 
 
     done();

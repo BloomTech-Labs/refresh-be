@@ -11,6 +11,7 @@ const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
 global._dbConfig = path.resolve(__dirname + "/data/dbConfig");
 global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
+global._URL = process.env.ROOT_URL || "localhost:" + PORT
 
 //Bring in the Routes.. Always after Globals
 const webHooks = require("./webHooks/webhooks");
