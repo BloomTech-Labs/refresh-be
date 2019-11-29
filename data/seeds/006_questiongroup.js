@@ -5,7 +5,7 @@ exports.seed = function(knex) {
     .then(function () {
 
       // Sqlite 3 does not support Int[]
-      const questions = process.env.DB_ENV === 'test' 
+      const questions = process.env.NODE_ENV === 'test' 
       || process.env.DB_ENV === 'development'
       ? '[1,2,3,4,5,6,7,8,9,10]'
       : [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
