@@ -9,7 +9,7 @@ describe("It should Register and Log in a user", () => {
         password:"secretSquirl"
     });
 
-    
+    console.log(process.env.NODE_ENV)
     expect(res.status).toBe(200);
 
 
