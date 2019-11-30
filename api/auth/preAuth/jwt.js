@@ -9,11 +9,11 @@ module.exports = {
 
 //Creates a new JWT Token
 function genToken(user) {
-  
-  const { user_id, userRoles } = user;
+  const { userRoles } = user;
+  const {user_id} = user.user_profile
   const payload = {
     tokenType: "Basic ",
-    userId: user_id,
+    user_id,
     userRoles
   };
 
@@ -49,7 +49,7 @@ function chkToken() {
           //Needs Time Validation
           next({ token: "Invalid Token, you will need to Log back in" });
         } else {
-          req.user = { ...req.user, ...decoded };
+          req.user = {...decoded };
           next();
         }
       });

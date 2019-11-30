@@ -6,7 +6,6 @@ router.get("/", (req, res) => {
   return dbModel
     .findByUserId(id)
     .then(p => {
-      console.log(p)
       res.status(200).json({ message: `SUCCESS`, profile:{...p} });
     })
     .catch(e => {

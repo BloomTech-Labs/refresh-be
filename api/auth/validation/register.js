@@ -3,7 +3,6 @@ module.exports = async (req, res, next) => {
   const errors = [];
 
   function validateNewUser(user) {
-    console.log(user)
     //Check For Keys
     const u = user
     !u.email && errors.push({ email: "required" });
@@ -49,5 +48,5 @@ module.exports = async (req, res, next) => {
   }
   
   //OK We are probably safe to move on
-  errors.length < 1 ? next() : res.status(200).json({ errors });
+  return errors.length < 1 ? next() : res.status(200).json({ errors });
 };

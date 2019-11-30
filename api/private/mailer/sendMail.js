@@ -22,7 +22,6 @@ const mailOptions = {
 mailRouter.get("/", (req, res) => {
   transporter.sendMail(mailOptions, function(error, info) {
     if (error) {
-      console.log(error);
       res.status(500).json({ message: "Message Was Not Sent" });
     } else {
       res

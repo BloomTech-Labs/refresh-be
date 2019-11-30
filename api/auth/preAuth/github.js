@@ -28,7 +28,6 @@ passport.use(
       delete profile._raw
       User.findOrCreateByEmail(profile._json)
       .then(res =>{
-        console.log('res',res)
         done(null, {...res,...profile}, accessToken)
       })
     }

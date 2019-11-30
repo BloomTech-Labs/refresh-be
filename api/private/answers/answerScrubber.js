@@ -44,7 +44,6 @@ module.exports = async (req, res, next) => {
   if (errors.length > 0) {
     next(errors);
   } else {
-    console.log(req.body)
     next();
   }
 };

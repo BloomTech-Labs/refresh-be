@@ -8,7 +8,8 @@ module.exports = {
   addUser,
   findByEmail,
   findById,
-  findOrCreateByEmail
+  findOrCreateByEmail,
+  removeUser
 };
 
 //Nice to declare Tables up top Yo, including sub tables
@@ -37,12 +38,13 @@ async function findOrCreateByEmail(profile) {
     .select("email", "id")
     .where({ email })
     .first();
-
+  
   //If the user exist
   if (user) {
     const user_missions = await userMissionsModel.findAll(user.id);
     const getUserRoles = await rolesModel.findAllRolesById(user.id);
     const user_profile = await profileModel.findByUserId(user.id)
+    console.log('user',user_missions,getUserRoles,"PROFILE",user_profile)
     return {
       user_id: user.id,
       user_profile,
@@ -92,4 +94,11 @@ function addUser(obj) {
   return db(table)
     .insert(obj, "id")
     .then(([id]) => findById(id));
+}
+
+
+function removeUser(id){
+  return db(table)
+  .where({ id })
+  .del();
 }

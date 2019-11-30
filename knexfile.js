@@ -1,8 +1,8 @@
-// Update with your config settings.
+console.log("ENVS",process.env.DATABASE_URL,process.env.DATABASE_URL_STAGE)
 module.exports = {
   test: {
     client: "sqlite3",
-    useNullAsDefault:true,
+    useNullAsDefault: true,
     connection: {
       filename: "./data/dev.sqlite3"
     },
@@ -16,7 +16,7 @@ module.exports = {
   },
   development: {
     client: "sqlite3",
-    useNullAsDefault:true,
+    useNullAsDefault: true,
     connection: {
       filename: "./data/dev.sqlite3"
     },
@@ -25,8 +25,7 @@ module.exports = {
     },
     seeds: {
       directory: "./data/seeds"
-    },
-    debug:true
+    }
   },
   staging: {
     client: "pg",
@@ -42,7 +41,6 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     },
-    debug: true
   },
 
   production: {

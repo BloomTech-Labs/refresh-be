@@ -22,8 +22,8 @@ async function findAll(id) {
   );
 
   //Returns All missions in progress between Above Dates
-  let missionProgress = await db("missions as m")
-    .select(db.raw("array_agg(a.answer) as totals"), "m.*")
+  let missions_in_progress = await db("missions as m")
+    .select(process.env.NODE_ENV !== 'test' && db.raw("array_agg(a.answer) as totals"), "m.*")
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
     .whereBetween("answer_date", [today, tomorrow])
@@ -43,13 +43,13 @@ async function findAll(id) {
     );
 
   //No Missions in Progress
-  if (!missionProgress.length) {
-    missionProgress = "No Missions Currently in progress for today";
+  if (!missions_in_progress.length) {
+    missions_in_progress = "No Missions Currently in progress for today";
   } else {
     //Verify all mission answers are countable and numbers
-    await missionProgress.forEach((mission, i) => {
+    await missions_in_progress.forEach((mission, i) => {
       //Add Returned Mission Id to filtered Missions
-      filterdMissions.push(missionProgress[i].id);
+      filterdMissions.push(missions_in_progress[i].id);
       
       //Get Total Mission Progress. 
       let count = 0;
@@ -73,7 +73,7 @@ async function findAll(id) {
 
   return {
     user_missions: {
-      missions_in_progress: [missionProgress],
+      missions_in_progress,
       missions_needing_attention
     }
   };
