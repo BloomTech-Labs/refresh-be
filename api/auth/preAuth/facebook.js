@@ -3,10 +3,11 @@ const passport = require("passport");
 const FacebookStrategy = require("passport-facebook").Strategy;
 const jwt = require('./jwt');
 
+
 //Config facebook Auth
 const fbId = process.env.FACEBOOK_APP_ID;
 const fbSecret = process.env.FACEBOOK_CLIENT_SECRET;
-const fbRedirect = "https://apidevnow.com/facebookAuth/return";
+const fbRedirect = `https://${_URL}/facebookAuth/return`;
 
 //Bring in the userModel and Data Scrubber
 const User = require("../authModel");
@@ -40,7 +41,7 @@ facebookRouter.get("/", passport.authenticate("facebook",{scope: ['email', 'publ
 facebookRouter.get("/return",
   passport.authenticate("facebook", {failureRedirect: "/login",session:false }),
   (req, res) => {
-    console.log("kljdslfjaisjiorjewiojfklsdnlfjiosdjf",req.user)
+    
     const token = jwt.genToken(req.user)
     const setToken = `
     <script>

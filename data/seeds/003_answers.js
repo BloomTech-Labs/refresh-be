@@ -1,7 +1,7 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
   return knex("answers")
-    .del()
+  .del()
     .then(function() {
       
       const getRandomInt = (min, max) => {
@@ -22,7 +22,7 @@ exports.seed = function(knex) {
       randomDate(new Date(2019, 10, 1), new Date(2019,12,12));
 
       const fakeAnswers = [];
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 200; i++) {
         fakeAnswers.push({
           answer: getRandomInt(1, 10),
           question_id: getRandomInt(11, 13),//Max Exclusive

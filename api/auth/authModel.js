@@ -1,13 +1,15 @@
 const db = require(_dbConfig);
-const Profile = require("../private/profile/profileModle");
+const profileModel = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
-const rolesModel = require("../public/roles/roles-model")
+const rolesModel = require("../public/roles/roles-model");
+const userMissionsModel = require("../private/user_missions/userMissionsModel");
 
 module.exports = {
   addUser,
   findByEmail,
   findById,
-  findOrCreateByEmail
+  findOrCreateByEmail,
+  removeUser
 };
 
 //Nice to declare Tables up top Yo, including sub tables
@@ -28,37 +30,62 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
+
+
+  //Get the proposed user
   const email = profile.email;
   const user = await db(table)
     .select("email", "id")
     .where({ email })
     .first();
-
+  
   //If the user exist
   if (user) {
-    const  getUserRoles = await rolesModel.findAllRolesById(user.id)
-    return {user_id:user.id,...profile,userRoles:[...getUserRoles], message: "Welcome Back" };
-  } else {//CREATE NEW USER
-    
+    const user_missions = await userMissionsModel.findAll(user.id);
+    const getUserRoles = await rolesModel.findAllRolesById(user.id);
+    const user_profile = await profileModel.findByUserId(user.id)
+    return {
+      user_id: user.id,
+      user_profile,
+      userRoles: [...getUserRoles],
+      ...user_missions,
+      message: "Welcome Back"
+    };
+  } else {
+    //CREATE NEW USER
+
     //Encrypt Password, consider doing off AccessToken
-    const password = bcrypt.hashSync(Date.now() + email, 14);
+    const password =
+      profile.password || bcrypt.hashSync(Date.now() + email, 14);
+    delete profile.password; //Clean For Profile Creation
 
     //Create New User
-    const newUser = await addUser({email,password})
+    const newUser = await addUser({ email, password });
+    const user_missions = await userMissionsModel.findAll(newUser.id);
+    delete profile.email; //Clean For Profile Creation
 
     //Assign User Role
-    const userRole = await rolesModel.addUserRole({user_id: newUser.id, role_id: 2})
-    delete profile.email
-    
-    const newProfile = await Profile.createProfile({
-      user_id:newUser.id,
-      ...profile,
-    })
-    
-    const getUserRoles = await rolesModel.findAllRolesById(newUser.id)
+    const userRole = await rolesModel.addUserRole({
+      user_id: newUser.id,
+      role_id: 2
+    });
 
-    delete newProfile.id
-    return {...newProfile, userRoles:[...getUserRoles], newUser:'Welcome New User'}
+    //Create User Profile
+    const newProfile = await profileModel.createProfile({
+      user_id: newUser.id,
+      ...profile
+    });
+
+    delete newProfile.id; //Clean For Profile Creation
+
+    const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
+
+    return {
+      user_profile:{...newProfile},
+      ...user_missions,
+      userRoles: [...getUserRoles],
+      newUser: "Welcome New User"
+    };
   }
 }
 
@@ -66,4 +93,11 @@ function addUser(obj) {
   return db(table)
     .insert(obj, "id")
     .then(([id]) => findById(id));
+}
+
+
+function removeUser(id){
+  return db(table)
+  .where({ id })
+  .del();
 }

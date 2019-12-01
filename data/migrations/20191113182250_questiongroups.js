@@ -5,7 +5,6 @@ exports.up = function(knex) {
         col.text("group", 25).unique();
         col.specificType("question_ids", "INT[]").notNullable();
       })
-     
   };
   
   exports.down = function(knex) {

@@ -26,7 +26,7 @@ module.exports = async (req, res, next) => {
           user_id: "User Id is Required, something is a bit shifty here..."
         });
 
-    errors.length < 0 && addProp("answer_date", new Date());
+    errors.length < 1 && addProp("answer_date", new Date());
     //return cleanObj
     return cleanAnswer;
   };
@@ -44,7 +44,6 @@ module.exports = async (req, res, next) => {
   if (errors.length > 0) {
     next(errors);
   } else {
-    console.log(req.body)
     next();
   }
 };

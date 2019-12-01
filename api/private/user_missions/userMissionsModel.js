@@ -7,7 +7,12 @@ module.exports = {
   editById
 };
 const table = "user_missions";
+//Finds all Missions by User id Segrigated by progress status.
 async function findAll(id) {
+  //Id of all returned missions
+  const filterdMissions = [];
+
+  //Daily Missions filter within 24 hours, UTC, set to server time
   const now = new Date();
   const today = new Date(
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate())
@@ -16,9 +21,13 @@ async function findAll(id) {
     Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1)
   );
 
-  console.log(today, tomorrow);
-  const missionProgress = await db("missions as m")
-    .select(db.raw("array_agg(a.answer) as totals"), "m.*")
+  //Returns All missions in progress between Above Dates
+  let missions_in_progress = await db("missions as m")
+    .select(
+      process.env.NODE_ENV !== "test" &&
+        db.raw("array_agg(a.id) as daily_answers"),
+      "m.*"
+    )
     .from("answers as a")
     .join("missions as m", "m.question", "a.question_id")
     .whereBetween("answer_date", [today, tomorrow])
@@ -36,23 +45,48 @@ async function findAll(id) {
       "m.ending_date",
       "m.daily_reminders"
     );
-  //'m.id','m.vertical','m.description','m.question','m.point_value','m.point_current','m.goal','m.dotw','m.start_date' ,'m.ending_date' ,'m.daily_reminders'
 
-  await missionProgress.forEach(mission => {
-    let count = 0;
-    mission.totals &&
-      mission.totals.forEach(n => {
-        n = parseInt(n);
-        count = Number(n) ? count + n : count;
+  //No Missions in Progress
+  if (!missions_in_progress.length) {
+    missions_in_progress = "No Missions Currently in progress for today";
+  } else {
+    //Verify all mission answers are countable and numbers
+    await missions_in_progress.forEach(async (mission, i) => {
+      //Add Returned Mission Id to filtered Missions
+      filterdMissions.push(missions_in_progress[i].id);
+
+      //Get all of the answers by id
+      mission.daily_answers = await db("answers as a")
+        .select("a.id as answer_id", "a.answer", "a.answer_date")
+        .whereIn("id", mission.daily_answers);
+
+      //Get Total Mission Progress.
+      let count = 0;
+      //Loops through array of daily_answers
+      mission.daily_answers.forEach(a => {
+        a.answer = parseInt(a.answer);
+        count = Number(a.answer) ? count + a.answer : count;
       });
-    mission.mission_complete = count >= mission.goal ? true : false;
-    mission.point_current = count;
-  });
-  console.log('id',id)
-  const profile = await db('profile').where('user_id',id).first()
-  console.log(profile)
+      //Is the mission Complete?
+      mission.mission_complete = count >= mission.goal ? true : false;
+      //Get Current Mission Count
+      mission.point_current = count;
+    });
+  }
 
-  return { ...missionProgress };
+  //Return All other User Missions Not In Progress
+  const missions_needing_attention = await db(table + " as um")
+    .select("m.*")
+    .join("missions as m", "m.id", "um.mission_id")
+    .where("um.user_id", id)
+    .whereNotIn("m.id", filterdMissions);
+
+  return {
+    user_missions: {
+      missions_in_progress,
+      missions_needing_attention
+    }
+  };
 }
 
 function findById(id) {

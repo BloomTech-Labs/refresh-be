@@ -18,6 +18,5 @@ const addProp = (prop, value) =>{
 
 //Profile Picture
 !!profile.photos[0].value && addProp('avatar', profile.photos[0].value)//facebook
-console.log('Clean Profile',cleanProfile)
 return cleanProfile
 }

@@ -1,9 +1,21 @@
-// Update with your config settings.
-
 module.exports = {
+  test: {
+    client: "sqlite3",
+    useNullAsDefault: true,
+    connection: {
+      filename: "./data/dev.sqlite3"
+    },
+    migrations: {
+      directory: "./data/migrations"
+    },
+    seeds: {
+      directory: "./data/seeds"
+    },
+    debug:true
+  },
   development: {
     client: "sqlite3",
-    useNullAsDefault:true,
+    useNullAsDefault: true,
     connection: {
       filename: "./data/dev.sqlite3"
     },
@@ -14,7 +26,6 @@ module.exports = {
       directory: "./data/seeds"
     }
   },
-
   staging: {
     client: "pg",
     connection: process.env.DATABASE_URL_STAGE,
@@ -29,7 +40,7 @@ module.exports = {
     seeds: {
       directory: "./data/seeds"
     },
-    debug: true
+    debug:true
   },
 
   production: {

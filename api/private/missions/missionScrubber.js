@@ -34,7 +34,6 @@ module.exports = async (req, res, next) => {
     ? addProp("goal", mission.goal)
     : errors.push({ goal: "Goal is required" });
 
-  console.log("Clean mission", cleanMission);
 
   if (errors.length > 0) {
     next(errors);
