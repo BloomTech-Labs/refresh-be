@@ -12,7 +12,6 @@ function findAll() {
   return db(table);
 }
 function findByUserId(id) {
-  console.log('Profile: USER_ID',id)
   return db(table)
     .where("user_id", id)
     .first();

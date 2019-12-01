@@ -47,7 +47,7 @@ authRouter.post("/login", validateLogin, async (req, res) => {
   if (user && bcrypt.compareSync(password, user.password)) {
     user = await dbModel.findOrCreateByEmail(user)
     delete user.password;
-    console.log('req.user',req.user)
+   
     payload = {
       ...user,
       token_type: "Basic ",
