@@ -1,4 +1,5 @@
 const db = require(_dbConfig);
+const userMissionsModel = require('../user_missions/userMissionsModel')
 module.exports = {
   add,
   editById,
@@ -16,9 +17,9 @@ function findAllByUserId(id) {
   
 }
 
-function findAllByQuestionId(user_id,id) {
+function findAllByQuestionId(user_id,question_id) {
   return db(table)
-    .where({ id })
+    .where({question_id})
     .where("user_id", user_id)
 }
 
@@ -30,7 +31,8 @@ function findByDateRange(id, startDate, endDate) {
 }
 
 function add(obj) {
-  return db(table).insert(obj, "id");
+  return db(table).insert(obj, "id")
+  .then(res=>userMissionsModel.findAll(obj.user_id))
 }
 
 function editById(user_id,id){

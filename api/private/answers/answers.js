@@ -15,9 +15,10 @@ router.get("/", (req, res) => {
 });
 
 router.get("/:id", (req, res) => {
+
   const { id } = req.params;
   return dbModel
-    .findAllQuestionId(req.user.userId,id)
+    .findAllByQuestionId(req.user.userId, id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
@@ -30,15 +31,15 @@ router.get("/:id", (req, res) => {
 router.post("/datefilter", (req, res) => {
   const id = req.user.userId;
   const { startDate, endDate } = req.body;
-  
-    return dbModel
-      .findByDateRange(id,startDate, endDate)
-      .then(p => {
-        res.status(200).json({ message: `SUCCESS`, ...p });
-      })
-      .catch(e => {
-        res.status(404).json({ message: "SOMEMESSAGE", ...e });
-      });
+
+  return dbModel
+    .findByDateRange(id, startDate, endDate)
+    .then(p => {
+      res.status(200).json({ message: `SUCCESS`, ...p });
+    })
+    .catch(e => {
+      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+    });
 });
 
 router.post("/", answerScrubber, (req, res) => {
@@ -56,11 +57,11 @@ router.post("/", answerScrubber, (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const {userId} = req.user
+  const { userId } = req.user;
   const { body } = req;
 
   return dbModel
-    .editById(userId,id)
+    .editById(userId, id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

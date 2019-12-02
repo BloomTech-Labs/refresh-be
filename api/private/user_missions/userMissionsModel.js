@@ -25,6 +25,7 @@ async function findAll(id) {
   let missions_in_progress = await db("missions as m")
     .select(
       process.env.NODE_ENV !== "test" &&
+      process.env.DB_ENV !== "development" &&
         db.raw("array_agg(a.id) as daily_answers"),
       "m.*"
     )
