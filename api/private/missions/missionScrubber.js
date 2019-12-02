@@ -18,11 +18,7 @@ module.exports = async (req, res, next) => {
     ? addProp("description", mission.description)
     : errors.push({ description: "Description is Required" });
 
-  //Question
-  mission.question = mission.question && (await questionModel.add({question:mission.question}));
-  !!mission.question && Number(mission.question)
-    ? addProp("question", mission.question)
-    : errors.push({ question: "Question is required" })
+  
 
   //Point Value
   !!mission.point_value
@@ -33,7 +29,12 @@ module.exports = async (req, res, next) => {
   !!mission.goal
     ? addProp("goal", mission.goal)
     : errors.push({ goal: "Goal is required" });
-
+    
+  //Question
+  mission.question = mission.question && (await questionModel.add({question:mission.question}));
+  !!mission.question && Number(mission.question)
+    ? addProp("question", mission.question)
+    : errors.push({ question: "Question is required" })
 
   if (errors.length > 0) {
     next(errors);

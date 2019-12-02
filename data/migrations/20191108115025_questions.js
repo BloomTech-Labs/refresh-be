@@ -3,7 +3,7 @@ exports.up = function(knex) {
     .createTable("questions", col => {
       col.increments();
       col.string("question", 500);
-      col.timestamp("answer_date").defaultTo(knex.fn.now());
+      col.timestamp("creation_date").defaultTo(knex.fn.now());
     })
 };
 

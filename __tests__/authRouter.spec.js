@@ -20,6 +20,10 @@ describe("Register, Login and delete a standard user using the local stratagey",
     token = res.body.token;
     expect(res.status).toBe(201);
     expect(res.body).toHaveProperty("user_profile");
+    expect(res.body).toHaveProperty("user_missions");
+    expect(res.body).toHaveProperty("user_roles");
+    expect(res.body).toHaveProperty("newUser");
+    expect(res.body).toHaveProperty("token_type");
     expect(res.body).toHaveProperty("token");
     return done();
   });

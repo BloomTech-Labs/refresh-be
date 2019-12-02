@@ -43,11 +43,11 @@ async function findOrCreateByEmail(profile) {
   if (user) {
     const user_missions = await userMissionsModel.findAll(user.id);
     const getUserRoles = await rolesModel.findAllRolesById(user.id);
-    const user_profile = await profileModel.findByUserId(user.id)
+    const user_profile = await profileModel.findByuser_id(user.id)
     return {
       user_id: user.id,
       user_profile,
-      userRoles: [...getUserRoles],
+      user_roles: [...getUserRoles],
       ...user_missions,
       message: "Welcome Back"
     };
@@ -83,7 +83,7 @@ async function findOrCreateByEmail(profile) {
     return {
       user_profile:{...newProfile},
       ...user_missions,
-      userRoles: [...getUserRoles],
+      user_roles: [...getUserRoles],
       newUser: "Welcome New User"
     };
   }
