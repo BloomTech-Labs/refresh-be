@@ -3,14 +3,14 @@ const userMissionsModel = require("../user_missions/userMissionsModel");
 module.exports = {
   add,
   editById,
-  findAllByuser_id,
+  findAllByUserId,
   findByDateRange,
   findAllByQuestionId
 };
 
 const table = "answers";
 
-function findAllByuser_id(id) {
+function findAllByUserId(id) {
   return db(table).where("user_id", id);
 }
 
