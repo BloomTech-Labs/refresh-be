@@ -2,9 +2,9 @@ const router = require("express").Router();
 const dbModel = require("./profileModle");
 
 router.get("/", (req, res) => {
-  const id = req.user.userId
+  const id = req.user.user_id
   return dbModel
-    .findByUserId(id)
+    .findByuser_id(id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, profile:{...p} });
     })
@@ -19,7 +19,7 @@ router.put("/", (req, res) => {
   const { body } = req;
 
   return dbModel
-    .editByUserId(req.user.userId)
+    .editByuser_id(req.user.user_id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

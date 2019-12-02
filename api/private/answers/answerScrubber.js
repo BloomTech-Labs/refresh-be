@@ -20,8 +20,8 @@ module.exports = async (req, res, next) => {
       : errors.push({ question_id: "Question Id is Required" });
 
     //User ID
-    !!req.user.userId
-      ? addProp("user_id", req.user.userId)
+    !!req.user.user_id
+      ? addProp("user_id", req.user.user_id)
       : errors.push({
           user_id: "User Id is Required, something is a bit shifty here..."
         });

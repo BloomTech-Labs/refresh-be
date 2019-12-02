@@ -9,12 +9,12 @@ module.exports = {
 
 //Creates a new JWT Token
 function genToken(user) {
-  const { userRoles } = user;
+  const { user_roles } = user;
   const {user_id} = user.user_profile
   const payload = {
     tokenType: "Basic ",
     user_id,
-    userRoles
+    user_roles
   };
 
   const options = {
@@ -28,7 +28,7 @@ function genToken(user) {
 function chkRole(role) {
   return (req, res, next) => {
     let access = false
-    req.user.userRoles.forEach(userRole => {
+    req.user.user_roles.forEach(userRole => {
       if (userRole.id === role) {
           access = true
           next();

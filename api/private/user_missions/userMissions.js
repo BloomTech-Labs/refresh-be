@@ -2,7 +2,8 @@ const router = require('express').Router()
 const dbModel = require('./userMissionsModel')
 router
   .get('/',(req,res)=>{
-      const id = req.user.userId
+      const id = req.user.user_id
+      console.log(req.user)
     return dbModel.findAll(id)
     .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
