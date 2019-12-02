@@ -4,7 +4,7 @@ const dbModel = require("./profileModle");
 router.get("/", (req, res) => {
   const id = req.user.user_id
   return dbModel
-    .findByuser_id(id)
+    .findByUserId(id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, profile:{...p} });
     })
@@ -19,7 +19,7 @@ router.put("/", (req, res) => {
   const { body } = req;
 
   return dbModel
-    .editByuser_id(req.user.user_id)
+    .editByUserId(req.user.user_id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

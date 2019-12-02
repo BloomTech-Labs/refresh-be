@@ -5,7 +5,7 @@ const answerScrubber = require("./answerScrubber");
 router.get("/", (req, res) => {
   const id = req.user.user_id;
   return dbModel
-    .findAllByuser_id(id)
+    .findAllByUserId(id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

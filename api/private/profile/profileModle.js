@@ -1,17 +1,17 @@
 const db = require(_dbConfig);
 module.exports = {
   findAll,
-  findByuser_id,
+  findByUserId,
   findByProfileId,
-  removeByuser_id,
+  removeByUserId,
   createProfile,
-  editByuser_id
+  editByUserId
 };
 const table = "profile";
 function findAll() {
   return db(table);
 }
-function findByuser_id(id) {
+function findByUserId(id) {
   return db(table)
     .where("user_id", id)
     .first();
@@ -22,12 +22,12 @@ function findByProfileId(id) {
     .where({ id })
     .first();
 }
-function removeByuser_id(id) {
+function removeByUserId(id) {
   return db(table)
     .where({ id })
     .del();
 }
-function editByuser_id(id, update) {
+function editByUserId(id, update) {
   return db(table)
     .where("user_id", id)
     .update(update, "*");
