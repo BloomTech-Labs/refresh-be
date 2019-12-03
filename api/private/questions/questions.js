@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const dbModel = require("./questionsModel");
+const questionsScrubber = require("./questionsScrubber");
+
 router.get("/", (req, res) => {
   return dbModel
     .findAll()
@@ -22,8 +24,9 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", questionsScrubber, (req, res) => {
   const { body } = req;
+  console.log(req.body, " Questions.js")
   return dbModel
     .add(body)
     .then(p => {

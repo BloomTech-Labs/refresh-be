@@ -26,7 +26,7 @@ function editById(id, update) {
     .update(update, "*");
 }
 function add(obj) {
+  console.log(obj, " in Questions Model")
   return db(table)
     .insert(obj, "id")
-    .then(([id]) =>id);
 }
