@@ -16,12 +16,18 @@ exports.seed = function(knex) {
             {question: "How many times this past week did you do desk stretches?"},
             {question: "How many times have you met with your teammates this past week to play a game or chat?"},
             {question: "How many glasses did you drink?"},
-            {question: "How many hours did you sleep for?"}
+            {question: "How many hours did you sleep for?"},
+            {question: "How many minutes were you active for?"},
+            {question: "How many breaks did you take today?"},
+            {question: "How many minutes of social activity did you spend?"},
+            {question: "How fruits did you eat today?"}
    
         ]);
       });
   };
   
+
+ 
 
 
  

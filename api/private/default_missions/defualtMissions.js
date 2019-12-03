@@ -1,9 +1,8 @@
 const router = require('express').Router()
-const dbModel = require('./userMissionsModel')
+const dbModel = require('./defaultMissionsModel')
 router
   .get('/',(req,res)=>{
-      const id = req.user.user_id
-    return dbModel.findAll(id)
+    return dbModel.findAll()
     .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
@@ -22,7 +21,6 @@ router
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
-
 router
   .put('/:id',(req,res)=>{
     const {id}=req.params
@@ -32,7 +30,6 @@ router
     .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
-
 router
   .delete('/:id',(req,res)=>{
     const {id}=req.params
