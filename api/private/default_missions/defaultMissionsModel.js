@@ -6,19 +6,9 @@ module.exports={
     add,
     editById
 }
-const table='missions'
+const table='default_missions'
 function findAll(){
-    return db(table + ' as m')
-    .select("m.id as mission_id",
-    "m.vertical",
-    "m.description",
-    "m.point_value",
-    "m.goal",
-    "m.dotw",
-    "m.start_date",
-    "m.ending_date",
-    "m.daily_reminders",'q.question as question')
-    .join('questions as q','q.id','m.question')
+    return db(table)
 }
 function findById(id){
     return db(table)

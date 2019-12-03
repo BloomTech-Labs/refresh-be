@@ -2,7 +2,7 @@ exports.up = function(knex) {
   return knex.schema
     .createTable("questions", col => {
       col.increments();
-      col.string("question", 500);
+      col.string("question", 500).notNullable();
       col.timestamp("creation_date").defaultTo(knex.fn.now());
     })
 };
