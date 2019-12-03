@@ -3,6 +3,7 @@ const Profile = require("../private/profile/profileModle");
 const bcrypt = require("bcrypt");
 const rolesModel = require("../public/roles/roles-model")
 
+
 module.exports = {
   addUser,
   findByEmail,

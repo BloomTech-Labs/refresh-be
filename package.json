@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "jest",
+    "test": "jest --watchAll",
     "seed": "heroku run knex seed:run -a refresh-yo-beta",
     "migrate": "heroku run knex migrate:latest -a refresh-yo-beta",
     "drop": "heroku run knex migrate:rollback -a refresh-yo-beta"
@@ -45,9 +45,10 @@
     "web-push": "^3.4.1"
   },
   "devDependencies": {
-    "faker": "^4.1.0",
-    "jest": "^24.9.0",
     "nodemon": "^1.19.4",
-    "supertest": "^4.0.2"
+    "supertest": "^4.0.2",
+    "jest": "^24.9.0",
+    "faker": "^4.1.0"
   }
 }
+

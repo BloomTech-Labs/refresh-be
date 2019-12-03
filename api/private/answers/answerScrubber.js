@@ -27,20 +27,18 @@ module.exports = async (req, res, next) => {
         });
 
     errors.length < 1 && addProp("answer_date", new Date());
-    console.log('Clean Answers',cleanAnswer)
     //return cleanObj
     return cleanAnswer;
   };
 
   if (Array.isArray(answers)) {
-    console.log('array')
     req.body = [];
     answers.forEach(a => {
       req.body.push(cleaner(a));
     });
   } else {
-    console.log('single')
-    req.body = {...cleaner(answers)};
+    //Answer
+    req.body = cleaner(answers);
   }
 
   if (errors.length > 0) {

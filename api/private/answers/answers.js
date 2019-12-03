@@ -5,7 +5,7 @@ const answerScrubber = require("./answerScrubber");
 router.get("/", (req, res) => {
   const id = req.user.userId;
   return dbModel
-    .findByUserId(id)
+    .findAllByUserId(id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
-    .findAllQuestionId(id)
+    .findAllQuestionId(req.user.userId,id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
@@ -41,14 +41,12 @@ router.post("/datefilter", (req, res) => {
       });
 });
 
-//Add Answer
 router.post("/", answerScrubber, (req, res) => {
   const { body } = req;
-  console.log('Bodydsjflkjsdklfjlsd,',body)
+
   return dbModel
     .add(body)
     .then(p => {
-      console.log('returned answer',p)
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
@@ -58,10 +56,11 @@ router.post("/", answerScrubber, (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
+  const {userId} = req.user
   const { body } = req;
 
   return dbModel
-    .editById(id)
+    .editById(userId,id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })

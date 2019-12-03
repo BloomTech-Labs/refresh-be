@@ -2,29 +2,356 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Refresh API</title>
 </head>
 
 <body>
     <h1>Refresh API Documentation</h1>
-    <h2>Endpoints</h2>
+    <h2>
+        Endpoints deployed at:
+        <a href="https://apidevnow.com/">https://apidevnow.com/</a><br />
+        <button onclick="copyText()">Copy</button>
+        <!-- Not working yet, but could be a nice lil touch -->
+    </h2>
+
     <table>
         <tr>
-            <th>
-                Method
-            </th>
+            <th>Method</th>
             <th>Endpoint</th>
-            <th>Notes</th>
+            <th>Notes -- All require Auth</th>
         </tr>
         <tr>
-
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
         </tr>
-
-
-
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>
+                GET to see the user's role where :id is user's id -- Implied or Admin only
+            </th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/users</th>
+            <th>GET to see the user users</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/users</th>
+            <th>POST to add to the user users</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/users</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/users</th>
+            <th>POST to add to the user users -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/users/:id</th>
+            <th>
+                GET to see the user's role where :id is user's id -- Implied or Admin only
+            </th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/missions</th>
+            <th>GET to see the user missions</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/missions</th>
+            <th>POST to add to the user missions</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/missions</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/missions</th>
+            <th>POST to add to the user missions -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/missions/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles</th>
+            <th>GET to see the user roles</th>
+        </tr>
+        <tr>
+            <th>POST</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles</th>
+        </tr>
+        <tr>
+            <th>PUT</th>
+            <th>/roles</th>
+            <th>PUT to update the user's role</th>
+        </tr>
+        <tr>
+            <th>DELETE</th>
+            <th>/roles</th>
+            <th>POST to add to the user roles -- Admin only</th>
+        </tr>
+        <tr>
+            <th>GET</th>
+            <th>/roles/:id</th>
+            <th>GET to see the user's role where :id is user's id</th>
+        </tr>
     </table>
 </body>
 
