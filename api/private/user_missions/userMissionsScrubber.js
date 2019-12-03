@@ -27,7 +27,6 @@ module.exports = async (req, res, next) => {
           req.body.push(cleaner(um));
         });
       } else {
-        //Answer
         req.body = cleaner(user_missions);
       }
     
