@@ -1,5 +1,7 @@
 const router = require("express").Router();
 const dbModel = require("./userModel");
+const usersScrubber = require("./usersScrubber");
+
 router.get("/", (req, res) => {
   return dbModel
     .findAll()
@@ -22,7 +24,7 @@ router.get("/:id", (req, res) => {
     });
 });
 
-router.post("/", (req, res) => {
+router.post("/", usersScrubber, (req, res) => {
   const { body } = req;
   return dbModel
     .add(body)
