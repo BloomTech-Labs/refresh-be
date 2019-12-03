@@ -79,16 +79,11 @@ async function findAll(id) {
   .join('questions as q','q.id','m.question')
   .where('user_id',id)
   //Return All other User Missions Not In Progress
-  const missions_needing_attention = await db(table + " as um")
-    .select("m.*")
-    .join("missions as m", "m.id", "um.mission_id")
-    .where("um.user_id", id)
-    .whereNotIn("m.id", filterdMissions);
+  
 
   return {
     user_missions: {
       missions_in_progress,
-      missions_needing_attention,
       mission_subscriptions
     }
   };
