@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const dbModel = require("./profileModle");
+const profileScrubber = require("./profileScrubber");
 
 router.get("/", (req, res) => {
   const id = req.user.user_id
@@ -13,6 +14,7 @@ router.get("/", (req, res) => {
     });
 });
 
+// Not sure if we need a .post with profileScrubber?
 
 router.put("/", (req, res) => {
   const { id } = req.params;

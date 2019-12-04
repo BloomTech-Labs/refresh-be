@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const dbModel = require('./userMissionsModel')
+const userMissionsScrubber = require('./userMissionsScrubber')
+
 router
   .get('/',(req,res)=>{
       const id = req.user.user_id
@@ -16,7 +18,7 @@ router
 })
   
 router
-  .post('/',(req,res)=>{
+  .post('/', userMissionsScrubber, (req,res)=>{
     const {body}=req
     return dbModel.add(body)
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})

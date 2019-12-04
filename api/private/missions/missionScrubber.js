@@ -18,8 +18,6 @@ module.exports = async (req, res, next) => {
     ? addProp("description", mission.description)
     : errors.push({ description: "Description is Required" });
 
-  
-
   //Point Value
   !!mission.point_value
     ? addProp("point_value", mission.point_value)
