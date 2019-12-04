@@ -26,7 +26,6 @@ router.get("/:id", (req, res) => {
 
 router.post("/", questionsScrubber, (req, res) => {
   const { body } = req;
-  console.log(req.body, " Questions.js")
   return dbModel
     .add(body)
     .then(p => {

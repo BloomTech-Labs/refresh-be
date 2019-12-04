@@ -1,5 +1,7 @@
 const router = require('express').Router()
 const dbModel = require('./defaultMissionsModel')
+const defaultMissionsScrubber = require('./defaultMissionsScrubber')
+
 router
   .get('/',(req,res)=>{
     return dbModel.findAll()
@@ -15,7 +17,7 @@ router
 })
   
 router
-  .post('/',(req,res)=>{
+  .post('/', defaultMissionsScrubber, (req,res) => {
     const {body}=req
     return dbModel.add(body)
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
