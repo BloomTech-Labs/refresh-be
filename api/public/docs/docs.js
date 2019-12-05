@@ -1,10 +1,9 @@
 const router = require('express').Router()
-var path = require('path');
 
 router
   .get('/',(req,res)=>{
-    res.type('.html')
-    res.sendFile(path.join(__dirname + '/docs.html'))
+    //console.log("Available Routes",req.routes)
+    res.render('index',{user: "Great User",title:"homepage",routes:req.routes});
 })
 
 module.exports=router

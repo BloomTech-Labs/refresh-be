@@ -22,6 +22,16 @@ privateRouter.use("/questions", questionsRouter);
 privateRouter.use("/questiongroups", questionGroupsRouter)
 privateRouter.use("/usermissions", userMissionsRouter)
 
-
+//Used For Documentation
+privateRouter.routes = [
+    ...adminRouter.routes,
+    ...answersRouter.routes,
+    ...missionRouter.routes,
+    ...profileRouter.routes,
+    ...userRouter.routes,
+    ...questionsRouter.routes,
+    ...questionGroupsRouter.routes,
+    ...userMissionsRouter.routes
+  ]
 
 module.exports = privateRouter;

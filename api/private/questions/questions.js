@@ -60,4 +60,12 @@ router.delete("/:id", (req, res) => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
     });
 });
+
+router.routes = [
+  {route:'/questions', method:"GET", expects:{}, returns:{}},
+  {route:'/questions/:id', method:"GET", expects:{}, returns:{}},
+  {route:'/questions', method:"POST", expects:{}, returns:{}},
+  {route:'/questions', method:"PUT", expects:{}, returns:{}},
+  {route:'/questions/:id', method:"DELETE", expects:{}, returns:{}},
+]
 module.exports = router;

@@ -1,0 +1,112 @@
+{
+    "routes":{
+        "Authentication":[
+            {
+                "route":"/register",
+                "method":"POST",
+                "expects":{
+                    "email":"testuser@aol.com",
+                    "passower":"not_password"
+                },
+                "returns":{
+                    "message": "Welcome da Club Yo!",
+                    "user_profile": {
+                      "display_name": null,
+                      "avatar": null,
+                      "fname": null,
+                      "lname": null,
+                      "bio": null,
+                      "cohort": null,
+                      "section_lead": null,
+                      "user_id": 7
+                    },
+                    "user_missions": {
+                      "missions_in_progress": "No Missions Currently in progress for today",
+                      "mission_subscriptions": [
+                        {
+                          "mission_id": 1,
+                          "vertical": "water",
+                          "question": "How many glasses did you drink?",
+                          "question_id": 11,
+                          "description": "more glasses of water",
+                          "point_value": 20,
+                          "goal": 6,
+                          "dotw": null,
+                          "ending_date": null,
+                          "start_date": null
+                        },
+                        {
+                          "mission_id": 2,
+                          "vertical": "sleep",
+                          "question": "How many hours did you sleep for?",
+                          "question_id": 12,
+                          "description": "more hours of sleep",
+                          "point_value": 20,
+                          "goal": 6,
+                          "dotw": null,
+                          "ending_date": null,
+                          "start_date": null
+                        },
+                        {
+                          "mission_id": 3,
+                          "vertical": "activity",
+                          "question": "How many minutes were you active for?",
+                          "question_id": 13,
+                          "description": "more minutes of activity",
+                          "point_value": 50,
+                          "goal": 30,
+                          "dotw": null,
+                          "ending_date": null,
+                          "start_date": null
+                        },
+                        {
+                          "mission_id": 4,
+                          "vertical": "mental",
+                          "question": "How many breaks did you take today?",
+                          "question_id": 14,
+                          "description": "more breaks for the day",
+                          "point_value": 20,
+                          "goal": 5,
+                          "dotw": null,
+                          "ending_date": null,
+                          "start_date": null
+                        },
+                        {
+                          "mission_id": 5,
+                          "vertical": "social",
+                          "question": "How many minutes of social activity did you spend?",
+                          "question_id": 15,
+                          "description": "more minutes of social activity",
+                          "point_value": 50,
+                          "goal": 60,
+                          "dotw": null,
+                          "ending_date": null,
+                          "start_date": null
+                        },
+                        {
+                          "mission_id": 6,
+                          "vertical": "food",
+                          "question": "How fruits did you eat today?",
+                          "question_id": 16,
+                          "description": "more fruits to eat for the day",
+                          "point_value": 30,
+                          "goal": 3,
+                          "dotw": null,
+                          "ending_date": null,
+                          "start_date": null
+                        }
+                      ]
+                    },
+                    "user_roles": [
+                      {
+                        "id": 2 
+                      }
+                    ],
+                    "newUser": "Welcome New User",
+                    "token_type": "Basic ",
+                    "token": "Super Secret Token"
+                  }
+            }
+        ]
+    }
+}

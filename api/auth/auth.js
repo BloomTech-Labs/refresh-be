@@ -20,6 +20,8 @@ const validateLogin = require("./validation/login");
 authRouter.use("/facebookAuth", facebookAuth);
 authRouter.use("/googleAuth",googleAuth)
 
+
+
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
   const user = req.body;
@@ -69,5 +71,13 @@ authRouter
     .then(p=>{res.status(200).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(401).json({message:'SOMEMESSAGE', ...e})})
 })
+
+authRouter.routes = [
+  {route:'/facebookAuth', method:"GET", expects:{}, returns:{}},
+  {route:'/googleAuth' , method:"GET", expects:{}, returns:{}},
+  {route:'/register' , method:"POST", expects:{}, returns:{}},
+  {route:'/login' , method:"POST", expects:{}, returns:{}},
+  {route:'/deleteme' , method:"DELETE", expects:{}, returns:{}}
+]
 
 module.exports = authRouter;

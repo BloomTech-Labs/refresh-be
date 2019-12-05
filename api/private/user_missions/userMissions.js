@@ -43,4 +43,12 @@ router
     .then(p=>{res.status(201).json({message:`SUCCESS`,...p})})
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
+
+router.routes = [
+  {route:'/usermissions', method:"GET", expects:{}, returns:{}},
+  {route:'/usermissions/:id', method:"GET", expects:{}, returns:{}},
+  {route:'/usermissions', method:"POST", expects:{}, returns:{}},
+  {route:'/usermissions', method:"PUT", expects:{}, returns:{}},
+  {route:'/usermissions/:id', method:"DELETE", expects:{}, returns:{}},
+]
 module.exports=router
