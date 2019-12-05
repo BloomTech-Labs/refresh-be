@@ -1,0 +1,35 @@
+// Mixins Here
+.btn(@color:@btn-bg-color,@font:white){
+    font-size:1.8rem;
+    text-align:center;
+    border-radius:.5rem;
+    padding:1rem;
+    color:@font;
+    background: @color;
+    width:10rem;
+    font-weight:700;
+    @media @phone{
+      .width();
+      padding:2.7rem;
+    }
+
+    &:hover{
+        background:white;
+        color:@color;
+        border:1px solid @river-bend;
+    }
+}
+
+.flex(@dir:row){
+    display:flex;
+    flex-direction:@dir;
+    @media @phone{
+        flex-direction: column;
+        padding:2.7rem;
+      }
+}
+
+.width(@width:100%,@max:100%){
+    width:@width;
+    max-width:@max;
+}

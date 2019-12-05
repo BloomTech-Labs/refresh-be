@@ -12,6 +12,7 @@ router.get("/", (req, res) => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
     });
 });
+
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
@@ -48,6 +49,7 @@ router.put("/:id", (req, res) => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
     });
 });
+
 router.delete("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -60,4 +62,14 @@ router.delete("/:id", (req, res) => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
     });
 });
+
+console.log('router',router)
+
+router.routes = [
+  {route:'/users', method:"GET", expects:{}, returns:{}},
+  {route:'/users/:id', method:"GET", expects:{}, returns:{}},
+  {route:'/users', method:"POST", expects:{}, returns:{}},
+  {route:'/users/:id', method:"PUT", expects:{}, returns:{}},
+  {route:'/users/:id', method:"DELETE", expects:{}, returns:{}},
+]
 module.exports = router;

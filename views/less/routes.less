@@ -1,0 +1,28 @@
+.route{
+    .flex(column);
+    width:100%;
+    justify-content:space-around;
+    padding:10px;
+    border:solid 1px #ddd;
+
+    .route_title{
+        .flex();
+        justify-content:space-between;
+        width:100%;
+    }
+    .route_details{
+        .flex();
+        justify-content:space-around;
+
+        pre{
+            background:#ddd;
+            padding:10px;
+            height:200px;
+            overflow: scroll;
+        }
+        div{
+            width:50%;
+            padding: 0 10px;
+        }
+    }
+}

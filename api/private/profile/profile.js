@@ -30,4 +30,9 @@ router.put("/", (req, res) => {
     });
 });
 
+router.routes = [
+  {route:'/profile', method:"GET", expects:{}, returns:{}},
+  {route:'/profile', method:"PUT", expects:{}, returns:{}},
+]
+
 module.exports = router;

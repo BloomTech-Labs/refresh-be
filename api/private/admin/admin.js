@@ -1,5 +1,6 @@
 const router = require("express").Router();
 const dbModel = require("./adminModel");
+
 router.get("/", (req, res) => {
   return dbModel
     .findAll()
@@ -58,4 +59,12 @@ router.delete("/:id", (req, res) => {
       res.status(404).json({ message: "Administrator removed", ...e });
     });
 });
+
+router.routes = [
+  {route:'/admin', method:"GET",  expects:{}, returns:{}},
+  {route:'/admin/:id', method:"GET",  expects:{}, returns:{}},
+  {route:'/admin', method:"POST", expects:{}, returns:{}},
+  {route:'/admin', method:"PUT",  expects:{}, returns:{}},
+  {route:'/admin/:id', method:"DELETE", expects:{}, returns:{}},
+]
 module.exports = router;

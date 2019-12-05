@@ -44,4 +44,18 @@ router
     .catch(e=>{res.status(404).json({message:'SOMEMESSAGE', ...e})})
 })
 
+const docs =  () =>{
+  return  dbModel.findById(1)
+}
+
+console.log(docs)
+
+router.routes = [
+  {route:'/questiongroups', method:"GET", expects:{}, returns:{}},
+  {route:'/questiongroups/:id', method:"GET", expects:{}, returns:{}},
+  {route:'/questiongroups', method:"POST", expects:{}, returns:{}},
+  {route:'/questiongroups', method:"PUT", expects:{}, returns:{}},
+  {route:'/questiongroups/:id', method:"DELETE", expects:{}, returns:{}},
+]
+
 module.exports=router

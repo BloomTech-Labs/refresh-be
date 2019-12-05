@@ -19,13 +19,22 @@ const primaryRouter = require("./api/server");
 
 //Configure the server
 const server = express();
+server.set('view engine', 'ejs');//Used for .render() method in Docs
 server.use(helmet()); //https://client.apidevnow.com
 server.use(cors());
 server.use(express.json());
+server.use("/css", express.static(__dirname + "/views/css"));//CSS
 
+
+express.Router.autoDoc = function(){
+    console.log('yaya')
+}
 //Implement Routes
 server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
+
+//Implement Static Routes 
+
 
 server.use("/", (error, req, res, next) => {
     if (error) {
@@ -47,6 +56,7 @@ server.use("/", (req, res) => {
         ]
     });
 });
+
 
 //A bit hackey, Need for Travis
 if (ENV === "test") {} else {

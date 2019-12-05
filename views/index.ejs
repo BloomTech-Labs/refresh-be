@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Refresh API</title>
+    <link rel="stylesheet" href="/css/index.css" />
+  </head>
+
+  <body>
+    <h1>Refresh API Documentation</h1>
+      <% Object.keys(routes).forEach(routeGroup=>{ %>
+        <section>
+        <h2><%= routeGroup %></h2>
+      <% routes[routeGroup].forEach(route =>{ %>
+      <div class="route">
+        <div class="route_title">
+          <h3>Route: <code><%= route.route %></code></h3>
+          <h3>Method: <code><%= route.method %></code></h3>
+          <h3>Authentication: <code>FALSE</code></h3>
+          <h3>UserRoles: <code>[]</code></h3>
+        </div>
+        <div class="route_details">
+            <div class="route_expects">
+              <h3>Expects</h3>
+              <pre><%= JSON.stringify(route.expects) %></pre>
+            </div>
+            <div class="route_returns">
+              <h3>Returns</h3>
+              <pre><%= JSON.stringify(route.returns) %></pre>
+            </div>
+          </div>
+      </div>
+      <% }) %>
+    </section>
+    <% }) %>
+      
+  </body>
+</html>
