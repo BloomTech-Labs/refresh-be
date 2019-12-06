@@ -26,9 +26,7 @@ server.use(express.json());
 server.use("/css", express.static(__dirname + "/views/css"));//CSS
 
 
-express.Router.autoDoc = function(){
-    console.log('yaya')
-}
+
 //Implement Routes
 server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);

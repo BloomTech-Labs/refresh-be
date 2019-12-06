@@ -63,8 +63,6 @@ router.delete("/:id", (req, res) => {
     });
 });
 
-console.log('router',router)
-
 router.routes = [
   {route:'/users', method:"GET", expects:{}, returns:{}},
   {route:'/users/:id', method:"GET", expects:{}, returns:{}},

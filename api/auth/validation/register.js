@@ -37,7 +37,7 @@ module.exports = async (req, res, next) => {
   }
   
   //Invoke the above function
-  validateNewUser(req.body);
+  await validateNewUser(req.body);
   //Does the user exist?
   if (!errors.length) {
     await dbModel
