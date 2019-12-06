@@ -62,14 +62,13 @@ router.delete("/:id", (req, res) => {
       res.status(404).json({ message: "Problem removing user's role", ...e });
     });
 });
-const docse = async () =>{
- console.log()
-}
+
 router.routes = [
-  {route:'/roles', method:"GET", expects:{}, returns:{}},
+  {route:'/roles', method:"GET", expects:{}, returns:{...()=>{return dbModel.findAll()}}},
   {route:'/roles/:id', method:"GET", expects:{}, returns:{}},
   {route:'/roles', method:"POST", expects:{}, returns:{}},
   {route:'/roles/:id', method:"PUT", expects:{}, returns:{}},
+  {route:'/roles/:id', method:"DELETE", expects:{}, returns:{}},
   {route:'/roles/:id', method:"DELETE", expects:{}, returns:{}},
 ]
 

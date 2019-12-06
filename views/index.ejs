@@ -18,7 +18,7 @@
         <div class="route_title">
           <h3>Route: <code><%= route.route %></code></h3>
           <h3>Method: <code><%= route.method %></code></h3>
-          <h3>Authentication: <code>FALSE</code></h3>
+          <h3>Authentication: <code><%= routeGroup === "Private_Routes" ? 'TRUE':'FALSE' %></code></h3>
           <h3>UserRoles: <code>[]</code></h3>
         </div>
         <div class="route_details">
