@@ -8,23 +8,27 @@ const docs = require("./public/docs/docProcessor");
 const publicRouter = require("./public/publicRouter");
 const privateRouter = require("./private/privateRouter");
 const docsRouter = require("./public/docs/docs");
-
-//Login, Register, GoogleAuth, FaceBookAuth, GitHubAuth
 const authRouter = require("./auth/auth");
+
+//Global Route Catalog
+const routeCatalog = {
+  Authentication: [...authRouter.routes],
+  Private_Routes: [...privateRouter.routes],
+  Public_Routes: [...publicRouter.routes]
+};
 
 //Implement Routes
 primaryRouter.use("/", authRouter);
 primaryRouter.use("/", publicRouter);
 
-primaryRouter.use(
-  "/docs",
-  docs.docGen({
-    Authentication: [...authRouter.routes],
-    Private_Routes: [...privateRouter.routes],
-    Public_Routes: [...publicRouter.routes]
-  }),
-  docsRouter
-);
+//Auto Documentation Genorated from routeCatalog
+primaryRouter.use("/docs", docs.docGen(routeCatalog), docsRouter);
+
+//Used For Testing
+primaryRouter.get("/testRoutes", (req, res) => {
+  res.status(200).json(routeCatalog);
+});
+
 primaryRouter.use("/", jwt.chkToken(), privateRouter);
 
 module.exports = primaryRouter;

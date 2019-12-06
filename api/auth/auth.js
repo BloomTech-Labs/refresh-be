@@ -1,4 +1,4 @@
-const authRouter = require("express").Router();
+const authRouter = require("express").Router();//post,delete,get,put,patch,options,connect,routes
 
 //Authenication Stratagies
 const jwt = require(_jwt);
@@ -24,7 +24,7 @@ authRouter.use("/googleAuth",googleAuth)
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
-  const user = req.body;
+  const user = req.body;//Comes from Middleware
   const hash = bcrypt.hashSync(user.password, HashFactor);
   user.password = hash;
   dbModel
