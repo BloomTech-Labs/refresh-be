@@ -4,6 +4,10 @@
 html {
   font-size: 62.5%;
 }
+body {
+  background: #3a3699;
+  color: #fff;
+}
 code {
   font-size: 2.5rem;
 }
@@ -36,11 +40,12 @@ pre {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: 5px;
   justify-content: space-around;
   padding: 10px;
   border: solid 1px #ddd;
-  background: black;
-  color: #fff;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.6);
 }
 @media (max-width:500px) {
   .route {
@@ -76,7 +81,6 @@ pre {
   border-radius: 15px;
   padding: 10px;
   height: 200px;
-  overflow: scroll;
   color: black;
 }
 .route .route_details div {
