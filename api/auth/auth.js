@@ -46,7 +46,7 @@ authRouter.post("/register", validateNewUser, (req, res) => {
 authRouter.post("/login", validateLogin, async (req, res) => {
   const { password } = req.body;
   let user = req.user;
-  
+  console.log("USEREzzzzzzzzzzzzzzzzz",user)
   if (user && bcrypt.compareSync(password, user.password)) {
     user = await dbModel.findOrCreateByEmail(user)
     delete user.password;

@@ -5,7 +5,7 @@ module.exports = async (req, res, next) => {
   const errors = [];
   const user = req.body
 
-  function validateLogin(user) {
+ async function validateLogin(user) {
     const u = req.body;
 
     !u.email && errors.push({ email: "required" });
@@ -30,10 +30,11 @@ module.exports = async (req, res, next) => {
     });
 
     if(errors.length < 1){
-      req.user = dbModel.findByEmail(user.email)
+      req.user = await dbModel.findByEmail(user.email)
     }
   }
 
-   validateLogin(user);
+   await validateLogin(user);
+
   errors.length < 1 ? next() : res.status(200).json({ errors });
 };
