@@ -8,6 +8,7 @@ const profileRouter = require("./profile/profile");
 const missionRouter = require("./missions/missions");
 const questionGroupsRouter = require("./questionsgroups/questionsGroups")
 const userMissionsRouter = require('./user_missions/userMissions')
+const testRouter = require('./testdoc/test')
 
 const jwt = require(_jwt);
 
@@ -21,8 +22,9 @@ privateRouter.use("/users", userRouter);
 privateRouter.use("/questions", questionsRouter);
 privateRouter.use("/questiongroups", questionGroupsRouter)
 privateRouter.use("/usermissions", userMissionsRouter)
+privateRouter.use("/test", testRouter)
 
-//Used For Documentation
+//Used For Documentation and Testing
 privateRouter.routes = [
     ...adminRouter.routes,
     ...answersRouter.routes,
@@ -31,7 +33,8 @@ privateRouter.routes = [
     ...userRouter.routes,
     ...questionsRouter.routes,
     ...questionGroupsRouter.routes,
-    ...userMissionsRouter.routes
+    ...userMissionsRouter.routes,
+    ...testRouter.routes
   ]
 
 module.exports = privateRouter;

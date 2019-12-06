@@ -17,6 +17,21 @@ h3,
 pre {
   font-size: 2.6rem;
 }
+.bool {
+  color: blue;
+}
+.routeGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+@media (max-width:500px) {
+  .routeGroup {
+    flex-direction: column;
+    padding: 2.7rem;
+  }
+}
 .route {
   display: flex;
   flex-direction: column;
@@ -24,6 +39,8 @@ pre {
   justify-content: space-around;
   padding: 10px;
   border: solid 1px #ddd;
+  background: black;
+  color: #fff;
 }
 @media (max-width:500px) {
   .route {
@@ -56,11 +73,33 @@ pre {
 }
 .route .route_details pre {
   background: #ddd;
+  border-radius: 15px;
   padding: 10px;
   height: 200px;
   overflow: scroll;
+  color: black;
 }
 .route .route_details div {
   width: 50%;
   padding: 0 10px;
+}
+.route code {
+  border: 1px solid #3f3f33;
+  border-radius: 15px;
+  padding: 2px 7px;
+}
+.route .method {
+  color: #fff;
+}
+.route [data-method="GET"] {
+  background: green;
+}
+.route [data-method="PUT"] {
+  background: rebeccapurple;
+}
+.route [data-method="POST"] {
+  background: blue;
+}
+.route [data-method="DELETE"] {
+  background: red;
 }
