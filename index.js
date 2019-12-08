@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const cors = require("cors");
 require("dotenv").config();
 
-//Set Globalse
+//Set Globals
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
