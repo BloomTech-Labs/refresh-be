@@ -22,7 +22,7 @@
       %>
       <div class="route" id="<%= id %>">
         <div class="route_title">
-          <h3>Route: <code><%= route.route %></code></h3>
+          <h3>Route: <code class="route_index"><%= route.route %></code></h3>
           <h3>
             Method:
             <code class="method" data-method="<%= route.method %>"
@@ -35,7 +35,7 @@
               ><%= routeGroup === "Private_Routes" ? 'TRUE':'FALSE' %></code
             >
           </h3>
-          <h3>UserRoles: <code>[]</code></h3>
+          <h3>UserRoles: <code class="user_role">[]</code></h3>
         </div>
         <div class="route_details">
           <div class="route_expects">

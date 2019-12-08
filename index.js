@@ -34,7 +34,6 @@ server.use("/", primaryRouter);
 
 //Default Error handler
 server.use("/", (error, req, res, next) => {
-  console.log(rootURL)
   if (error) {
     res
       .status(200)

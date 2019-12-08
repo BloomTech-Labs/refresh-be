@@ -8,13 +8,12 @@
 
 .route {
   .flex(column);
-  width: 100%;
   margin:5px;
   justify-content: space-around;
   padding: 10px;
   border: solid 1px #ddd;
   border-radius: 5px;
-  background:rgba(0,0,0,.6);
+  background:rgba(0,0,0,.8);
   
 
   .route_title {
@@ -45,6 +44,11 @@
     padding: 2px 7px;
   }
 
+  .bool,.user_role,.route_index{
+    color:blue;
+    background:#fff;
+  }
+
   .method {
     color:#fff
   }
@@ -64,6 +68,6 @@
   }
 
   [data-method="DELETE"] {
-    background: red;
+    background: #DD3300;
   }
 }
