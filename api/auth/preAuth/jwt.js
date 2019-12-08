@@ -44,17 +44,16 @@ function chkRole(role) {
 function chkToken(routeCatalog) {
   return (req, res, next) => {
     
-
+    if(catalogAgent(routeCatalog, req.url)){
     //TOKEN
     const token = req.headers.authorization;
 
     token &&
       jwt.verify(token, secret, async (err, decoded) => {
         if (err) {
-          //Making sure the route is in the routeCatalog
-          catalogAgent(routeCatalog, req.url)
-            ? next({ token: "Invalid or Missing Token, you will need to Login" })
-            : next();
+          //Making sure the route is in the routeCatalog 
+          next({ token: "Invalid or Missing Token, you will need to Login" })
+            
         } else {
           req.user = { ...decoded };
           next();
@@ -62,5 +61,8 @@ function chkToken(routeCatalog) {
       });
     //No Token, No Pass
     !token && next({ token: "No Token Provided, you will need to Login" });
+    } else {
+      next()
+    }
   };
 }
