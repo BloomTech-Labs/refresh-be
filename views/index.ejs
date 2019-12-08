@@ -15,8 +15,12 @@
         <h2><%= routeGroup %></h2>
         <h2>Routes: <%= routes[routeGroup].length %></h2>
       </div>
-      <% routes[routeGroup].forEach(route =>{ %>
-      <div class="route" >
+      <% routes[routeGroup].forEach(route =>{ 
+          let id = route.route.split('/') 
+          let param = id[2] ? id[2] :''
+          id = `${id[1]}_${route.method.toLowerCase()}${param}` 
+      %>
+      <div class="route" id="<%= id %>">
         <div class="route_title">
           <h3>Route: <code><%= route.route %></code></h3>
           <h3>

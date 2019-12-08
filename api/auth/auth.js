@@ -72,8 +72,8 @@ authRouter
 })
 
 authRouter.routes = [
-  //{route:'/facebookAuth', method:"GET", expects:{}, returns:{}},//These Cuse Huge Data Returns
-  //{route:'/googleAuth' , method:"GET", expects:{}, returns:{}},//These Cuse Huge Data Returns
+  // {route:'/facebookAuth', method:"GET", expects:{}, returns:{}},//These Cuse Huge Data Returns
+  // {route:'/googleAuth' , method:"GET", expects:{}, returns:{}},//These Cuse Huge Data Returns
   {route:'/register' , method:"POST", expects:{}, returns:{}},
   {route:'/login' , method:"POST", expects:{}, returns:{}},
   {route:'/deleteme' , method:"DELETE", expects:{}, returns:{}}

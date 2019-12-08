@@ -9,6 +9,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
+const rootURL = process.env.ROOT_URL || "apidevnow.com";
 global._dbConfig = path.resolve(__dirname + "/data/dbConfig");
 global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
 global._URL = process.env.ROOT_URL || "localhost:" + PORT;
@@ -33,8 +34,11 @@ server.use("/", primaryRouter);
 
 //Default Error handler
 server.use("/", (error, req, res, next) => {
+  console.log(rootURL)
   if (error) {
-    res.status(200).json({ errors: error });
+    res
+      .status(200)
+      .json({ errors: error, docs: `https://${rootURL}/docs#login_post` });
   } else {
     next();
   }
@@ -42,9 +46,7 @@ server.use("/", (error, req, res, next) => {
 
 //Final End Point, if all else fails, land here...
 server.use("/", (req, res) => {
-  const rootURL = process.env.ROOT_URL || "apidevnow.com";
-  const routeId = req.originalUrl.split('/')
-  console.log('routeId',routeId)
+  const routeId = req.originalUrl.split("/");
   res.status(200).json({
     errors: [
       {
@@ -57,7 +59,7 @@ server.use("/", (req, res) => {
   });
 });
 
-//A bit hackey, Need for Travis and some 
+//A bit hackey, Need for Travis and some
 //sqlite to pg conversions pertaing to int[]
 if (ENV === "test") {
 } else {

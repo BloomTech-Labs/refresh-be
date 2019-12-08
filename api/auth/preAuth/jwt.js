@@ -12,6 +12,7 @@ module.exports = {
 function genToken(user) {
   const { user_roles } = user;
   const { user_id } = user.user_profile;
+  
   const payload = {
     tokenType: "Basic ",
     user_id,
