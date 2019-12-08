@@ -12,7 +12,7 @@ module.exports = {
 function genToken(user) {
   const { user_roles } = user;
   const { user_id } = user.user_profile;
-  
+
   const payload = {
     tokenType: "Basic ",
     user_id,
@@ -44,26 +44,24 @@ function chkRole(role) {
 //Verifies Existing Role and JWT token
 function chkToken(routeCatalog) {
   return (req, res, next) => {
-    
-    if(catalogAgent(routeCatalog, req.url)){
-    //TOKEN
-    const token = req.headers.authorization;
+    if (catalogAgent(routeCatalog, req.url)) {
+      //TOKEN
+      const token = req.headers.authorization;
 
-    token &&
-      jwt.verify(token, secret, async (err, decoded) => {
-        if (err) {
-          //Making sure the route is in the routeCatalog 
-          next({ token: "Invalid or Missing Token, you will need to Login" })
-            
-        } else {
-          req.user = { ...decoded };
-          next();
-        }
-      });
-    //No Token, No Pass
-    !token && next({ token: "No Token Provided, you will need to Login" });
+      token &&
+        jwt.verify(token, secret, async (err, decoded) => {
+          if (err) {
+            //Making sure the route is in the routeCatalog
+            next({ token: "Invalid or Missing Token, you will need to Login" });
+          } else {
+            req.user = { ...decoded };
+            next();
+          }
+        });
+      //No Token, No Pass
+      !token && next({ token: "No Token Provided, you will need to Login" });
     } else {
-      next()
+      next();
     }
   };
 }
