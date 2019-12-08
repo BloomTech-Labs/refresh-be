@@ -18,6 +18,10 @@ global._URL = process.env.ROOT_URL || "localhost:" + PORT;
 const webHooks = require("./webHooks/webhooks");
 const primaryRouter = require("./api/server");
 
+//Set Route Catalog and bring in catalogAgent
+const { routeCatalog } = primaryRouter;
+const {matchClosestRoute} = require("./api/auth/preAuth/catalogAgent");
+
 //Configure the server
 const server = express();
 server.set("view engine", "ejs"); //Used for .render() method in Docs
@@ -46,6 +50,9 @@ server.use("/", (error, req, res, next) => {
 //Final End Point, if all else fails, land here...
 server.use("/", (req, res) => {
   const routeId = req.originalUrl.split("/");
+  const matchedRoute =
+    "#" + matchClosestRoute(routeCatalog, routeId[1]) + "_" + req.method.toLowerCase()
+
   res.status(200).json({
     errors: [
       {
@@ -53,7 +60,7 @@ server.use("/", (req, res) => {
           req.method
         }, is not a valid URL`
       },
-      { docs: `https://${rootURL}/docs#${routeId[1]}` }
+      { docs: `https://${rootURL}/docs${matchedRoute}` }
     ]
   });
 });

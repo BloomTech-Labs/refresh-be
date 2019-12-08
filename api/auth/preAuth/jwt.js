@@ -44,7 +44,7 @@ function chkRole(role) {
 //Verifies Existing Role and JWT token
 function chkToken(routeCatalog) {
   return (req, res, next) => {
-    if (catalogAgent(routeCatalog, req.url)) {
+    if (catalogAgent.accessPoint(routeCatalog, req.url)) {
       //TOKEN
       const token = req.headers.authorization;
 
