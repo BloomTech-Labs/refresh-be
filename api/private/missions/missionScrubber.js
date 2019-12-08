@@ -2,7 +2,7 @@ const questionModel = require("../questions/questionsModel");
 module.exports = async (req, res, next) => {
   const errors = [];
   const cleanMission = {};
-  const mission = req.body
+  const mission = req.body;
   //Create your Clean Object
   const addProp = (prop, value) => {
     cleanMission[prop] = value;
@@ -27,12 +27,14 @@ module.exports = async (req, res, next) => {
   !!mission.goal
     ? addProp("goal", mission.goal)
     : errors.push({ goal: "Goal is required" });
-    
+
   //Question
-  mission.question = mission.question && (await questionModel.add({question:mission.question}));
+  mission.question =
+    mission.question &&
+    (await questionModel.add({ question: mission.question }));
   !!mission.question && Number(mission.question)
     ? addProp("question", mission.question)
-    : errors.push({ question: "Question is required" })
+    : errors.push({ question: "Question is required" });
 
   if (errors.length > 0) {
     next(errors);

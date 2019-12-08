@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   return dbModel
     .findAll()
     .then(p => {
-      res.status(200).json({ message: `SUCCESS`, questions:[...p] });
+      res.status(200).json({ message: `SUCCESS`, questions: [...p] });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -62,10 +62,10 @@ router.delete("/:id", (req, res) => {
 });
 
 router.routes = [
-  {route:'/questions', method:"GET", expects:{}, returns:{}},
-  {route:'/questions/:id', method:"GET", expects:{}, returns:{}},
-  {route:'/questions', method:"POST", expects:{}, returns:{}},
-  {route:'/questions', method:"PUT", expects:{}, returns:{}},
-  {route:'/questions/:id', method:"DELETE", expects:{}, returns:{}},
-]
+  { route: "/questions", method: "GET", expects: {}, returns: {} },
+  { route: "/questions/:id", method: "GET", expects: {}, returns: {} },
+  { route: "/questions", method: "POST", expects: {}, returns: {} },
+  { route: "/questions", method: "PUT", expects: {}, returns: {} },
+  { route: "/questions/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports = router;

@@ -6,16 +6,16 @@ exports.up = function(knex) {
       .unsigned()
       .references("id")
       .inTable("users")
-      .onDelete("CASCADE")
-     
+      .onDelete("CASCADE");
+
     col
       .integer("mission_id")
       .unsigned()
       .references("id")
       .inTable("missions")
-      .onDelete("CASCADE")
-      
-    col.unique(["user_id","mission_id"])
+      .onDelete("CASCADE");
+
+    col.unique(["user_id", "mission_id"]);
   });
 };
 

@@ -17,7 +17,7 @@ router.get("/", (req, res) => {
 router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
-    .findAllQuestionId(req.user.user_id,id)
+    .findAllQuestionId(req.user.user_id, id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
@@ -30,15 +30,15 @@ router.get("/:id", (req, res) => {
 router.post("/datefilter", (req, res) => {
   const id = req.user.user_id;
   const { startDate, endDate } = req.body;
-  
-    return dbModel
-      .findByDateRange(id,startDate, endDate)
-      .then(p => {
-        res.status(200).json({ message: `SUCCESS`, ...p });
-      })
-      .catch(e => {
-        res.status(404).json({ message: "SOMEMESSAGE", ...e });
-      });
+
+  return dbModel
+    .findByDateRange(id, startDate, endDate)
+    .then(p => {
+      res.status(200).json({ message: `SUCCESS`, ...p });
+    })
+    .catch(e => {
+      res.status(404).json({ message: "SOMEMESSAGE", ...e });
+    });
 });
 
 router.post("/", answerScrubber, (req, res) => {
@@ -56,11 +56,11 @@ router.post("/", answerScrubber, (req, res) => {
 
 router.put("/:id", (req, res) => {
   const { id } = req.params;
-  const {user_id} = req.user
+  const { user_id } = req.user;
   const { body } = req;
 
   return dbModel
-    .editById(user_id,id)
+    .editById(user_id, id)
     .then(p => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
@@ -83,10 +83,10 @@ router.delete("/:id", (req, res) => {
 });
 
 router.routes = [
-  {route:'/answers', method:"GET", expects:{}, returns:{}},
-  {route:'/answers/:id', method:"GET" , expects:{}, returns:{}},
-  {route:'/answers', method:"POST" , expects:{}, returns:{}},
-  {route:'/answers', method:"PUT" , expects:{}, returns:{}},
-  {route:'/answers/:id', method:"DELETE" , expects:{}, returns:{}},
-]
+  { route: "/answers", method: "GET", expects: {}, returns: {} },
+  { route: "/answers/:id", method: "GET", expects: {}, returns: {} },
+  { route: "/answers", method: "POST", expects: {}, returns: {} },
+  { route: "/answers", method: "PUT", expects: {}, returns: {} },
+  { route: "/answers/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports = router;

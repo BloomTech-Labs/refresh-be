@@ -6,7 +6,7 @@ router.get("/", (req, res) => {
   return dbModel
     .findAll()
     .then(p => {
-      res.status(200).json({ message: `SUCCESS`, roles:[...p] });
+      res.status(200).json({ message: `SUCCESS`, roles: [...p] });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -64,10 +64,10 @@ router.delete("/:id", (req, res) => {
 });
 
 router.routes = [
-  {route:'/users', method:"GET", expects:{}, returns:{}},
-  {route:'/users/:id', method:"GET", expects:{}, returns:{}},
-  {route:'/users', method:"POST", expects:{}, returns:{}},
-  {route:'/users/:id', method:"PUT", expects:{}, returns:{}},
-  {route:'/users/:id', method:"DELETE", expects:{}, returns:{}},
-]
+  { route: "/users", method: "GET", expects: {}, returns: {} },
+  { route: "/users/:id", method: "GET", expects: {}, returns: {} },
+  { route: "/users", method: "POST", expects: {}, returns: {} },
+  { route: "/users/:id", method: "PUT", expects: {}, returns: {} },
+  { route: "/users/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports = router;

@@ -26,6 +26,5 @@ function editById(id, update) {
     .update(update, "*");
 }
 function add(obj) {
-  return db(table)
-    .insert(obj, "id")
+  return db(table).insert(obj, "id");
 }

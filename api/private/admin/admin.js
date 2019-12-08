@@ -8,7 +8,9 @@ router.get("/", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "Problem getting the administrators", ...e });
+      res
+        .status(404)
+        .json({ message: "Problem getting the administrators", ...e });
     });
 });
 router.get("/:id", (req, res) => {
@@ -19,7 +21,9 @@ router.get("/:id", (req, res) => {
       res.status(200).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "Unable to locate that administrator", ...e });
+      res
+        .status(404)
+        .json({ message: "Unable to locate that administrator", ...e });
     });
 });
 
@@ -31,7 +35,9 @@ router.post("/", (req, res) => {
       res.status(201).json({ message: `SUCCESS`, ...p });
     })
     .catch(e => {
-      res.status(404).json({ message: "Problem creating that administrator", ...e });
+      res
+        .status(404)
+        .json({ message: "Problem creating that administrator", ...e });
     });
 });
 router.put("/:id", (req, res) => {
@@ -61,10 +67,10 @@ router.delete("/:id", (req, res) => {
 });
 
 router.routes = [
-  {route:'/admin', method:"GET",  expects:{}, returns:{}},
-  {route:'/admin/:id', method:"GET",  expects:{}, returns:{}},
-  {route:'/admin', method:"POST", expects:{}, returns:{}},
-  {route:'/admin', method:"PUT",  expects:{}, returns:{}},
-  {route:'/admin/:id', method:"DELETE", expects:{}, returns:{}},
-]
+  { route: "/admin", method: "GET", expects: {}, returns: {} },
+  { route: "/admin/:id", method: "GET", expects: {}, returns: {} },
+  { route: "/admin", method: "POST", expects: {}, returns: {} },
+  { route: "/admin", method: "PUT", expects: {}, returns: {} },
+  { route: "/admin/:id", method: "DELETE", expects: {}, returns: {} }
+];
 module.exports = router;

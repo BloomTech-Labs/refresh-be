@@ -3,11 +3,11 @@ const dbModel = require("./profileModle");
 const profileScrubber = require("./profileScrubber");
 
 router.get("/", (req, res) => {
-  const id = req.user.user_id
+  const id = req.user.user_id;
   return dbModel
     .findByUserId(id)
     .then(p => {
-      res.status(200).json({ message: `SUCCESS`, profile:{...p} });
+      res.status(200).json({ message: `SUCCESS`, profile: { ...p } });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -31,8 +31,8 @@ router.put("/", (req, res) => {
 });
 
 router.routes = [
-  {route:'/profile', method:"GET", expects:{}, returns:{}},
-  {route:'/profile', method:"PUT", expects:{}, returns:{}},
-]
+  { route: "/profile", method: "GET", expects: {}, returns: {} },
+  { route: "/profile", method: "PUT", expects: {}, returns: {} }
+];
 
 module.exports = router;

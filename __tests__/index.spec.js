@@ -3,9 +3,8 @@ const supertest = require("supertest");
 const req = supertest(app);
 
 describe("Renders Without Crashing", () => {
-
   afterAll(done => {
-    req.end()
+    req.end();
     app.close(done);
   });
 
