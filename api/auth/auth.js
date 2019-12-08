@@ -1,4 +1,4 @@
-const authRouter = require("express").Router();
+const authRouter = require("express").Router();//post,delete,get,put,patch,options,connect,routes
 
 //Authenication Stratagies
 const jwt = require(_jwt);
@@ -24,7 +24,7 @@ authRouter.use("/googleAuth",googleAuth)
 
 //Register ->Requires{username:'',password:''}
 authRouter.post("/register", validateNewUser, (req, res) => {
-  const user = req.body;
+  const user = req.body;//Comes from Middleware
   const hash = bcrypt.hashSync(user.password, HashFactor);
   user.password = hash;
   dbModel
@@ -45,7 +45,6 @@ authRouter.post("/register", validateNewUser, (req, res) => {
 authRouter.post("/login", validateLogin, async (req, res) => {
   const { password } = req.body;
   let user = req.user;
-  
   if (user && bcrypt.compareSync(password, user.password)) {
     user = await dbModel.findOrCreateByEmail(user)
     delete user.password;
@@ -73,8 +72,8 @@ authRouter
 })
 
 authRouter.routes = [
-  {route:'/facebookAuth', method:"GET", expects:{}, returns:{}},
-  {route:'/googleAuth' , method:"GET", expects:{}, returns:{}},
+  // {route:'/facebookAuth', method:"GET", expects:{}, returns:{}},//These Cuse Huge Data Returns
+  // {route:'/googleAuth' , method:"GET", expects:{}, returns:{}},//These Cuse Huge Data Returns
   {route:'/register' , method:"POST", expects:{}, returns:{}},
   {route:'/login' , method:"POST", expects:{}, returns:{}},
   {route:'/deleteme' , method:"DELETE", expects:{}, returns:{}}

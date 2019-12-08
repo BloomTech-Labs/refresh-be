@@ -7,34 +7,49 @@
     <title>Refresh API</title>
     <link rel="stylesheet" href="/css/index.css" />
   </head>
-
   <body>
     <h1>Refresh API Documentation</h1>
-      <% Object.keys(routes).forEach(routeGroup=>{ %>
-        <section>
+    <% Object.keys(routes).forEach(routeGroup=>{ %>
+    <section>
+      <div class="routeGroup">
         <h2><%= routeGroup %></h2>
-      <% routes[routeGroup].forEach(route =>{ %>
-      <div class="route">
+        <h2>Routes: <%= routes[routeGroup].length %></h2>
+      </div>
+      <% routes[routeGroup].forEach(route =>{ 
+          let id = route.route.split('/') 
+          let param = id[2] ? id[2] :''
+          id = `${id[1]}_${route.method.toLowerCase()}${param}` 
+      %>
+      <div class="route" id="<%= id %>">
         <div class="route_title">
-          <h3>Route: <code><%= route.route %></code></h3>
-          <h3>Method: <code><%= route.method %></code></h3>
-          <h3>Authentication: <code>FALSE</code></h3>
-          <h3>UserRoles: <code>[]</code></h3>
+          <h3>Route: <code class="route_index"><%= route.route %></code></h3>
+          <h3>
+            Method:
+            <code class="method" data-method="<%= route.method %>"
+              ><%= route.method %></code
+            >
+          </h3>
+          <h3>
+            Authentication:
+            <code class="bool"
+              ><%= routeGroup === "Private_Routes" ? 'TRUE':'FALSE' %></code
+            >
+          </h3>
+          <h3>UserRoles: <code class="user_role">[]</code></h3>
         </div>
         <div class="route_details">
-            <div class="route_expects">
-              <h3>Expects</h3>
-              <pre><%= JSON.stringify(route.expects) %></pre>
-            </div>
-            <div class="route_returns">
-              <h3>Returns</h3>
-              <pre><%= JSON.stringify(route.returns) %></pre>
-            </div>
+          <div class="route_expects">
+            <h3>Expects</h3>
+            <pre><%= JSON.stringify(route.expects) %></pre>
           </div>
+          <div class="route_returns">
+            <h3>Returns</h3>
+            <pre><%= JSON.stringify(route.returns) %></pre>
+          </div>
+        </div>
       </div>
       <% }) %>
     </section>
     <% }) %>
-      
   </body>
 </html>

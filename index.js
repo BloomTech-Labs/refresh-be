@@ -9,9 +9,10 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
+const rootURL = process.env.ROOT_URL || "apidevnow.com";
 global._dbConfig = path.resolve(__dirname + "/data/dbConfig");
 global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
-global._URL = process.env.ROOT_URL || "localhost:" + PORT
+global._URL = process.env.ROOT_URL || "localhost:" + PORT;
 
 //Bring in the Routes.. Always after Globals
 const webHooks = require("./webHooks/webhooks");
@@ -19,55 +20,55 @@ const primaryRouter = require("./api/server");
 
 //Configure the server
 const server = express();
-server.set('view engine', 'ejs');//Used for .render() method in Docs
+server.set("view engine", "ejs"); //Used for .render() method in Docs
 server.use(helmet()); //https://client.apidevnow.com
 server.use(cors());
 server.use(express.json());
-server.use("/css", express.static(__dirname + "/views/css"));//CSS
 
+//Declares a global static request route, critical for ejs and views
+server.use("/css", express.static(__dirname + "/views/css")); //CSS
 
-express.Router.autoDoc = function(){
-    console.log('yaya')
-}
 //Implement Routes
 server.use("/webhooks", webHooks);
 server.use("/", primaryRouter);
 
-//Implement Static Routes 
-
-
+//Default Error handler
 server.use("/", (error, req, res, next) => {
-    if (error) {
-        res.status(200).json({ errors: error });
-    } else {
-        next();
-    }
+  if (error) {
+    res
+      .status(200)
+      .json({ errors: error, docs: `https://${rootURL}/docs#login_post` });
+  } else {
+    next();
+  }
 });
 
+//Final End Point, if all else fails, land here...
 server.use("/", (req, res) => {
-    const rootURL = process.env.ROOT_URL || 'apidevnow.com';
-    res.status(200).json({
-        errors: [{
-                invalid: `${rootURL + req.originalUrl}, using method ${
+  const routeId = req.originalUrl.split("/");
+  res.status(200).json({
+    errors: [
+      {
+        invalid: `https://${rootURL + req.originalUrl}, using method ${
           req.method
         }, is not a valid URL`
-            },
-            { docs: `${rootURL}/docs` }
-        ]
-    });
+      },
+      { docs: `https://${rootURL}/docs#${routeId[1]}` }
+    ]
+  });
 });
 
-
-//A bit hackey, Need for Travis
-if (ENV === "test") {} else {
-    server.listen(PORT, () => {
-        console.log(
-            `\n** It's Alive... on port: ${chalk.blue(
+//A bit hackey, Need for Travis and some
+//sqlite to pg conversions pertaing to int[]
+if (ENV === "test") {
+} else {
+  server.listen(PORT, () => {
+    console.log(
+      `\n** It's Alive... on port: ${chalk.blue(
         PORT
       )} ** \n** Using Environment: ${chalk.blue(ENV.toUpperCase())}  **\n`
-        );
-    });
+    );
+  });
 }
-
 
 module.exports = server;
