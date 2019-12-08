@@ -43,14 +43,16 @@ server.use("/", (error, req, res, next) => {
 //Final End Point, if all else fails, land here...
 server.use("/", (req, res) => {
   const rootURL = process.env.ROOT_URL || "apidevnow.com";
+  const routeId = req.originalUrl.split('/')
+  console.log('routeId',routeId)
   res.status(200).json({
     errors: [
       {
-        invalid: `${rootURL + req.originalUrl}, using method ${
+        invalid: `https://${rootURL + req.originalUrl}, using method ${
           req.method
         }, is not a valid URL`
       },
-      { docs: `${rootURL}/docs` }
+      { docs: `https://${rootURL}/docs#${routeId[1]}` }
     ]
   });
 });

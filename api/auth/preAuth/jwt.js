@@ -43,7 +43,6 @@ function chkRole(role) {
 //Verifies Existing Role and JWT token
 function chkToken(routeCatalog) {
   return (req, res, next) => {
-    //Just making sure the route is valid
     
 
     //TOKEN
@@ -52,9 +51,10 @@ function chkToken(routeCatalog) {
     token &&
       jwt.verify(token, secret, async (err, decoded) => {
         if (err) {
-          catalogAgent(routeCatalog, req.url) === true
-            ? next({ token: "Invalid Token, you will need to Log back in" })
-            : next()
+          //Making sure the route is in the routeCatalog
+          catalogAgent(routeCatalog, req.url)
+            ? next({ token: "Invalid or Missing Token, you will need to Login" })
+            : next();
         } else {
           req.user = { ...decoded };
           next();
