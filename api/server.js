@@ -1,4 +1,5 @@
 const primaryRouter = require("express").Router();
+const axios = require("axios");
 
 //Middleware
 const jwt = require("./auth/preAuth/jwt");
@@ -20,15 +21,31 @@ const routeCatalog = {
 //Implement Routes
 primaryRouter.use("/", authRouter);
 primaryRouter.use("/", publicRouter);
+primaryRouter.use("/", jwt.chkToken(routeCatalog.Private_Routes), privateRouter);
 
 //Auto Documentation Genorated from routeCatalog
 primaryRouter.use("/docs", docs.docGen(routeCatalog), docsRouter);
 
 //Used For Testing
-primaryRouter.get("/testRoutes", (req, res) => {
-  res.status(200).json(routeCatalog);
+primaryRouter.get("/testRoutes",async (req, res) => {
+  
+  const axiosCalls = [];
+
+  Object.keys(routeCatalog).forEach(routeGroup => {
+    routeCatalog[routeGroup].forEach( route => {
+      axiosCalls.push(
+        axios[route.method.toLowerCase()](`http://localhost:8080` + route.route)
+      )
+    });
+  });
+
+  const resolved = []
+  await Promise.all(axiosCalls.map(p => p.then(res=>resolved.push(res.data)).catch(() => undefined)))
+  
+  res.json(resolved)
+  
 });
 
-primaryRouter.use("/", jwt.chkToken(), privateRouter);
+
 
 module.exports = primaryRouter;
