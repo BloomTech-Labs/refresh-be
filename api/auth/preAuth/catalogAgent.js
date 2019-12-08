@@ -30,7 +30,7 @@ function matchClosestRoute(routeCatalog,req) {
     && filteredRoutes.push(route.route);
   });
 
-  match = filteredRoutes[0].split('/')
+  match = filteredRoutes[0] ? filteredRoutes[0].split('/') : '';
   return match[1];
 }
 

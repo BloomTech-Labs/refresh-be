@@ -20,7 +20,7 @@ const primaryRouter = require("./api/server");
 
 //Set Route Catalog and bring in catalogAgent
 const { routeCatalog } = primaryRouter;
-const {matchClosestRoute} = require("./api/auth/preAuth/catalogAgent");
+const { matchClosestRoute } = require("./api/auth/preAuth/catalogAgent");
 
 //Configure the server
 const server = express();
@@ -50,9 +50,10 @@ server.use("/", (error, req, res, next) => {
 //Final End Point, if all else fails, land here...
 server.use("/", (req, res) => {
   const routeId = req.originalUrl.split("/");
-  const matchedRoute =
-    "#" + matchClosestRoute(routeCatalog, routeId[1]) + "_" + req.method.toLowerCase()
-
+  const matchedRoute = matchClosestRoute(routeCatalog, routeId[1]);
+  const proposedDoc = matchedRoute
+    ? `${matchedRoute}_${req.method.toLowerCase()}`
+    : "";
   res.status(200).json({
     errors: [
       {
@@ -60,7 +61,9 @@ server.use("/", (req, res) => {
           req.method
         }, is not a valid URL`
       },
-      { docs: `https://${rootURL}/docs${matchedRoute}` }
+      {
+        docs: `https://${rootURL}/docs#${proposedDoc}`
+      }
     ]
   });
 });
