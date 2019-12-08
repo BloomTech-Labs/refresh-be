@@ -71,5 +71,4 @@ router.routes = [
   {route:'/roles/:id', method:"DELETE", expects:{}, returns:{}},
   {route:'/roles/:id', method:"DELETE", expects:{}, returns:{}},
 ]
-
 module.exports = router;
