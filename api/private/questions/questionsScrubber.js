@@ -2,8 +2,6 @@ module.exports = async (req, res, next) => {
   const errors = [];
   const questions = req.body;
 
-  //Create your Clean Object
-
   const cleaner = question => {
     const cleanQuestion = {};
     const addProp = (prop, value) => {
@@ -17,19 +15,6 @@ module.exports = async (req, res, next) => {
     return cleanQuestion;
   };
 
-  if (Array.isArray(questions)) {
-    req.body = [];
-    questions.forEach(a => {
-      req.body.push(cleaner(q));
-    });
-  } else {
-    //Answer
     req.body = cleaner(questions);
-  }
-
-  if (errors.length > 0) {
-    next(errors);
-  } else {
-    next();
-  }
+    errors.length > 0 ? next(errors) : next();
 };

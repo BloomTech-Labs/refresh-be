@@ -5,8 +5,8 @@ const questionGroupsScrubber = require("./questionsGroupsScrubber");
 router.get("/", (req, res) => {
   return dbModel
     .findAll()
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, groups: [...p] });
+    .then(questionGroup=> {
+      res.status(200).json({ message: `SUCCESS`, groups: [...questionGroup] });
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -17,8 +17,8 @@ router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
     .findById(id)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+    .then(questionGroup=> {
+      res.status(200).json({ message: `SUCCESS`, ...questionGroup});
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -29,8 +29,8 @@ router.post("/", questionGroupsScrubber, (req, res) => {
   const { body } = req;
   return dbModel
     .add(body)
-    .then(p => {
-      res.status(201).json({ message: `SUCCESS`, ...p });
+    .then(questionGroup=> {
+      res.status(201).json({ message: `SUCCESS`, ...questionGroup});
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -43,8 +43,8 @@ router.put("/:id", (req, res) => {
 
   return dbModel
     .editById(id)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+    .then(questionGroup=> {
+      res.status(200).json({ message: `SUCCESS`, ...questionGroup});
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -56,8 +56,8 @@ router.delete("/:id", (req, res) => {
 
   return dbModel
     .remove(id)
-    .then(p => {
-      res.status(201).json({ message: `SUCCESS`, ...p });
+    .then(questionGroup=> {
+      res.status(201).json({ message: `SUCCESS`, ...questionGroup});
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });

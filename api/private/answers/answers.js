@@ -6,8 +6,8 @@ router.get("/", (req, res) => {
   const id = req.user.user_id;
   return dbModel
     .findAllByUserId(id)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+    .then(answers=> {
+      res.status(200).json({ message: `SUCCESS`, ...answers});
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -18,8 +18,8 @@ router.get("/:id", (req, res) => {
   const { id } = req.params;
   return dbModel
     .findAllQuestionId(req.user.user_id, id)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+    .then(answers=> {
+      res.status(200).json({ message: `SUCCESS`, ...answers});
     })
     .catch(e => {
       res.status(200).json({ message: "SOMEMESSAGE", ...e });
@@ -33,8 +33,8 @@ router.post("/datefilter", (req, res) => {
 
   return dbModel
     .findByDateRange(id, startDate, endDate)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+    .then(answers=> {
+      res.status(200).json({ message: `SUCCESS`, ...answers});
     })
     .catch(e => {
       res.status(404).json({ message: "SOMEMESSAGE", ...e });
@@ -46,8 +46,8 @@ router.post("/", answerScrubber, (req, res) => {
 
   return dbModel
     .add(body)
-    .then(p => {
-      res.status(201).json({ message: `SUCCESS`, ...p });
+    .then(answers=> {
+      res.status(201).json({ message: `SUCCESS`, ...answers});
     })
     .catch(e => {
       res.status(200).json({ message: "SOMEMESSAGE", ...e, ...body });
@@ -61,8 +61,8 @@ router.put("/:id", (req, res) => {
 
   return dbModel
     .editById(user_id, id)
-    .then(p => {
-      res.status(200).json({ message: `SUCCESS`, ...p });
+    .then(answers=> {
+      res.status(200).json({ message: `SUCCESS`, ...answers});
     })
     .catch(e => {
       res.status(200).json({ message: "SOMEMESSAGE", ...e });
@@ -74,8 +74,8 @@ router.delete("/:id", (req, res) => {
 
   return dbModel
     .remove(id)
-    .then(p => {
-      res.status(201).json({ message: `SUCCESS`, ...p });
+    .then(answers=> {
+      res.status(201).json({ message: `SUCCESS`, ...answers});
     })
     .catch(e => {
       res.status(200).json({ message: "SOMEMESSAGE", ...e });
