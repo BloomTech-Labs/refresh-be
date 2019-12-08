@@ -1,5 +1,7 @@
 module.exports = (routeCatalog, url, params) => {
-  //I Do some comparisons
+  //Used mainly for jwt as it perains to private routes
+  //Compares routeCatalog links against the requested URL
+  //Returs Boolean
   let access = false;
   const urlIndex = url.split("/");
   routeCatalog.forEach(route => {

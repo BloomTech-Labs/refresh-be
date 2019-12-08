@@ -36,27 +36,27 @@ server.use("/", (error, req, res, next) => {
   if (error) {
     res.status(200).json({ errors: error });
   } else {
-    next()
+    next();
   }
 });
 
-server.use("/",(req,res)=>{
+//Final End Point, if all else fails, land here...
+server.use("/", (req, res) => {
   const rootURL = process.env.ROOT_URL || "apidevnow.com";
-    res.status(200).json({
-      errors: [
-        {
-          invalid: `${rootURL + req.originalUrl}, using method ${
-            req.method
-          }, is not a valid URL`
-        },
-        { docs: `${rootURL}/docs` }
-      ]
-    });
-})
+  res.status(200).json({
+    errors: [
+      {
+        invalid: `${rootURL + req.originalUrl}, using method ${
+          req.method
+        }, is not a valid URL`
+      },
+      { docs: `${rootURL}/docs` }
+    ]
+  });
+});
 
-
-
-//A bit hackey, Need for Travis
+//A bit hackey, Need for Travis and some 
+//sqlite to pg conversions pertaing to int[]
 if (ENV === "test") {
 } else {
   server.listen(PORT, () => {
