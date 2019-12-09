@@ -3,15 +3,14 @@ const supertest = require("supertest");
 const req = supertest(app);
 
 describe("Register, Login and delete a standard user using the local stratagey", () => {
-
   afterAll(done => {
-    req.end()
+    req.end();
     app.close(done);
   });
 
   let token;
   const testUser = {
-    email: "testyMc"+ Date.now()+ "test@Testerson.com",
+    email: "testyMc" + Date.now() + "test@Testerson.com",
     password: "secretSquirl"
   };
 
@@ -28,17 +27,16 @@ describe("Register, Login and delete a standard user using the local stratagey",
     return done();
   });
 
-  it("Should Return Array of Erros when a user sends diry or wrong bad Objet Keys", async done =>{
+  it("Should Return Array of Erros when a user sends diry or wrong bad Objet Keys", async done => {
     //Muddy up the Test User Creds
-    testUser.password = "111"
-    testUser.email = "roman"
-    testUser.userId = "yo"
+    testUser.password = "111";
+    testUser.email = "roman";
+    testUser.userId = "yo";
     const res = await req.post("/register").send(testUser);
     expect(res.body).toHaveProperty("errors");
     expect(res.status).toBe(200);
-    return done()
-  })
-
+    return done();
+  });
 
   it("Deletes Test User", async done => {
     const res = await req.delete("/deleteme").set("Authorization", token);

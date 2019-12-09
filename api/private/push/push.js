@@ -1,5 +1,4 @@
-const pushRouter = require('express').Router()
-pushRouter
+const pushRouter = require("express").Router();
+pushRouter;
 
-
-module.exports=pushRouter
+module.exports = pushRouter;

@@ -5,7 +5,7 @@ const chalk = require("chalk");
 const cors = require("cors");
 require("dotenv").config();
 
-//Set Globalse
+//Set Globals
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
@@ -17,6 +17,10 @@ global._URL = process.env.ROOT_URL || "localhost:" + PORT;
 //Bring in the Routes.. Always after Globals
 const webHooks = require("./webHooks/webhooks");
 const primaryRouter = require("./api/server");
+
+//Set Route Catalog and bring in catalogAgent
+const { routeCatalog } = primaryRouter;
+const { matchClosestRoute } = require("./api/auth/preAuth/catalogAgent");
 
 //Configure the server
 const server = express();
@@ -46,6 +50,10 @@ server.use("/", (error, req, res, next) => {
 //Final End Point, if all else fails, land here...
 server.use("/", (req, res) => {
   const routeId = req.originalUrl.split("/");
+  const matchedRoute = matchClosestRoute(routeCatalog, routeId[1]);
+  const proposedDoc = matchedRoute
+    ? `${matchedRoute}_${req.method.toLowerCase()}`
+    : "";
   res.status(200).json({
     errors: [
       {
@@ -53,7 +61,9 @@ server.use("/", (req, res) => {
           req.method
         }, is not a valid URL`
       },
-      { docs: `https://${rootURL}/docs#${routeId[1]}` }
+      {
+        docs: `https://${rootURL}/docs#${proposedDoc}`
+      }
     ]
   });
 });

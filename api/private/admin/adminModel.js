@@ -18,7 +18,7 @@ function findById(id) {
   id = Array.isArray(id) ? [id] : id;
   return db(table)
     .where({ id })
-    .first()
+    .first();
 }
 
 function findByUserName(admin) {
