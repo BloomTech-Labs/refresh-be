@@ -1,7 +1,7 @@
 module.exports = {
   accessPoint,
   matchClosestRoute,
-  routesToArry
+  routesToArray
 };
 
 //Used mainly for jwt as it perains to private routes
@@ -23,7 +23,7 @@ function accessPoint(routeCatalog, url, params) {
 function matchClosestRoute(routeCatalog,req) {
   req = req.substring(0, 5);
   filteredRoutes = [];
-  routeCatalog = routesToArry(routeCatalog);
+  routeCatalog = routesToArray(routeCatalog);
   
   routeCatalog.forEach(route => {
     route.route.includes(req) 
@@ -34,7 +34,7 @@ function matchClosestRoute(routeCatalog,req) {
   return match[1];
 }
 
-function routesToArry(routeCatalog) {
+function routesToArray(routeCatalog) {
   const routesAsArray = [];
   Object.keys(routeCatalog).forEach(routeGroup => {
     routeCatalog[routeGroup].forEach(route => {

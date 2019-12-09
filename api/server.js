@@ -1,10 +1,11 @@
 const primaryRouter = require("express").Router();
 const axios = require("axios");
-
+const rootUrl =
+  "https://" + process.env.ROOT_URL || "http://localhost:" + process.env.PORT;
 //Middleware
 const jwt = require("./auth/preAuth/jwt");
 const docs = require("./public/docs/docProcessor");
-
+const { routesToArray } = require("./auth/preAuth/catalogAgent");
 
 //Bring in the Routes
 const publicRouter = require("./public/publicRouter");
@@ -18,7 +19,7 @@ primaryRouter.routeCatalog = {
   Private_Routes: [...privateRouter.routes],
   Public_Routes: [...publicRouter.routes]
 };
-const {routeCatalog} = primaryRouter 
+const { routeCatalog } = primaryRouter;
 
 //Implement Routes
 primaryRouter.use("/", authRouter);
@@ -35,19 +36,15 @@ primaryRouter.use("/docs", docs.docGen(routeCatalog), docsRouter);
 //Used For Testing
 primaryRouter.get("/testRoutes", async (req, res) => {
   const axiosCalls = [];
-
-  Object.keys(routeCatalog).forEach(routeGroup => {
-    routeCatalog[routeGroup].forEach(route => {
-      axiosCalls.push(
-        axios[route.method.toLowerCase()](`http://localhost:8080` + route.route)
-      );
-    });
+  const routes = routesToArray(routeCatalog);
+  routes.forEach(route => {
+    axiosCalls.push(axios[route.method.toLowerCase()](rootUrl + route.route));
   });
 
   const resolved = [];
   await Promise.all(
-    axiosCalls.map(p =>
-      p.then(res => resolved.push(res.data)).catch(() => undefined)
+    axiosCalls.map((p,i) =>
+      p.then(res => resolved.push({ ...res.data,...routes[i]})).catch(() => undefined)
     )
   );
 
