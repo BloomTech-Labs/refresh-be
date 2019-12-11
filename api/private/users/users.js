@@ -71,3 +71,25 @@ router.routes = [
     { route: "/users/", method: "DELETE", expects: {}, returns: {} }
 ];
 module.exports = router;
+
+router.delete("/:id", (req, res) => {
+    const { id } = req.params;
+
+    return dbModel
+        .remove(id)
+        .then(users => {
+            res.status(201).json({ message: `SUCCESS`, ...users });
+        })
+        .catch(e => {
+            res.status(404).json({ message: "SOMEMESSAGE", ...e });
+        });
+});
+
+router.routes = [
+    { route: "/users", method: "GET", expects: {}, returns: {} },
+    { route: "/users/:id", method: "GET", expects: {}, returns: {} },
+    { route: "/users", method: "POST", expects: {}, returns: {} },
+    { route: "/users/:id", method: "PUT", expects: {}, returns: {} },
+    { route: "/users/:id", method: "DELETE", expects: {}, returns: {} }
+];
+module.exports = router;
