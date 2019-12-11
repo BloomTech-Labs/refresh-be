@@ -8,16 +8,16 @@ module.exports = {
   editById,
   findByUsername
 };
-const table = "users"
+const table = "users";
 
-function findAll(){
-  return db(table)
+function findAll() {
+  return db(table);
 }
 function findById(id) {
   id = Array.isArray(id) ? [id] : id;
   return db(table)
     .where({ id })
-    .first()
+    .first();
 }
 
 function findByUsername(username) {

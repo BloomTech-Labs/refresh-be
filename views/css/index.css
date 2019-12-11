@@ -1,0 +1,113 @@
+* {
+  box-sizing: border-box;
+}
+html {
+  font-size: 62.5%;
+}
+body {
+  background: #3a3699;
+  color: #fff;
+}
+code {
+  font-size: 2.5rem;
+}
+h1 {
+  font-size: 3.5rem;
+}
+h2 {
+  font-size: 3rem;
+}
+h3,
+pre {
+  font-size: 2.6rem;
+}
+.routeGroup {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: baseline;
+}
+@media (max-width:500px) {
+  .routeGroup {
+    flex-direction: column;
+    padding: 2.7rem;
+  }
+}
+.route {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  justify-content: space-around;
+  padding: 10px;
+  border: solid 1px #ddd;
+  border-radius: 5px;
+  background: rgba(0, 0, 0, 0.8);
+}
+@media (max-width:500px) {
+  .route {
+    flex-direction: column;
+    padding: 2.7rem;
+  }
+}
+.route .route_title {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+@media (max-width:500px) {
+  .route .route_title {
+    flex-direction: column;
+    padding: 2.7rem;
+  }
+}
+.route .route_details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
+@media (max-width:500px) {
+  .route .route_details {
+    flex-direction: column;
+    padding: 2.7rem;
+  }
+}
+.route .route_details pre {
+  background: #ddd;
+  border-radius: 15px;
+  padding: 10px;
+  height: 200px;
+  color: black;
+  overflow: hidden;
+  overflow-y: scroll;
+}
+.route .route_details div {
+  width: 50%;
+  padding: 0 10px;
+}
+.route code {
+  border: 1px solid #3f3f33;
+  border-radius: 15px;
+  padding: 2px 7px;
+}
+.route .bool,
+.route .user_role,
+.route .route_index {
+  color: blue;
+  background: #fff;
+}
+.route .method {
+  color: #fff;
+}
+.route [data-method="GET"] {
+  background: green;
+}
+.route [data-method="PUT"] {
+  background: rebeccapurple;
+}
+.route [data-method="POST"] {
+  background: blue;
+}
+.route [data-method="DELETE"] {
+  background: #dd3300;
+}

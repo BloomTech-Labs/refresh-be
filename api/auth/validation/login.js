@@ -5,12 +5,11 @@ module.exports = async (req, res, next) => {
   const errors = [];
   const user = req.body
 
-  function validateLogin(user) {
+ async function validateLogin(user) {
     const u = req.body;
 
     !u.email && errors.push({ email: "required" });
     !u.password && errors.push({ password: "required" });
-
     Object.keys(user).map(x => {
       if (x === "password" || x === "email") {
         const key = u[x].length;
@@ -29,12 +28,13 @@ module.exports = async (req, res, next) => {
         errors.push({ error: `Unexpected key: [${x}] provide` });
       }
     });
+
+    if(errors.length < 1){
+      req.user = await dbModel.findByEmail(user.email)
+    }
   }
 
-  if(!errors.length){
-    req.user = await dbModel.findByEmail(user.email)
-  }
+   await validateLogin(user);
 
-  validateLogin(user);
   errors.length < 1 ? next() : res.status(200).json({ errors });
 };

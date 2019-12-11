@@ -30,20 +30,18 @@ function findByEmail(email) {
 }
 
 async function findOrCreateByEmail(profile) {
-
-
   //Get the proposed user
   const email = profile.email;
   const user = await db(table)
     .select("email", "id")
     .where({ email })
     .first();
-  
+
   //If the user exist
   if (user) {
     const user_missions = await userMissionsModel.findAll(user.id);
     const getUserRoles = await rolesModel.findAllRolesById(user.id);
-    const user_profile = await profileModel.findByUserId(user.id)
+    const user_profile = await profileModel.findByUserId(user.id);
     return {
       user_id: user.id,
       user_profile,
@@ -61,8 +59,19 @@ async function findOrCreateByEmail(profile) {
 
     //Create New User
     const newUser = await addUser({ email, password });
+
+    // Assign Default Missions
+    const defaultMissions = await db("default_missions")
+      .select(["mission_id"])
+      .then(res => {
+        res.forEach(mission => {
+          const { mission_id } = mission;
+          return userMissionsModel.add({ mission_id, user_id: newUser.id });
+        });
+      });
+
+    //Get User Missions
     const user_missions = await userMissionsModel.findAll(newUser.id);
-    delete profile.email; //Clean For Profile Creation
 
     //Assign User Role
     const userRole = await rolesModel.addUserRole({
@@ -71,6 +80,7 @@ async function findOrCreateByEmail(profile) {
     });
 
     //Create User Profile
+    delete profile.email; //Clean For Profile Creation
     const newProfile = await profileModel.createProfile({
       user_id: newUser.id,
       ...profile
@@ -81,7 +91,7 @@ async function findOrCreateByEmail(profile) {
     const getUserRoles = await rolesModel.findAllRolesById(newUser.id);
 
     return {
-      user_profile:{...newProfile},
+      user_profile: { ...newProfile },
       ...user_missions,
       user_roles: [...getUserRoles],
       newUser: "Welcome New User"
@@ -95,9 +105,8 @@ function addUser(obj) {
     .then(([id]) => findById(id));
 }
 
-
-function removeUser(id){
+function removeUser(id) {
   return db(table)
-  .where({ id })
-  .del();
+    .where({ id })
+    .del();
 }

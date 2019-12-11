@@ -74,21 +74,26 @@ async function findAll(id) {
     });
   }
   const mission_subscriptions = await db(table + " as um")
-  .select("m.*","q.question")
-  .join('missions as m', 'm.id','um.mission_id')
-  .join('questions as q','q.id','m.question')
-  .where('user_id',id)
-  //Return All other User Missions Not In Progress
-  const missions_needing_attention = await db(table + " as um")
-    .select("m.*")
+    .select(
+      "m.id as mission_id",
+      "m.vertical",
+      "q.question",
+      "m.question as question_id",
+      "m.description",
+      "m.point_value",
+      "m.goal",
+      "m.dotw",
+      "m.ending_date",
+      "m.start_date"
+    )
     .join("missions as m", "m.id", "um.mission_id")
-    .where("um.user_id", id)
-    .whereNotIn("m.id", filterdMissions);
+    .join("questions as q", "q.id", "m.question")
+    .where("user_id", id);
+  //Return All other User Missions Not In Progress
 
   return {
     user_missions: {
       missions_in_progress,
-      missions_needing_attention,
       mission_subscriptions
     }
   };

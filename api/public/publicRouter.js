@@ -1,8 +1,9 @@
 const publicRouter = require("express").Router();
-const rolerRouter = require('./roles/roles')
-const docsRouter = require('./docs/docs')
+const rolerRouter = require("./roles/roles");
+const docsRouter = require("./docs/docs");
 
-publicRouter.use('/docs',docsRouter)
-publicRouter.use('/roles',rolerRouter)
+publicRouter.use("/roles", rolerRouter);
+
+publicRouter.routes = [...rolerRouter.routes];
 
 module.exports = publicRouter;

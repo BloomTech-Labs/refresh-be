@@ -3,7 +3,6 @@ const db = require(_dbConfig);
 module.exports = {
   findAll,
   findById
-
 };
 
 const table = "question_groups";
@@ -15,15 +14,15 @@ function findById(id) {
   return db(table)
     .where({ id })
     .first()
-    .then(group=>findAllQuestionsByArray(group))
+    .then(group => findAllQuestionsByArray(group));
 }
 
-function findAllQuestionsByArray(arr){
-  return db('questions')
-  .whereIn('id', arr.question_ids)
-  .then(questions=>{
-      return {group:arr.group,questions:[...questions]}
-  })
+function findAllQuestionsByArray(arr) {
+  return db("questions")
+    .whereIn("id", arr.question_ids)
+    .then(questions => {
+      return { group: arr.group, questions: [...questions] };
+    });
 }
 
 // function findByUserName(admin) {
