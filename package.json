@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "server": "nodemon index.js",
-    "test": "cross-env NODE_ENV=test npx knex seed:run  & jest",
+    "test": "cross-env NODE_ENV=test npx knex seed:run  & jest -b",
     "seed": "heroku run knex seed:run -a refresh-yo-beta",
     "migrate": "heroku run knex migrate:latest -a refresh-yo-beta",
     "drop": "heroku run knex migrate:rollback -a refresh-yo-beta"

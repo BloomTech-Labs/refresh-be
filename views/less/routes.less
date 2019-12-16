@@ -1,20 +1,17 @@
-
-
-.routeGroup{
-    .flex();
-   justify-content: space-between;
-   align-items: baseline;
+.routeGroup {
+  .flex();
+  justify-content: space-between;
+  align-items: baseline;
 }
 
 .route {
   .flex(column);
-  margin:5px;
+  margin: 5px;
   justify-content: space-around;
   padding: 10px;
   border: solid 1px #ddd;
   border-radius: 5px;
-  background:rgba(0,0,0,.8);
-  
+  background: rgba(0, 0, 0, 0.8);
 
   .route_title {
     .flex();
@@ -30,7 +27,9 @@
       border-radius: 15px;
       padding: 10px;
       height: 200px;
-      color:black;
+      color: black;
+      overflow: hidden;
+      overflow-y: scroll;
     }
     div {
       width: 50%;
@@ -38,23 +37,24 @@
     }
   }
 
-  code{
+  code {
     border: 1px solid #3f3f33;
     border-radius: 15px;
     padding: 2px 7px;
   }
 
-  .bool,.user_role,.route_index{
-    color:blue;
-    background:#fff;
+  .bool,
+  .user_role,
+  .route_index {
+    color: blue;
+    background: #fff;
   }
 
   .method {
-    color:#fff
+    color: #fff;
   }
 
   [data-method="GET"] {
-
     background: green;
   }
 
@@ -63,11 +63,10 @@
   }
 
   [data-method="POST"] {
-   
     background: blue;
   }
 
   [data-method="DELETE"] {
-    background: #DD3300;
+    background: #dd3300;
   }
 }

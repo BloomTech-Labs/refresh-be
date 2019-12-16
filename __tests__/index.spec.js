@@ -8,6 +8,7 @@ describe("Renders Without Crashing", () => {
     app.close(done);
   });
 
+
   it("Default Route", async done => {
     const res = await req.get("/");
 
@@ -15,4 +16,5 @@ describe("Renders Without Crashing", () => {
 
     done();
   });
+
 });
