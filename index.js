@@ -9,7 +9,7 @@ require("dotenv").config();
 const PORT = process.env.PORT || 5000;
 const ENV = process.env.NODE_ENV || process.env.DB_ENV;
 const path = require("path");
-const rootURL = process.env.ROOT_URL || "apidevnow.com";
+const rootURL = process.env.ROOT_URL || "refresh-yo-beta.herokuapp.com";
 global._dbConfig = path.resolve(__dirname + "/data/dbConfig");
 global._jwt = path.resolve(__dirname + "/api/auth/preAuth/jwt");
 global._URL = process.env.ROOT_URL || "localhost:" + PORT;
