@@ -5,7 +5,7 @@ exports.up = function(knex) {
 
         admin.string('email').unique().notNullable();
 
-        admin.string('password').unique().notNullable()
+        admin.string('password').unique().notNullable();
     })
 };
 
