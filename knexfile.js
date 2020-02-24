@@ -1,12 +1,11 @@
 // Update with your config settings.
+require('dotenv').config()
 
 module.exports = {
 
   development: {
-    client: 'sqlite3',
-    connection: {
-      filename: './data/backend.db3'
-    },
+    client: 'pg',
+    connection: process.env.DATABASE_URL,
     migrations: {
       directory: './data/migrations'
     },
