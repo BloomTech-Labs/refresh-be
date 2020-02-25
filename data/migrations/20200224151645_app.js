@@ -6,7 +6,7 @@ exports.up = function(knex) {
 
             teams.string('name').unique().notNullable();
 
-            teams.integer('points').unique().notNullable();
+            teams.integer('points').notNullable();
     })
 
         .createTable('users', users => {
