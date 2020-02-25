@@ -7,26 +7,14 @@ const createFakeUser = () => ({
   password: faker.internet.password,
   avatar: faker.internet.avatar,
   points: faker.random.number,
-  team_id: null
+  team_id: 2
 })
 
 exports.seed = async function(knex) {
       const fakeUsers = [];
-      const desiredFakeUsers = 30;
+      const desiredFakeUsers = 10;
       for(let i = 0; i < desiredFakeUsers; i++) {
-        if(i < 10) {
-          let addedTeamUser = createFakeUser()
-          addedTeamUser.team_id = 1
-          fakeUsers.push(addedTeamUser)
-        } else if(i >= 10 && i < 20) {
-          let addedTeamUser = createFakeUser()
-          addedTeamUser.team_id = 2
-          fakeUsers.push(addedTeamUser)
-        } else {
-          let addedTeamUser = createFakeUser()
-          addedTeamUser.team_id = 3
-          fakeUsers.push(addedTeamUser)
-        }
+        fakeUsers.push(createFakeUser())
       }
       await knex('users').insert(fakeUsers)
 };
