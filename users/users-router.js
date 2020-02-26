@@ -47,4 +47,36 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const DeleteUser = await Users.deleteUser(id)
+        if(DeleteUser) {
+            res.status(200).json( {message: 'Deleted User Successfully', count: DeleteUser} )
+        } else {
+            res.status(400).json({ error: 'User with specified ID does not exist' })
+        }
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({ error: 'Could not remove user from the database' });
+    }
+})
+
+router.put('/:id', async (req, res) => {
+    const changes = req.body;
+    const { id } = req.params;
+    try {
+        const UpdatedUser = await Users.updateUser(id, changes)
+        if(UpdatedUser) {
+            res.status(200).json({ message: 'Update Successful', count: UpdatedUser })
+        } else {
+            res.status(400).json({ error: 'Please make sure you filled out all required fields' })
+        }
+    } catch(error) {
+        console.log(error)
+        console.log(error)
+        res.status(500).json({ error: 'Could not update user in database' })
+    }
+})
+
 module.exports = router;
