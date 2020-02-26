@@ -21,7 +21,7 @@ function addUser(user) {
         .insert(user, 'id')
         .then(ids => {
             const [id] = ids;
-            return findById(id)
+            return getUserProfileById(id)
         })
 }
 
