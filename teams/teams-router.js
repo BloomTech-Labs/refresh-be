@@ -47,6 +47,21 @@ router.post('/', async (req, res) => {
     }
 })
 
+router.delete('/:id', async (req, res) => {
+    const { id } = req.params;
+    try {
+        const DeleteTeam = await Teams.deleteTeam(id)
+        if(DeleteTeam) {
+            res.status(200).json( {message: 'Deleted Team Successfully', count: DeleteTeam} )
+        } else {
+            res.status(400).json({ error: 'Team with specified ID does not exist' })
+        }
+    } catch(error) {
+        console.log(error);
+        res.status(500).json({ error: 'Could not remove team from the database' });
+    }
+})
+
 
 
 

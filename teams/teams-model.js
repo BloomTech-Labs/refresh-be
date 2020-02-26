@@ -3,7 +3,8 @@ const db = require('../data/db-config');
 module.exports = {
     getAllTeams,
     getTeamById,
-    addTeam
+    addTeam,
+    deleteTeam
 }
 
 function getAllTeams() {
@@ -21,4 +22,10 @@ function addTeam(team) {
             const [id] = ids;
             return getTeamById(id)
         })
+}
+
+function deleteTeam(id) {
+    return db('teams')
+        .where({ id })
+        .del()
 }
