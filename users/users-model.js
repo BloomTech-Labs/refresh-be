@@ -16,6 +16,8 @@ function getUserProfileById(id) {
     return db('users').where({ id }).first();
 }
 
+
+
 function addUser(user) {
     return db('users')
         .insert(user, 'id')
@@ -31,8 +33,10 @@ function deleteUser(id) {
         .del()
 }
 
-function updateUser(id, changes) {
-    return db('users')
-        .where('id', '=', id)
-        .update(changes, id)
+async function updateUser(id, changes) {
+    const [updatedUser] = await db('users')
+        .where({ id })
+        .update(changes)
+        .returning('*')
+    return updatedUser
 }
