@@ -9,7 +9,7 @@ module.exports = {
 }
 
 function getAllTeams() {
-    return db('teams').select('id','name')
+    return db('teams').select('id','name', 'points')
 }
 
 function getTeamById(id) {
