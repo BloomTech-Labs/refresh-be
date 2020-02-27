@@ -29,3 +29,11 @@ function deleteTeam(id) {
         .where({ id })
         .del()
 }
+
+async function updateTeam(id, changes) {
+    const [updatedTeam] = await db('team')
+        .where({ id })
+        .update(changes)
+        .returning('*')
+    return updatedTeam
+}
