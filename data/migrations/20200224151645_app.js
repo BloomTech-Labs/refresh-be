@@ -29,7 +29,7 @@ exports.up = function(knex) {
                 .unsigned()
                 .references('id')
                 .inTable('teams')
-                .onDelete('CASCADE')
+                .onDelete('SET NULL')
                 .onUpdate('CASCADE');
 
         })
