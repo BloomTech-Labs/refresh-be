@@ -10,17 +10,23 @@
 | :----: | :------------: | :---------- |
 
 | LOGIN |/auth/login | { "email": "email@gmail.com, "password": "pass123" |
+
 | REGISTER |/auth/register | "email": "", "first_name": "", "last_name": "", "password": "" |
 
 | GET |/teams | GET to see all teams |
+
 | GET |/teams/:id | GET to see the team where :id is team's id |
+
 | GET |/users | GET to see the users |
+
 | GET |/users/:id | GET to see the users by ID |
 
 | POST |/teams | POST to add a team |
+
 | POST |/users | POST to add a new user |
 
 | DEL |/teams/:id | DELETE to delete a team by ID |
+
 | DEL |/users/:id | DELETE to delete a user by ID |
 
 
