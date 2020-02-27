@@ -62,6 +62,22 @@ router.delete('/:id', async (req, res) => {
     }
 })
 
+router.put('/:id', async (req, res) => {
+    const changes = req.body;
+    const { id } = req.params;
+    try {
+        const UpdatedTeam = await Teams.updateTeam(id, changes)
+        if(UpdatedTeam) {
+            res.status(200).json({ message: 'Update Successful', result: UpdatedTeam })
+        } else {
+            res.status(400).json({ error: 'Please make sure you filled out all required fields' })
+        }
+    } catch(error) {
+        console.log(error)
+        res.status(500).json({ error: 'Could not update team in database' })
+    }
+})
+
 
 
 
