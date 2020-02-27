@@ -2,8 +2,8 @@
 exports.seed = function(knex) {
   // Deletes ALL existing entries
       return knex('teams').insert([
-        {name: 'Accounting'},
-        {name: 'Developers'},
-        {name: 'Human Resource'}
+        {name: 'Accounting', points: '0'},
+        {name: 'Developers', points: '0'},
+        {name: 'Human Resource', points: '0'}
     ]);
 };
