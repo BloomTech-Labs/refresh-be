@@ -21,7 +21,7 @@ function getUserBy(filter) {
     return db('users').where(filter)
 }
 
-function addUser(user) {
+function addUser(user) { 
     return db('users')
         .insert(user, 'id')
         .then(ids => {
