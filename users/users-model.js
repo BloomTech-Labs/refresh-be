@@ -3,6 +3,7 @@ const db = require('../data/db-config');
 module.exports = {
     getUsersProfiles,
     getUserProfileById,
+    getUserBy,
     addUser,
     deleteUser,
     updateUser
@@ -16,7 +17,11 @@ function getUserProfileById(id) {
     return db('users').where({ id }).first();
 }
 
-function addUser(user) {
+function getUserBy(filter) {
+    return db('users').where(filter)
+}
+
+function addUser(user) { 
     return db('users')
         .insert(user, 'id')
         .then(ids => {
@@ -31,8 +36,10 @@ function deleteUser(id) {
         .del()
 }
 
-function updateUser(id, changes) {
-    return db('users')
-        .where('id', '=', id)
-        .update(changes, id)
+async function updateUser(id, changes) {
+    const [updatedUser] = await db('users')
+        .where({ id })
+        .update(changes)
+        .returning('*')
+    return updatedUser
 }

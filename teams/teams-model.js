@@ -4,7 +4,8 @@ module.exports = {
     getAllTeams,
     getTeamById,
     addTeam,
-    deleteTeam
+    deleteTeam,
+    updateTeam
 }
 
 function getAllTeams() {
@@ -28,4 +29,12 @@ function deleteTeam(id) {
     return db('teams')
         .where({ id })
         .del()
+}
+
+async function updateTeam(id, changes) {
+    const [updatedTeam] = await db('teams')
+        .where({ id })
+        .update(changes)
+        .returning('*')
+    return updatedTeam
 }
