@@ -9,7 +9,8 @@
     "test": "cross-env NODE_ENV=test npx knex seed:run  & jest -b",
     "seed": "heroku run knex seed:run -a refresh-yo-beta",
     "migrate": "heroku run knex migrate:latest -a refresh-yo-beta",
-    "drop": "heroku run knex migrate:rollback -a refresh-yo-beta"
+    "drop": "heroku run knex migrate:rollback -a refresh-yo-beta",
+    "heroku-postbuild": "npm install --production"
   },
   "repository": {
     "type": "git",
