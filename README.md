@@ -1,6 +1,6 @@
 # Refresh
 
-#### Backend deployed at [Heroku](https://refresh-yo.herokuapp.com/) <br>
+#### Backend deployed at [Heroku](https://labs-refresh.herokuapp.com/) <br>
 
 
 
