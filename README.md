@@ -9,7 +9,7 @@
 | Method | Endpoint       | Explanation |
 | :----: | :------------: | :---------- |
 
-| LOGIN |/auth/login | { "email": "email@gmail.com, "password": "pass123" |
+| LOGIN | /auth/login | { "email": "email@gmail.com, "password": "pass123" |
 
 | REGISTER |/auth/register | "email": "", "first_name": "", "last_name": "", "password": "" |
 
