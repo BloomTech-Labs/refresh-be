@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const Admin = require('../admin/admin-model');
 const jwt = require('jsonwebtoken')
-const { jwtSecret } = require('../config/secrets.js')
+
 
 // add in more validation
 router.post('/register', async (req, res) => {
@@ -51,7 +51,7 @@ function signToken(user) {
         expiresIn: '1d'
     };
 
-    return jwt.sign(payload, jwtSecret, options)
+    return jwt.sign(payload, process.env.SECRET, options)
 }
 
 module.exports = router;
