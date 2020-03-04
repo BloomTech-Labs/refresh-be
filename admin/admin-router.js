@@ -2,19 +2,19 @@ const router = require('express').Router();
 const Admin = require('../admin/admin-model');
 const jwt = require('jsonwebtoken')
 const { jwtSecret } = require('../config/secrets.js')
-
+const bcrypt = require('bcryptjs');
 
 
 router.post('/register', async (req, res) => {
-    let user = req.body;
-    const hash = bcrypt.hashSync(user.password, 8);
-    user.password = hash;
+    let admin = req.body;
+    const hash = bcrypt.hashSync(admin.password, 8);
+    admin.password = hash;
 
     try {
-        if(user) {
-            const AddUser = await Users.addUser(user)
-            const token = signToken(user)
-            res.status(201).json({ message: `Thank you for registering, ${user.first_name}!`, add: AddUser, token: token })
+        if(admin) {
+            const AddAdmin = await Admin.addAdmin(admin)
+            const token = signToken(admin)
+            res.status(201).json({ message: `Thank you for registering, admin!`, add: AddAdmin, token: token })
         } else {
             res.status(400).json({ errorMessage: 'Please fill out all required fields' })
         }
@@ -29,7 +29,7 @@ router.post('/login', (req, res) => {
     Admin.getAdminBy({ email })
         .first()
         .then(admin => {
-            if(admin) {
+            if(admin && bcrypt.compareSync(password, admin.password)) {
                 const token = signToken(admin)
 
                 res.status(200).json({ message: 'Admin login sucessful', token: token })
