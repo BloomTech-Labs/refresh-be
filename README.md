@@ -9,6 +9,8 @@
 | Method | Endpoint       | Explanation |
 | :----: | :------------: | :---------- |
 
+| ADMIN LOGIN | /admin/login | { "email": "admin@gmail.com", "password: "admin" } |
+
 | LOGIN | /auth/login | { "email": "email@gmail.com, "password": "pass123" |
 
 | REGISTER |/auth/register | "email": "", "first_name": "", "last_name": "", "password": "" |
@@ -24,6 +26,10 @@
 | POST |/teams | POST to add a team |
 
 | POST |/users | POST to add a new user |
+
+| PUT |/users/{id} | UPDATE user |
+
+| PUT |/teams/{id} | UPDATE team |
 
 | DEL |/teams/:id | DELETE to delete a team by ID |
 
@@ -47,21 +53,7 @@ Those in the tech industry are always looking for ways to optimize their output 
 * [Google APIs](https://developers.google.com/apis-explorer) 
 * [oAuth2](https://oauth.net/2/)
 
-### Authors
 
-* **Dayton Steinmeyer** - *Team Lead* - [DaytonS3](https://github.com/DaytonS3)
-* **Gina Christians** - *Full Stack Developer* - [Chrisgins](https://github.com/Chrisgins)
-* **Jeremy Brady** - *Full Stack Developer* - [jeremybrady702](https://github.com/jeremybrady702)
-* **Melissa Murphy** - *Full Stack Developer* - [melissa-murphy](https://github.com/melissa-murphy)
-* **Michael Baynon** - *Full Stack Developer* - [MichaelBaynon](https://github.com/MichaelBaynon)
-* **Roman Jordan** - *Full Stack Developer* - [Roman-Jordan](https://github.com/Roman-Jordan)
-* **Josh Cooter** - *Full Stack Developer* - [thejoshcooter](https://github.com/thejoshcooter)
-* **Christina Delligatta** - *Full Stack Developer* - [TinaDelli](https://github.com/TinaDelli)
-* **Daniel Wallen** - *Full Stack Developer* - [WebWallen](https://github.com/WebWallen)
-* **Taylor Watson** - *UI/UX* - [taylornicolewatson](https://github.com/taylornicolewatson)
-* **Elle Martin** - *UI/UX* - [ElleMartin](https://github.com/ElleMartin)
-
-See also the list of [contributors](https://github.com/orgs/Lambda-School-Labs/teams/labs-18-refresh/members) who participated in this project.
 
 ### License
 
