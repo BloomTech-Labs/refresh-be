@@ -164,7 +164,7 @@ exports.seed = function(knex) {
 			team_id: 4
 		},
 		{
-			email: "samantha@gmail.com",
+			email: "samanthasmith@gmail.com",
 			first_name: "Samantha",
 			last_name: "Smith",
 			password: "elias123",
