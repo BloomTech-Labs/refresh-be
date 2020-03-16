@@ -22,7 +22,7 @@ function addTeam(team) {
         .then(ids => {
             const [id] = ids;
             return getAllTeams()
-        })
+        }) 
 }
 
 function deleteTeam(id) {
