@@ -21,8 +21,8 @@ function addTeam(team) {
         .insert(team, 'id')
         .then(ids => {
             const [id] = ids;
-            return getTeamById(id)
-        })
+            return getAllTeams()
+        }) 
 }
 
 function deleteTeam(id) {
