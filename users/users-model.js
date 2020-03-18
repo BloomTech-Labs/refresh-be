@@ -4,7 +4,7 @@ module.exports = {
     getUsersProfiles,
     getUserProfileById,
     getUserBy,
-    getUserTeam,
+    getUserTeamName,
     addUser,
     deleteUser,
     updateUser
@@ -22,8 +22,8 @@ function getUserBy(filter) {
     return db('users').where(filter)
 }
 
-function getUserTeam(teamId) {
-    return('teams').join('users', 'users.team_id', 'teams.id').where('users.team_id', teamId).select('teams.name')
+function getUserTeamName(userId) {
+    return db('teams').join('users', 'users.team_id', 'teams.id').where('users.id', userId).select('teams.name').first()
 }
 
 function addUser(user) { 
