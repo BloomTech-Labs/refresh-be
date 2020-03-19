@@ -12,12 +12,16 @@ module.exports = {
 
 function getUsersProfiles() {
     return db('teams')
-    .join('users', 'users.team_id', 'teams.id')
-    .select('users.id', 'email', 'first_name', 'last_name', 'avatar', 'users.points', 'team_id', 'teams.name')
+        .join('users', 'users.team_id', 'teams.id')
+        .select('users.id', 'email', 'first_name', 'last_name', 'avatar', 'users.points', 'team_id', 'teams.name')
 }
 
-function getUserProfileById(id) {
-    return db('users').where({ id }).first();
+function getUserProfileById(userId) {
+    return db('teams')
+        .join('users', 'users.team_id', 'teams.id')
+        .select('users.id', 'email', 'first_name', 'last_name', 'avatar', 'users.points', 'team_id', 'teams.name')
+        .where('users.id', userId)
+        .first();
 }
 
 function getUserBy(filter) {
