@@ -32,6 +32,25 @@ router.get("/:id", (req, res) => {
         });
 });
 
+router.get("/:id/team", (req, res) => {
+    const { id } = req.params;
+
+    Users.getUserTeamName(id)
+        .then(name => {
+            if (name) {
+                res.json(name);
+            } else {
+                res.status(404).json({
+                    message: "Could not find team with given id.",
+                });
+            }
+        })
+        .catch(err => {
+            res.status(500).json({ message: "Failed to get team" });
+        });
+});
+
+
 router.post('/', async (req, res) => {
     const user = req.body;
     try {
