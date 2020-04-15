@@ -1,13 +1,15 @@
 # Refresh
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/test_coverage)
+
 #### Backend deployed at [Heroku](https://labs-refresh.herokuapp.com/) <br>
-
-
 
 ## Endpoints
 
-| Method | Endpoint       | Explanation |
-| :----: | :------------: | :---------- |
+| Method | Endpoint | Explanation |
+| :----: | :------: | :---------- |
+
 
 | ADMIN LOGIN | /admin/login | { "email": "admin@gmail.com", "password: "admin" } |
 
@@ -35,12 +37,9 @@
 
 | DEL |/users/:id | DELETE to delete a user by ID |
 
-
-
-
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
 
-Students and working professionals can experience tunnel vision when working towards an important goal, like labs, and this often leads to low energy, motivation, and sometimes complete burnout. 
+Students and working professionals can experience tunnel vision when working towards an important goal, like labs, and this often leads to low energy, motivation, and sometimes complete burnout.
 
 ## Mission
 
@@ -48,12 +47,10 @@ Those in the tech industry are always looking for ways to optimize their output 
 
 ### Built With
 
-* [ReactJS](https://reactjs.org/) 
-* [NodeJS](https://nodejs.org/en/) 
-* [Google APIs](https://developers.google.com/apis-explorer) 
-* [oAuth2](https://oauth.net/2/)
-
-
+- [ReactJS](https://reactjs.org/)
+- [NodeJS](https://nodejs.org/en/)
+- [Google APIs](https://developers.google.com/apis-explorer)
+- [oAuth2](https://oauth.net/2/)
 
 ### License
 
