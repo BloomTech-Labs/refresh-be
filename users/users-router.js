@@ -1,8 +1,47 @@
 const express = require('express')
-
-const Users = require('./users-model.js');
-
 const router = express.Router();
+const Users = require('./users-model.js');
+const jwt = require('jsonwebtoken')
+const { jwtSecret } = require('../config/secrets')
+const bcrypt = require('bcryptjs');
+
+// Register/ Login Code
+router.post('/register', async(req,res)=>{
+    let user = req.body;
+    const hash = bcrypt.hashSync(user.password,8);
+    user.password=hash;
+    try {
+        if(user) {
+            const AddUser= await Users.addUser(user)
+            const token = signToken(user)
+            res.status(201).json({message: `Thank you for registering, ${user}!`, add: AddUser, token:token})
+        } else {
+            res.status(400).json({errorMessage: 'Please fill out all required fields'})
+        }
+    } catch( error){
+        console.log(error)
+        res.status(500).json({ errorMessage: 'Error adding user to the database' })
+    }
+})
+router.post('/login', (req, res) => {
+    let { email, password } = req.body;
+    Users.getUserBy({ email })
+        .first()
+        .then(user => {
+            if(user && bcrypt.compareSync(password, user.password)) {
+                const token = signToken(user)
+                res.status(200).json({ message: `User login successful${user}`, token: token })
+            } else {
+                res.status(401).json({ message: 'Invalid Credentials' })
+            }
+        })
+        .catch(error => {
+            console.log(error)
+            res.status(500).json({ error: 'Could not login user' })
+        })
+})
+
+
 
 router.get('/', async (req, res) => {
     try {
@@ -98,5 +137,15 @@ router.put('/:id', async (req, res) => {
         res.status(500).json({ error: 'Could not update user in database' })
     }
 })
+
+function signToken(user) {
+    const payload = {
+        user
+    }
+    const options = {
+        expiresIn: '1d'
+    };
+    return jwt.sign(payload, jwtSecret, options)
+}
 
 module.exports = router;
