@@ -13,7 +13,7 @@ module.exports = {
 function getUsersProfiles() {
     return db('users')
         .leftJoin('teams', 'teams.id', 'users.team_id')
-        .select('users.id', 'email', 'first_name', 'last_name', 'avatar', 'users.points', 'team_id', 'teams.name')
+        .select('users.id', 'email', 'first_name', 'last_name', 'avatar', 'users.points', 'team_id', 'teams.name', 'metrics_id')
 }
 
 function getUserProfileById(userId) {
