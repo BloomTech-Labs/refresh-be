@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/test_coverage)
 
-#### Base url https://lab23-refresh-be.herokuapp.com/
+#### Base url https://lab23-refresh-be.herokuapp.com
 
 ## Endpoints
 
