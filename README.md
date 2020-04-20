@@ -3,7 +3,7 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/test_coverage)
 
-#### Backend deployed at [Heroku](https://labs-refresh.herokuapp.com/) <br>
+#### Backend deployed at [Heroku](https://lab23-refresh-be.herokuapp.com/) <br>
 
 ## Endpoints
 
@@ -13,9 +13,9 @@
 
 | ADMIN LOGIN | /admin/login | { "email": "admin@gmail.com", "password: "admin" } |
 
-| LOGIN | /auth/login | { "email": "email@gmail.com, "password": "pass123" |
+| LOGIN | /users/login | { "email": "email@gmail.com, "password": "pass123" |
 
-| REGISTER |/auth/register | "email": "", "first_name": "", "last_name": "", "password": "" |
+| REGISTER |/users/register | "email": "", "full_name": "", "password": "" |
 
 | GET |/teams | GET to see all teams |
 
