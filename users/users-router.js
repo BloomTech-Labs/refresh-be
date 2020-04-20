@@ -4,6 +4,7 @@ const Users = require('./users-model.js');
 const jwt = require('jsonwebtoken')
 const { jwtSecret } = require('../config/secrets')
 const bcrypt = require('bcryptjs');
+
 // Register/ Login Code
 router.post('/register', async(req,res)=>{
     let user = req.body;
@@ -39,11 +40,6 @@ router.post('/login', (req, res) => {
             res.status(500).json({ error: 'Could not login user' })
         })
 })
-
-
-
-
-
 
 
 
@@ -141,5 +137,15 @@ router.put('/:id', async (req, res) => {
         res.status(500).json({ error: 'Could not update user in database' })
     }
 })
+
+function signToken(user) {
+    const payload = {
+        user
+    }
+    const options = {
+        expiresIn: '1d'
+    };
+    return jwt.sign(payload, jwtSecret, options)
+}
 
 module.exports = router;
