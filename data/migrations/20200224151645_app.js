@@ -5,16 +5,14 @@ exports.up = function(knex) {
             teams.increments();
 
             teams.string('name').unique().notNullable();
-            teams.integer('points'); 
+            teams.integer('points');
 
     })
 
         .createTable('users', users => {
             users.increments();
             users.string('email').unique().notNullable();
-            users.string('first_name').notNullable();
-            users.string('last_name').notNullable();
-            
+            users.string('full_name').notNullable();
             users.string('password').notNullable();
             users.string('avatar');
             users.integer('points');
