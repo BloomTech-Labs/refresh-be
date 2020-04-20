@@ -16,7 +16,7 @@ server.use(cors());
 
 server.use('/users', UserRouter);
 server.use('/teams', TeamRouter);
-server.use('/auth', AuthRouter);
+
 server.use('/admin', AdminRouter);
 server.use('/metrics',MetricsRouter);
 

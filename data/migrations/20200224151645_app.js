@@ -5,7 +5,6 @@ exports.up = function(knex) {
             teams.increments();
 
             teams.string('name').unique().notNullable();
-
             teams.integer('points');
 
     })
