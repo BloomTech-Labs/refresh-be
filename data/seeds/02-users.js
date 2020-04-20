@@ -3,8 +3,7 @@ exports.seed = function(knex) {
 	return knex("users").insert([
 		{
 			email: "michael@gmail.com",
-			first_name: "Michael",
-			last_name: "Scott",
+			full_name: "Michael Scott",
 			password: "mike123",
 			avatar: null,
 			points: 5,
@@ -12,8 +11,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "jan@gmail.com",
-			first_name: "Jan",
-			last_name: "Levins",
+			full_name: "Jan Levins",
 			password: "jan123",
 			avatar: null,
 			points: 10,
@@ -21,8 +19,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "dwight@gmail.com",
-			first_name: "Dwight",
-			last_name: "Schrute",
+			full_name: "Dwight Schrute",
 			password: "dwight123",
 			avatar: null,
 			points: 8,
@@ -30,8 +27,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "francis@gmail.com",
-			first_name: "Francis",
-			last_name: "Leeland",
+			full_name: "Francis Leeland",
 			password: "francis123",
 			avatar: null,
 			points: 9,
@@ -39,8 +35,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "janell@gmail.com",
-			first_name: "Janell",
-			last_name: "Brady",
+			full_name: "Janell",
 			password: "janell123",
 			avatar: null,
 			points: 19,
@@ -48,8 +43,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "jim@gmail.com",
-			first_name: "Jim",
-			last_name: "Halpert",
+			full_name: "Jim Halpert",
 			password: "jim123",
 			avatar: null,
 			points: 2,
@@ -57,8 +51,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "pam@gmail.com",
-			first_name: "Pam",
-			last_name: "Beasley",
+			full_name: "Pam Beasley",
 			password: "pam123",
 			avatar: null,
 			points: 7,
@@ -66,8 +59,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "david@gmail.com",
-			first_name: "David",
-			last_name: "Powers",
+			full_name: "David Powers",
 			password: "david123",
 			avatar: null,
 			points: 8,
@@ -75,8 +67,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "lindsey@gmail.com",
-			first_name: "Lindsey",
-			last_name: "Powers",
+			full_name: "Lindsey Powers",
 			password: "lindsey123",
 			avatar: null,
 			points: 16,
@@ -84,8 +75,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "john@gmail.com",
-			first_name: "John",
-			last_name: "Robert",
+			full_name: "John Robert",
 			password: "john123",
 			avatar: null,
 			points: 11,
@@ -93,8 +83,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "miguel@gmail.com",
-			first_name: "Miguel",
-			last_name: "Martinez",
+			full_name: "Miguel Martinez",
 			password: "miguel123",
 			avatar: null,
 			points: 9,
@@ -102,8 +91,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "damien@gmail.com",
-			first_name: "Damien",
-			last_name: "Johnson",
+			full_name: "Damien Johnson",
 			password: "damien123",
 			avatar: null,
 			points: 10,
@@ -111,8 +99,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "robert@gmail.com",
-			first_name: "Robert",
-			last_name: "Lee",
+			full_name: "Robert Lee",
 			password: "robert123",
 			avatar: null,
 			points: 15,
@@ -120,8 +107,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "samantha@gmail.com",
-			first_name: "Samantha",
-			last_name: "Jones",
+			full_name: "Samantha Jones",
 			password: "samantha123",
 			avatar: null,
 			points: 16,
@@ -129,8 +115,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "elias@gmail.com",
-			first_name: "Elias",
-			last_name: "Smith",
+			full_name: "Elias Smith",
 			password: "elias123",
 			avatar: null,
 			points: 5,
@@ -138,8 +123,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "chris@gmail.com",
-			first_name: "Chris",
-			last_name: "Jones",
+			full_name: "Chris Jones",
 			password: "elias123",
 			avatar: null,
 			points: 16,
@@ -147,8 +131,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "dan@gmail.com",
-			first_name: "Dan",
-			last_name: "Kraft",
+			full_name: "Dan Kraft",
 			password: "elias123",
 			avatar: null,
 			points: 15,
@@ -156,8 +139,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "megan@gmail.com",
-			first_name: "Megan",
-			last_name: "Smith",
+			full_name: "Megan Smith",
 			password: "elias123",
 			avatar: null,
 			points: 9,
@@ -165,8 +147,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "sammysmith@gmail.com",
-			first_name: "Samantha",
-			last_name: "Smith",
+			full_name: "Samantha Smith",
 			password: "elias123",
 			avatar: null,
 			points: 19,
@@ -174,8 +155,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "John2@gmail.com",
-			first_name: "John",
-			last_name: "Ross",
+			full_name: "John Ross",
 			password: "john123",
 			avatar: null,
 			points: 7,
@@ -183,8 +163,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "Sam@gmail.com",
-			first_name: "Sam",
-			last_name: "Smith",
+			full_name: "Sam Smith",
 			password: "sam123",
 			avatar: null,
 			points: 18,
@@ -192,8 +171,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "daniel@gmail.com",
-			first_name: "Daniel",
-			last_name: "Lupica",
+			full_name: "Daniel Lupica",
 			password: "daniel123",
 			avatar: null,
 			points: 7,
@@ -201,8 +179,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "michael2@gmail.com",
-			first_name: "Michael",
-			last_name: "Moore",
+			full_name: "Michael Moore",
 			password: "michael123",
 			avatar: null,
 			points: 9,
@@ -210,8 +187,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "henry@gmail.com",
-			first_name: "Henry",
-			last_name: "Rowengartner",
+			full_name: "Henry Rowengartner",
 			password: "henry123",
 			avatar: null,
 			points: 14,
@@ -219,8 +195,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "julie@gmail.com",
-			first_name: "Julie",
-			last_name: "Myers",
+			full_name: "Julie Myers",
 			password: "julie123",
 			avatar: null,
 			points: 15,
@@ -228,8 +203,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "chet@gmail.com",
-			first_name: "Chet",
-			last_name: "Steadman",
+			full_name: "Chet Steadman",
 			password: "chet123",
 			avatar: null,
 			points: 15,
@@ -237,8 +211,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "mary@gmail.com",
-			first_name: "Mary",
-			last_name: "Stallworth",
+			full_name: "Mary Stallworth",
 			password: "mary123",
 			avatar: null,
 			points: 5,
@@ -246,8 +219,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "susan@gmail.com",
-			first_name: "Susan",
-			last_name: "Storm",
+			full_name: "Susan Storm",
 			password: "susan123",
 			avatar: null,
 			points: 17,
@@ -255,8 +227,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "cindy@gmail.com",
-			first_name: "Cindy",
-			last_name: "Lou",
+			full_name: "Cindy Lou",
 			password: "cindy123",
 			avatar: null,
 			points: 12,
@@ -264,8 +235,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "george@gmail.com",
-			first_name: "George",
-			last_name: "Hamilton",
+			full_name: "George Hamilton",
 			password: "george123",
 			avatar: null,
 			points: 11,
@@ -273,8 +243,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "bob@gmail.com",
-			first_name: "Bob",
-			last_name: "Burns",
+			full_name: "Bob Burns",
 			password: "bob123",
 			avatar: null,
 			points: 10,
@@ -282,8 +251,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "marie@gmail.com",
-			first_name: "Marie",
-			last_name: "Monet",
+			full_name: "Marie Monet",
 			password: "marie123",
 			avatar: null,
 			points: 9,
@@ -291,8 +259,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "charles@gmail.com",
-			first_name: "Charles",
-			last_name: "Johnson",
+			full_name: "Charles Johnson",
 			password: "charles123",
 			avatar: null,
 			points: 17,
@@ -300,8 +267,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "stan@gmail.com",
-			first_name: "Stan",
-			last_name: "Lee",
+			full_name: "Stan Lee",
 			password: "stan123",
 			avatar: null,
 			points: 12,
@@ -309,8 +275,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "pete@gmail.com",
-			first_name: "Pete",
-			last_name: "Pettigrew",
+			full_name: "Pete Pettigrew",
 			password: "pete123",
 			avatar: null,
 			points: 15,
@@ -318,8 +283,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "james@gmail.com",
-			first_name: "James",
-			last_name: "Patterson",
+			full_name: "James Patterson",
 			password: "james123",
 			avatar: null,
 			points: 0,
@@ -327,8 +291,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "lee@gmail.com",
-			first_name: "Lee",
-			last_name: "Childs",
+			full_name: "Lee Childs",
 			password: "lee123",
 			avatar: null,
 			points: 0,
@@ -336,8 +299,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "linda@gmail.com",
-			first_name: "Linda",
-			last_name: "Sandford",
+			full_name: "Linda Sandford",
 			password: "linda123",
 			avatar: null,
 			points: 0,
@@ -345,8 +307,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "virginia@gmail.com",
-			first_name: "Virginia",
-			last_name: "McCaskey",
+			full_name: "Virginia McCaskey",
 			password: "virgina123",
 			avatar: null,
 			points: 0,
@@ -354,8 +315,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "tom@gmail.com",
-			first_name: "Tom",
-			last_name: "Ricketts",
+			full_name: "Tom Ricketts",
 			password: "tom123",
 			avatar: null,
 			points: 0,
@@ -363,8 +323,7 @@ exports.seed = function(knex) {
 		},
 		{
 			email: "william@gmail.com",
-			first_name: "William",
-			last_name: "Wirtz",
+			full_name: "William Wirtz",
 			password: "william123",
 			avatar: null,
 			points: 0,
