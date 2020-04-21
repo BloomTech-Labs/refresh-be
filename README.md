@@ -22,9 +22,18 @@
 | DEL |/teams/:id | DELETE to delete a team by ID | |
 | DEL |/users/:id | DELETE to delete a user by ID | |
 
-#### SAMPLE OBJECTS FOR HITTING ENDPOINTS
-## User Register
+## SAMPLE OBJECTS FOR HITTING ENDPOINTS
+#### User Register
 ```
+{
+      email: "example@gmail.com",
+			full_name: "Example Name",
+			password: "example123",
+			avatar: null,
+			points: 5,
+			team_id: 1
+}
+
 
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
