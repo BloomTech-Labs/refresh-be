@@ -13,9 +13,9 @@
 |POST| /users/login| Log In as User | email , password|
 |POST| /users/register| Register A New User | email, full name, password|
 |PUT| /users/:id/metrics| Edit User's Metrics |water, exercise, sleep, breaks|
-|GET| /teams| See List of All Teams  |d|
-|GET| /api/lists/month| get recurring tasks for the current month |date object|
-|GET| /api/lists/mylists| get all lists for a user |
+|GET| /teams| See List of All Teams  ||
+|GET| /teams/:id| See Team by Id |id|
+|GET| /users| get all users | |
 |GET| /api/lists/:id/tasks| get all tasks for a list |list id|
 |GET| /api/tasks/deleted| all deleted tasks |
 |GET| /api/tasks/restore/:id| restores deleted task | task id|
