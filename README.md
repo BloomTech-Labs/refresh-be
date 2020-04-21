@@ -22,6 +22,9 @@
 | DEL |/teams/:id | DELETE to delete a team by ID | |
 | DEL |/users/:id | DELETE to delete a user by ID | |
 
+####SAMPLE OBJECTS FOR HITTING ENDPOINTS
+```
+
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
 
