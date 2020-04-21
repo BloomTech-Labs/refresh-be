@@ -22,7 +22,7 @@
 | DEL |/teams/:id | DELETE to delete a team by ID | |
 | DEL |/users/:id | DELETE to delete a user by ID | |
 
-####SAMPLE OBJECTS FOR HITTING ENDPOINTS
+#### SAMPLE OBJECTS FOR HITTING ENDPOINTS
 ## User Register
 ```
 
