@@ -3,39 +3,26 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/test_coverage)
 
-#### Backend deployed at [Heroku](https://labs-refresh.herokuapp.com/) <br>
+#### Base URL https://lab23-refresh-be.herokuapp.com
 
 ## Endpoints
 
-| Method | Endpoint | Explanation |
-| :----: | :------: | :---------- |
-
-
-| ADMIN LOGIN | /admin/login | { "email": "admin@gmail.com", "password: "admin" } |
-
-| LOGIN | /auth/login | { "email": "email@gmail.com, "password": "pass123" |
-
-| REGISTER |/auth/register | "email": "", "first_name": "", "last_name": "", "password": "" |
-
-| GET |/teams | GET to see all teams |
-
-| GET |/teams/:id | GET to see the team where :id is team's id |
-
-| GET |/users | GET to see the users |
-
-| GET |/users/:id | GET to see the users by ID |
-
-| POST |/teams | POST to add a team |
-
-| POST |/users | POST to add a new user |
-
-| PUT |/users/{id} | UPDATE user |
-
-| PUT |/teams/{id} | UPDATE team |
-
-| DEL |/teams/:id | DELETE to delete a team by ID |
-
-| DEL |/users/:id | DELETE to delete a user by ID |
+|Method| URL | Description| Requirements|
+|:-----:|:-----|:-----|:-----|
+|POST| /api/auth/register| register a new user| name, username, password|
+|POST| /api/auth/login| login | username, password|
+|POST| /api/lists/| add a new list |list object|
+|POST| /api/lists/:id/tasks| add task to a list |list id, task object|
+|GET| /api/lists/today| get recurring tasks for current day|date object|
+|GET| /api/lists/month| get recurring tasks for the current month |date object|
+|GET| /api/lists/mylists| get all lists for a user |
+|GET| /api/lists/:id/tasks| get all tasks for a list |list id|
+|GET| /api/tasks/deleted| all deleted tasks |
+|GET| /api/tasks/restore/:id| restores deleted task | task id|
+|PUT| /api/lists/:id| edit a list name | list id, list object|
+|PUT| /api/tasks/:id| edit a task | task id, updated task object|
+|DELETE| /api/lists/:id| delete a list | list id|
+|DELETE| /api/tasks/:id| delete a task | task id|
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
 
