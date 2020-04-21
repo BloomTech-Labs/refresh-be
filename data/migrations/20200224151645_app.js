@@ -36,7 +36,6 @@ exports.up = function(knex) {
         })
     
 
-    
 
 };
 
