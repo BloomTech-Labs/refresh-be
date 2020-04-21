@@ -14,17 +14,14 @@
 |POST| /users/register| Register A New User | email, full name, password|
 |PUT| /users/:id/metrics| Edit User's Metrics |water, exercise, sleep, breaks|
 |GET| /users| get all users | |
-|POST|/users | POST to add a new user | |
+|PUT|/users/:id | UPDATE user |email, password, full name |
 |GET| /users/:id| get user by id |user id|
 |GET| /teams| See List of All Teams  ||
 |GET| /teams/:id| See Team by Id | team id|
 |POST|/teams | POST to add a team | |
+| DEL |/teams/:id | DELETE to delete a team by ID | |
+| DEL |/users/:id | DELETE to delete a user by ID | |
 
-|GET| /api/tasks/restore/:id| restores deleted task | task id|
-|PUT| /api/lists/:id| edit a list name | list id, list object|
-|PUT| /api/tasks/:id| edit a task | task id, updated task object|
-|DELETE| /api/lists/:id| delete a list | list id|
-|DELETE| /api/tasks/:id| delete a task | task id|
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
 
