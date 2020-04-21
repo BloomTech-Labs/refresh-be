@@ -23,6 +23,14 @@
 | DEL |/users/:id | DELETE to delete a user by ID | |
 
 ## SAMPLE OBJECTS FOR HITTING ENDPOINTS
+#### Admin Login
+```
+{
+      	email: "example@gmail.com",
+	password: "example123",
+	
+}
+```
 #### User Register
 ```
 {
@@ -34,6 +42,25 @@
 	team_id: 1
 }
 ```
+#### User Login
+```
+{
+      	email: "example@gmail.com",
+	password: "example123",
+	
+}
+```
+#### User Login
+```
+{
+      	email: "example@gmail.com",
+	password: "example123",
+	
+}
+```
+
+
+
 
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
