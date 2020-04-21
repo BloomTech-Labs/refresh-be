@@ -9,9 +9,9 @@
 
 |Method| URL | Description| Requirements|
 |:-----:|:-----|:-----|:-----|
-|ADMIN LOGIN| /admin/login| Log In As Admin| { "email": "admin2@gmail.com", "password: "admin" }|
-|USER LOGIN| /users/login| Log In As User | email , password|
-|USER REGISTER| /users/register| Register A New User | email, full name, password|
+|POST| /admin/login| ADMIN LOGIN| { "email": "admin2@gmail.com", "password: "admin" }|
+|POST| /users/login| Log In as User | email , password|
+|POST| /users/register| Register A New User | email, full name, password|
 |POST| /api/lists/:id/tasks| add task to a list |list id, task object|
 |GET| /api/lists/today| get recurring tasks for current day|date object|
 |GET| /api/lists/month| get recurring tasks for the current month |date object|
