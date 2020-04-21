@@ -30,7 +30,7 @@ router.post('/login', (req, res) => {
         .then(user => {
             if(user && bcrypt.compareSync(password, user.password)) {
                 const token = signToken(user)
-                res.status(200).json({ message: `User login successful${user}`, token: token })
+                res.status(200).json({ message: `User login successful ${user.full_name}`, token: token })
             } else {
                 res.status(401).json({ message: 'Invalid Credentials' })
             }
@@ -71,6 +71,42 @@ router.get("/:id", (req, res) => {
             res.status(500).json({ message: "Failed to get user" });
         });
 });
+router.get('/:id/metrics', (req,res)=>{
+    const { id } = req.params;
+
+    Users.getUserMetrics(id)
+        .then(user => {
+            if (user) {
+                res.json(user);
+            } else {
+                res.status(404).json({
+                    message: "Could not find user with given id.",
+                });
+            }
+        })
+        .catch(err => {
+            console.log(err)
+            res.status(500).json({ message: "Failed to get user" });
+        });
+})
+router.put('/:id/metrics', async (req, res) => {
+    const changes = req.body;
+    const { id } = req.params;
+    try {
+        const UpdatedMetrics = await Users.updateUserMetrics(id, changes)
+        if(UpdatedMetrics) {
+            res.status(200).json({ message: 'Update Successful', changes })
+        } else {
+            res.status(400).json({ error: 'Please make sure you filled out all required fields' })
+        }
+    } catch(error) {
+        res.status(500).json({ error: 'Could not update Metrics in database' })
+    }
+})
+
+
+
+
 
 router.get("/:id/team", (req, res) => {
     const { id } = req.params;
@@ -91,6 +127,7 @@ router.get("/:id/team", (req, res) => {
 });
 
 
+
 router.post('/', async (req, res) => {
     const user = req.body;
     try {
@@ -105,6 +142,7 @@ router.post('/', async (req, res) => {
         res.status(500).json({ error: 'Could not add user to the database' })
     }
 })
+
 
 router.delete('/:id', async (req, res) => {
     const { id } = req.params;

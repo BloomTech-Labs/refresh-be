@@ -3,39 +3,66 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/test_coverage)
 
+
 #### Base url https://lab23-refresh-be.herokuapp.com
 
 ## Endpoints
 
-| Method | Endpoint | Explanation |
-| :----: | :------: | :---------- |
+|Method| URL | Description| Requirements|
+|:-----:|:-----|:-----|:-----|
+|POST| /admin/login| ADMIN LOGIN| { "email": "admin2@gmail.com", "password: "admin" }|
+|POST| /users/login| Log In as User | email , password|
+|POST| /users/register| Register A New User | email, full name, password|
+|PUT| /users/:id/metrics| Edit User's Metrics |water, exercise, sleep, breaks|
+|GET| /users| get all users | |
+|PUT|/users/:id | UPDATE user |email, password, full name |
+|GET| /users/:id| get user by id |user id|
+|GET| /teams| See List of All Teams  ||
+|GET| /teams/:id| See Team by Id | team id|
+|POST|/teams | POST to add a team | |
+|DEL|/teams/:id | DELETE to delete a team by ID | |
+|DEL|/users/:id | DELETE to delete a user by ID | |
+
+## SAMPLE OBJECTS FOR HITTING ENDPOINTS
+#### Admin Login
+```
+{
+      	email: "example@gmail.com",
+	password: "example123",
+	
+}
+```
+#### User Register
+```
+{
+      	email: "example@gmail.com",
+	full_name: "Example Name",
+	password: "example123",
+	avatar: null,
+	points: 5,
+	team_id: 1
+}
+```
+#### User Login
+```
+{
+      	email: "example@gmail.com",
+	password: "example123",
+	
+}
+```
+#### User Metrics 
+```
+{
+  
+    "water": 123,
+    "exercise": 123,
+    "breaks": 1234,
+    "sleep": 0
+}
+```
 
 
-| ADMIN LOGIN | /admin/login | { "email": "admin@gmail.com", "password: "admin" } |
-
-| LOGIN | /users/login | { "email": "email@gmail.com, "password": "pass123" |
-
-| REGISTER |/users/register | "email": "", "full_name": "", "password": "" |
-
-| GET |/teams | GET to see all teams |
-
-| GET |/teams/:id | GET to see the team where :id is team's id |
-
-| GET |/users | GET to see the users |
-
-| GET |/users/:id | GET to see the users by ID |
-
-| POST |/teams | POST to add a team |
-
-| POST |/users | POST to add a new user |
-
-| PUT |/users/{id} | UPDATE user |
-
-| PUT |/teams/{id} | UPDATE team |
-
-| DEL |/teams/:id | DELETE to delete a team by ID |
-
-| DEL |/users/:id | DELETE to delete a user by ID |
 
 #### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
 
