@@ -13,7 +13,6 @@
 |POST| /users/login| Log In as User | email , password|
 |POST| /users/register| Register A New User | email, full name, password|
 |PUT| /users/:id/metrics| Edit User's Metrics |water, exercise, sleep, breaks|
-
 |GET| /teams| See List of All Teams  |d|
 |GET| /api/lists/month| get recurring tasks for the current month |date object|
 |GET| /api/lists/mylists| get all lists for a user |
