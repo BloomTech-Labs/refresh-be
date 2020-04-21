@@ -57,7 +57,7 @@
     "water": 123,
     "exercise": 123,
     "breaks": 1234,
-    "sleep": none
+    "sleep": 0
 }
 ```
 
