@@ -32,8 +32,6 @@ function getUserMetrics(userId){
         .first()
 }
 
-
-
 function getUserBy(filter) {
     return db('users').where(filter)
 }
@@ -41,8 +39,6 @@ function getUserBy(filter) {
 function getUserTeamName(userId) {
     return db('teams').join('users', 'users.team_id', 'teams.id').where('users.id', userId).select('teams.name').first()
 }
-
-
 
 function addUser(user) { 
     return db('users')
