@@ -19,8 +19,8 @@
 |GET| /teams| See List of All Teams  ||
 |GET| /teams/:id| See Team by Id | team id|
 |POST|/teams | POST to add a team | |
-| DEL |/teams/:id | DELETE to delete a team by ID | |
-| DEL |/users/:id | DELETE to delete a user by ID | |
+|DEL|/teams/:id | DELETE to delete a team by ID | |
+|DEL|/users/:id | DELETE to delete a user by ID | |
 
 ## SAMPLE OBJECTS FOR HITTING ENDPOINTS
 #### Admin Login
@@ -50,12 +50,14 @@
 	
 }
 ```
-#### User Login
+#### User Metrics 
 ```
 {
-      	email: "example@gmail.com",
-	password: "example123",
-	
+  
+    "water": 123,
+    "exercise": 123,
+    "breaks": 1234,
+    "sleep": none
 }
 ```
 
