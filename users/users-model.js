@@ -21,14 +21,14 @@ function getUsersProfiles() {
 function getUserProfileById(userId) {
     return db('users')
         .leftJoin('teams', 'teams.id', 'users.team_id')
-        .select('users.id', 'email', 'full_name', 'avatar', 'users.points', 'team_id', 'teams.name', "users.water")
+        .select('users.id', 'email', 'full_name', 'avatar', 'users.points', 'team_id', 'teams.name',)
         .where('users.id', userId)
         .first();
 }
 function getUserMetrics(userId){
     return db('users')
-        .select('users.id', 'users.water', 'users.exercise', 'users.breaks', 'users.sleep')
-        .where('users.id', userId)
+        .select('id',"full_name", 'water', 'exercise', 'breaks', 'sleep')
+        .where('id', userId)
         .first()
 }
 
