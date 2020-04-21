@@ -26,12 +26,12 @@
 #### User Register
 ```
 {
-      email: "example@gmail.com",
-			full_name: "Example Name",
-			password: "example123",
-			avatar: null,
-			points: 5,
-			team_id: 1
+      	email: "example@gmail.com",
+	full_name: "Example Name",
+	password: "example123",
+	avatar: null,
+	points: 5,
+	team_id: 1
 }
 
 
