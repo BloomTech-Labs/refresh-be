@@ -71,7 +71,8 @@ router.get("/:id", (req, res) => {
 
   Users.getUserProfileById(id)
     .then((user) => {
-      if (user) {
+        if (user) {
+            const GetUser = Users.getUserBy(user);
         res.json(user);
       } else {
         res.status(404).json({
