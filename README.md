@@ -13,6 +13,7 @@
 |POST| /admin/login| ADMIN LOGIN| { "email": "admin2@gmail.com", "password: "admin" }|
 |POST| /users/login| Log In as User | email , password|
 |POST| /users/register| Register A New User | email, full name, password|
+|GET| /users/:id/metrics| See User's Metrics ||
 |PUT| /users/:id/metrics| Edit User's Metrics |water, exercise, sleep, breaks|
 |GET| /users| get all users | |
 |PUT|/users/:id | UPDATE user |email, password, full name |
