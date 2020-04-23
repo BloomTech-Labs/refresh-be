@@ -25,8 +25,8 @@ router.post("/register", async (req, res) => {
         .json({ errorMessage: "Please fill out all required fields" });
     }
   } catch (error) {
-    console.log(error);
-    res.status(500).json({ errorMessage: "Error adding user to the database" });
+    console.log(error.detail);
+    res.status(500).json({ errorMessage: "Error adding user to the database", error: error.detail });
   }
 });
 router.post("/login", (req, res) => {
