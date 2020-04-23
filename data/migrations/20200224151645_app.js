@@ -15,8 +15,8 @@ exports.up = function(knex) {
             users.string('full_name').notNullable();
             users.string('password').notNullable();
             users.string('avatar');
-            users.integer('total_points');
-            users.integer('daily_points');
+            users.integer('total_points').defaultTo(0);
+            users.integer('daily_points').defaultTo(0);
             users.boolean('admin').defaultTo(false)
 
             // Metrics
