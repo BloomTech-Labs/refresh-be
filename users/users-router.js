@@ -22,11 +22,11 @@ router.post("/register", async (req, res) => {
     } 
   } catch (error) {
     if (error.code === '23502') {      
-      res.status(401).json({ errorMessage: "Please fill out all required fields" });
+      res.status(400).json({ errorMessage: "Please fill out all required fields" });
     }
 
     if (error.code === '23505') {
-      res.status(402).json({ errorMessage: "This email already exists" });
+      res.status(409).json({ errorMessage: "This email already exists" });
     }
     console.log(error);
     res.status(500).json({ errorMessage: "Error adding user to the database", error: error.detail });
