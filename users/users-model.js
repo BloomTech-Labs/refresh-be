@@ -66,6 +66,8 @@ async function updateUserMetrics(id, changes) {
     const [updatedUserMetrics] = await db('users')
         .where({ id })
         .update(changes)
-        .returning('users.water', 'users.exercise', 'users.breaks', 'users.sleep')
+        .returning( 'users', 'users.exercise','users.water', 'users.breaks', 'users.sleep')     
     return updatedUserMetrics
 }
+
+// On line 69, "users" is a placebo fix for a bug. Removing 'users' will make the next returning metric not able to be set to 0, in this case removing "users" will disallow "exercise" to be set to 0
