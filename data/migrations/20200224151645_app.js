@@ -15,14 +15,15 @@ exports.up = function(knex) {
             users.string('full_name').notNullable();
             users.string('password').notNullable();
             users.string('avatar');
-            users.integer('points');
+            users.integer('total_points');
+            users.integer('daily_points');
             users.boolean('admin').defaultTo(false)
 
             // Metrics
-            users.integer('water');
-            users.integer('exercise');
-            users.integer('breaks');
-            users.integer('sleep');
+            users.integer('water').defaultTo(0);
+            users.integer('exercise').defaultTo(0);
+            users.integer('breaks').defaultTo(0);
+            users.integer('sleep').defaultTo(0);
             // Forigen Key
             users
                 .integer('team_id')
