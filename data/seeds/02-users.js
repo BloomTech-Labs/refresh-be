@@ -6,7 +6,8 @@ exports.seed = function(knex) {
 			full_name: "Michael Scott",
 			password: "mike123",
 			avatar: null,
-			points: 5,
+			total_points: 25,
+			daily_points: 5,
 			team_id: 1
 		},
 		{
@@ -14,7 +15,8 @@ exports.seed = function(knex) {
 			full_name: "Jan Levins",
 			password: "jan123",
 			avatar: null,
-			points: 10,
+			total_points: 25,
+			daily_points: 10,
 			team_id: 1
 		},
 		{
@@ -22,7 +24,8 @@ exports.seed = function(knex) {
 			full_name: "Dwight Schrute",
 			password: "dwight123",
 			avatar: null,
-			points: 8,
+			total_points: 25,
+			daily_points: 8,
 			team_id: 1
 		},
 		{
@@ -30,7 +33,8 @@ exports.seed = function(knex) {
 			full_name: "Francis Leeland",
 			password: "francis123",
 			avatar: null,
-			points: 9,
+			total_points: 30,
+			daily_points: 9,
 			team_id: 1
 		},
 		{
@@ -38,7 +42,8 @@ exports.seed = function(knex) {
 			full_name: "Janell",
 			password: "janell123",
 			avatar: null,
-			points: 19,
+			total_points: 30,
+			daily_points: 19,
 			team_id: 1
 		},
 		{
@@ -46,7 +51,8 @@ exports.seed = function(knex) {
 			full_name: "Jim Halpert",
 			password: "jim123",
 			avatar: null,
-			points: 2,
+			total_points: 30,
+			daily_points: 2,
 			team_id: 2
 		},
 		{
@@ -54,7 +60,8 @@ exports.seed = function(knex) {
 			full_name: "Pam Beasley",
 			password: "pam123",
 			avatar: null,
-			points: 7,
+			total_points: 30,
+			daily_points: 7,
 			team_id: 2
 		},
 		{
@@ -62,7 +69,8 @@ exports.seed = function(knex) {
 			full_name: "David Powers",
 			password: "david123",
 			avatar: null,
-			points: 8,
+			total_points: 30,
+			daily_points: 8,
 			team_id: 2
 		},
 		{
@@ -70,7 +78,8 @@ exports.seed = function(knex) {
 			full_name: "Lindsey Powers",
 			password: "lindsey123",
 			avatar: null,
-			points: 16,
+			total_points: 30,
+			daily_points: 16,
 			team_id: 2
 		},
 		{
@@ -78,7 +87,8 @@ exports.seed = function(knex) {
 			full_name: "John Robert",
 			password: "john123",
 			avatar: null,
-			points: 11,
+			total_points: 30,
+			daily_points: 11,
 			team_id: 2
 		},
 		{
@@ -86,7 +96,8 @@ exports.seed = function(knex) {
 			full_name: "Miguel Martinez",
 			password: "miguel123",
 			avatar: null,
-			points: 9,
+			total_points: 30,
+			daily_points: 9,
 			team_id: 3
 		},
 		{
@@ -94,7 +105,8 @@ exports.seed = function(knex) {
 			full_name: "Damien Johnson",
 			password: "damien123",
 			avatar: null,
-			points: 10,
+			total_points: 30,
+			daily_points: 10,
 			team_id: 3
 		},
 		{
@@ -102,7 +114,8 @@ exports.seed = function(knex) {
 			full_name: "Robert Lee",
 			password: "robert123",
 			avatar: null,
-			points: 15,
+			total_points: 30,
+			daily_points: 15,
 			team_id: 3
 		},
 		{
@@ -110,7 +123,8 @@ exports.seed = function(knex) {
 			full_name: "Samantha Jones",
 			password: "samantha123",
 			avatar: null,
-			points: 16,
+			total_points: 30,
+			daily_points: 16,
 			team_id: 3
 		},
 		{
@@ -118,7 +132,8 @@ exports.seed = function(knex) {
 			full_name: "Elias Smith",
 			password: "elias123",
 			avatar: null,
-			points: 5,
+			total_points: 30,
+			daily_points: 5,
 			team_id: 3
 		},
 		{
@@ -126,7 +141,8 @@ exports.seed = function(knex) {
 			full_name: "Chris Jones",
 			password: "elias123",
 			avatar: null,
-			points: 16,
+			total_points: 30,
+			daily_points: 16,
 			team_id: 4
 		},
 		{
@@ -134,7 +150,8 @@ exports.seed = function(knex) {
 			full_name: "Dan Kraft",
 			password: "elias123",
 			avatar: null,
-			points: 15,
+			total_points: 30,
+			daily_points: 15,
 			team_id: 4
 		},
 		{
@@ -142,7 +159,8 @@ exports.seed = function(knex) {
 			full_name: "Megan Smith",
 			password: "elias123",
 			avatar: null,
-			points: 9,
+			total_points: 30,
+			daily_points: 9,
 			team_id: 4
 		},
 		{
@@ -150,7 +168,8 @@ exports.seed = function(knex) {
 			full_name: "Samantha Smith",
 			password: "elias123",
 			avatar: null,
-			points: 19,
+			total_points: 30,
+			daily_points: 19,
 			team_id: 4
 		},
 		{
@@ -158,7 +177,8 @@ exports.seed = function(knex) {
 			full_name: "John Ross",
 			password: "john123",
 			avatar: null,
-			points: 7,
+			total_points: 30,
+			daily_points: 7,
 			team_id: 4
 		},
 		{
@@ -166,7 +186,8 @@ exports.seed = function(knex) {
 			full_name: "Sam Smith",
 			password: "sam123",
 			avatar: null,
-			points: 18,
+			total_points: 30,
+			daily_points: 18,
 			team_id: 5
 		},
 		{
@@ -174,7 +195,8 @@ exports.seed = function(knex) {
 			full_name: "Daniel Lupica",
 			password: "daniel123",
 			avatar: null,
-			points: 7,
+			total_points: 30,
+			daily_points: 7,
 			team_id: 5
 		},
 		{
@@ -182,7 +204,8 @@ exports.seed = function(knex) {
 			full_name: "Michael Moore",
 			password: "michael123",
 			avatar: null,
-			points: 9,
+			total_points: 30,
+			daily_points: 9,
 			team_id: 5
 		},
 		{
@@ -190,7 +213,8 @@ exports.seed = function(knex) {
 			full_name: "Henry Rowengartner",
 			password: "henry123",
 			avatar: null,
-			points: 14,
+			total_points: 30,
+			daily_points: 14,
 			team_id: 5
 		},
 		{
@@ -198,7 +222,8 @@ exports.seed = function(knex) {
 			full_name: "Julie Myers",
 			password: "julie123",
 			avatar: null,
-			points: 15,
+			total_points: 30,
+			daily_points: 15,
 			team_id: 5
 		},
 		{
@@ -206,7 +231,8 @@ exports.seed = function(knex) {
 			full_name: "Chet Steadman",
 			password: "chet123",
 			avatar: null,
-			points: 15,
+			total_points: 30,
+			daily_points: 15,
 			team_id: 6
 		},
 		{
@@ -214,7 +240,8 @@ exports.seed = function(knex) {
 			full_name: "Mary Stallworth",
 			password: "mary123",
 			avatar: null,
-			points: 5,
+			total_points: 30,
+			daily_points: 5,
 			team_id: 6
 		},
 		{
@@ -222,7 +249,8 @@ exports.seed = function(knex) {
 			full_name: "Susan Storm",
 			password: "susan123",
 			avatar: null,
-			points: 17,
+			total_points: 30,
+			daily_points: 17,
 			team_id: 6
 		},
 		{
@@ -230,7 +258,8 @@ exports.seed = function(knex) {
 			full_name: "Cindy Lou",
 			password: "cindy123",
 			avatar: null,
-			points: 12,
+			total_points: 30,
+			daily_points: 12,
 			team_id: 6
 		},
 		{
@@ -238,7 +267,8 @@ exports.seed = function(knex) {
 			full_name: "George Hamilton",
 			password: "george123",
 			avatar: null,
-			points: 11,
+			total_points: 30,
+			daily_points: 11,
 			team_id: 6
 		},
 		{
@@ -246,7 +276,8 @@ exports.seed = function(knex) {
 			full_name: "Bob Burns",
 			password: "bob123",
 			avatar: null,
-			points: 10,
+			total_points: 30,
+			daily_points: 10,
 			team_id: 7
 		},
 		{
@@ -254,7 +285,8 @@ exports.seed = function(knex) {
 			full_name: "Marie Monet",
 			password: "marie123",
 			avatar: null,
-			points: 9,
+			total_points: 30,
+			daily_points: 9,
 			team_id: 7
 		},
 		{
@@ -262,7 +294,8 @@ exports.seed = function(knex) {
 			full_name: "Charles Johnson",
 			password: "charles123",
 			avatar: null,
-			points: 17,
+			total_points: 30,
+			daily_points: 17,
 			team_id: 7
 		},
 		{
@@ -270,7 +303,8 @@ exports.seed = function(knex) {
 			full_name: "Stan Lee",
 			password: "stan123",
 			avatar: null,
-			points: 12,
+			total_points: 30,
+			daily_points: 12,
 			team_id: 7
 		},
 		{
@@ -278,7 +312,8 @@ exports.seed = function(knex) {
 			full_name: "Pete Pettigrew",
 			password: "pete123",
 			avatar: null,
-			points: 15,
+			total_points: 30,
+			daily_points: 15,
 			team_id: 7
 		},
 		{
@@ -286,7 +321,8 @@ exports.seed = function(knex) {
 			full_name: "James Patterson",
 			password: "james123",
 			avatar: null,
-			points: 0,
+			total_points: 30,
+			daily_points: 0,
 			team_id: null
 		},
 		{
@@ -294,7 +330,8 @@ exports.seed = function(knex) {
 			full_name: "Lee Childs",
 			password: "lee123",
 			avatar: null,
-			points: 0,
+			total_points: 30,
+			daily_points: 0,
 			team_id: null
 		},
 		{
@@ -302,7 +339,8 @@ exports.seed = function(knex) {
 			full_name: "Linda Sandford",
 			password: "linda123",
 			avatar: null,
-			points: 0,
+			total_points: 30,
+			daily_points: 0,
 			team_id: null
 		},
 		{
@@ -310,7 +348,8 @@ exports.seed = function(knex) {
 			full_name: "Virginia McCaskey",
 			password: "virgina123",
 			avatar: null,
-			points: 0,
+			total_points: 30,
+			daily_points: 0,
 			team_id: null
 		},
 		{
@@ -318,7 +357,8 @@ exports.seed = function(knex) {
 			full_name: "Tom Ricketts",
 			password: "tom123",
 			avatar: null,
-			points: 0,
+			total_points: 30,
+			daily_points: 0,
 			team_id: null
 		},
 		{
@@ -326,7 +366,8 @@ exports.seed = function(knex) {
 			full_name: "William Wirtz",
 			password: "william123",
 			avatar: null,
-			points: 0,
+			total_points: 30,
+			daily_points: 0,
 			team_id: null
 		}
 	]);
