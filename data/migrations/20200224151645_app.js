@@ -20,10 +20,11 @@ exports.up = function(knex) {
             users.boolean('admin').defaultTo(false)
 
             // Metrics
-            users.integer('water').defaultTo(0);
+          
             users.integer('exercise').defaultTo(0);
             users.integer('breaks').defaultTo(0);
             users.integer('sleep').defaultTo(0);
+            users.integer('water').defaultTo(0);
             // Forigen Key
             users
                 .integer('team_id')
