@@ -3,7 +3,7 @@ const helmet = require('helmet');
 const cors = require('cors');
 
 const server = express();
-
+const authenticate = require("../auth/restricted-middleware")
 const UserRouter = require('../users/users-router');
 const TeamRouter = require('../teams/teams-router');
 
@@ -14,8 +14,8 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-server.use('/users', UserRouter);
-server.use('/teams', TeamRouter);
+server.use('/users',authenticate, UserRouter);
+server.use('/teams',authenticate, TeamRouter);
 
 server.use('/admin', AdminRouter);
 server.use('/metrics',MetricsRouter);

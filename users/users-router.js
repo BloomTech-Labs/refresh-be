@@ -18,15 +18,15 @@ router.post("/register", async (req, res) => {
         message: `Thank you for registering, ${user.full_name}!`,
         UserInfo: AddUser,
         token: token,
-      });
+      })
     } else {
       res
-        .status(400)
+        .status(401)
         .json({ errorMessage: "Please fill out all required fields" });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ errorMessage: "Error adding user to the database" });
+    res.status(500).json({ errorMessage: "server error" });
   }
 });
 router.post("/login", (req, res) => {
@@ -45,6 +45,7 @@ router.post("/login", (req, res) => {
           token: token,
         });
       } else {
+       
         res.status(401).json({ message: "Invalid Credentials" });
       }
     })
@@ -112,7 +113,7 @@ router.put("/:id/metrics", async (req, res) => {
       res.status(200).json({ message: "Update Successful", changes });
     } else {
       res
-        .status(400)
+        .status(401)
         .json({ error: "Please make sure you filled out all required fields" });
     }
   } catch (error) {
@@ -145,7 +146,7 @@ router.post("/", async (req, res) => {
       const AddedUser = await Users.addUser(user);
       res.status(200).json(AddedUser);
     } else {
-      res.status(400).json({ error: "Please provide a user" });
+      res.status(401).json({ error: "Please provide a user" });
     }
   } catch (error) {
     console.log(error);
@@ -162,7 +163,7 @@ router.delete("/:id", async (req, res) => {
         .status(200)
         .json({ message: "Deleted User Successfully", count: DeleteUser });
     } else {
-      res.status(400).json({ error: "User with specified ID does not exist" });
+      res.status(401).json({ error: "User with specified ID does not exist" });
     }
   } catch (error) {
     console.log(error);
@@ -181,7 +182,7 @@ router.put("/:id", async (req, res) => {
         .json({ message: "Update Successful", count: UpdatedUser });
     } else {
       res
-        .status(400)
+        .status(401)
         .json({ error: "Please make sure you filled out all required fields" });
     }
   } catch (error) {
