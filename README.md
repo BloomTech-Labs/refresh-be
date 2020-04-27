@@ -18,12 +18,13 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 1) install dotenv and create a .env file, make sure it sits at the root level. 
 2) Look inside the knexfile.js. You'll notice that under development the connection is set to an environment variable. We need to define that variable to connect to our Database
 3) inside your env file add this DATABASE_URL="postgres://${POSTGRES_USR}:${POSTGRES_PWD}@postgres:5432/${POSTGRES_DB}
-4) POSTGRES_USR is the username pgadmin4 defaults too. which is the username "postgres"
-5) POSTGRES_PWD is the password you set during the installer.
-6) @postgres:5432 is the default port. if you changed the port inside the installer change it here as well.
-7) POSTGRES_DB is your database name inside pgAdmin4, the default DB is named "postgres" if you made your own database, change it to that name.
-8) at the end it should look like this    DATABASE_URL = postgres://postgres:mypasswordhere@localhost:5432/myDataBaseNameHere
-9) test it out by running a knex migrate:latest inside vscode. 
+ 	POSTGRES_USR is the username pgadmin4 defaults too. which is the username "postgres"
+ 	POSTGRES_PWD is the password you set during the installer.
+ 	@postgres:5432 is the default port. if you changed the port inside the installer change it here as well.
+ 	POSTGRES_DB is your database name inside pgAdmin4, the default DB is named "postgres" if you made your own database, change it to that name.
+4) at the end it should look like this    
+   DATABASE_URL = postgres://postgres:mypasswordhere@localhost:5432/myDataBaseNameHere
+5) test it out by running a knex migrate:latest inside vscode. 
 
 #### Base url https://lab23-refresh-be.herokuapp.com
 
