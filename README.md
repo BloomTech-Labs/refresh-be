@@ -17,7 +17,7 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 #### Connecting to your DataBase from VsCode
 1) install dotenv and create a .env file, make sure it sits at the root level. 
 2) Look inside the knexfile.js. You'll notice that under development the connection is set to an environment variable. We need to define that variable to connect to our Database
-3) inside your env file add this ##### DATABASE_URL="postgres://${POSTGRES_USR}:${POSTGRES_PWD}@postgres:5432/${POSTGRES_DB}<br/>
+3) inside your env file add this #### DATABASE_URL="postgres://${POSTGRES_USR}:${POSTGRES_PWD}@postgres:5432/${POSTGRES_DB}<br/>
  POSTGRES_USR is the username pgadmin4 defaults too. which is the username "postgres"<br/>
  	POSTGRES_PWD is the password you set during the installer.<br/>
  	@postgres:5432 is the default port. if you changed the port inside the installer change it here as well.<br/>
