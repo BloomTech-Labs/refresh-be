@@ -8,7 +8,7 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 
 #### Downloading Postgres
 
-1) Download Postgres https://www.postgresql.org/ (it will also install pgAdmin4) (the default port is 5432)(username is defaulted to "postgres", REMEMBER THE PASSWORD YOU SET)
+1) Download Postgres https://www.postgresql.org/ (it will install pgAdmin4) (the default port is 5432)(username is defaulted to "postgres", REMEMBER THE PASSWORD YOU SET)
 2) Open pgAdmin4 on your computer. pgAdmin4 will ask for a master password, this is the password you set when creating an account in the installer
 3) Top Left Click "Servers()", pgAdmin4 will most likely ask for another password, which should be the one you made during the installer
 4) After you click on Servers you'll see that the default database is called "postgres"
