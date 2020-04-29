@@ -15,12 +15,7 @@ const MetricsRouter = require('../metrics/metrics-router');
 const db = require('../data/db-config');
 const schedule = require('node-schedule');
 
-// Path Testing
-const path = require('path');
-server.use(express.static(path.join(__dirname, 'build')));
-server.get('/sign-up', function(req, res) {
-  res.sendFile(path.join(__dirname, 'components', 'UserSignUp.js'));
-});
+
 
 server.use(helmet());
 server.use(express.json());
