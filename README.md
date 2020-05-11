@@ -48,6 +48,7 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 ## Admin endpoints 
 |Method| URL | Description| Requirements|
 |:-----:|:-----|:-----|:-----|
+|POST| /admin/register| ADMIN REGISTER| { "email": "admin2@gmail.com", "password: "admin" }|
 |POST| /admin/login| ADMIN LOGIN| { "email": "admin2@gmail.com", "password: "admin" }|
 
 ## SAMPLE OBJECTS FOR HITTING ENDPOINTS
