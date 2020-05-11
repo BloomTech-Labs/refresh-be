@@ -28,11 +28,10 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 
 #### Base url https://lab23-refresh-be.herokuapp.com
 
-## Endpoints
+## User Endpoints
 
 |Method| URL | Description| Requirements|
 |:-----:|:-----|:-----|:-----|
-|POST| /admin/login| ADMIN LOGIN| { "email": "admin2@gmail.com", "password: "admin" }|
 |POST| /users/login| Log In as User | email , password|
 |POST| /users/register| Register A New User | email, full name, password|
 |GET| /users/:id/metrics| See User's Metrics ||
@@ -45,6 +44,11 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 |POST|/teams | POST to add a team | |
 |DEL|/teams/:id | DELETE to delete a team by ID | |
 |DEL|/users/:id | DELETE to delete a user by ID | |
+
+## Admin endpoints 
+|Method| URL | Description| Requirements|
+|:-----:|:-----|:-----|:-----|
+|POST| /admin/login| ADMIN LOGIN| { "email": "admin2@gmail.com", "password: "admin" }|
 
 ## SAMPLE OBJECTS FOR HITTING ENDPOINTS
 #### Admin Login
