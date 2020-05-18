@@ -41,15 +41,15 @@ router.put("/:id",upload.single('avatar'), async (req, res, next) => {
     if (UpdatedUser) {
       res
         .status(200)
-        .json({ message: "Update Successful", count: UpdatedUser });
+        .json({ message: "Image Uploaded Successfully!", count: UpdatedUser });
     } else {
       res
         .status(400)
-        .json({ error: "Please make sure you filled out all required fields" });
+        .json({ error: "Image Must be PNG or JPEG and under 5MBS" });
     }
   } catch (error) {
     console.log(error);
-    res.status(500).json({ error: "Could not update user in database" });
+    res.status(500).json({ error: "Could not add Image to the Database: Back-end Issue" });
   }
 });
 
