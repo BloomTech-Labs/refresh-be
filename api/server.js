@@ -15,9 +15,7 @@ const MetricsRouter = require('../metrics/metrics-router');
 const db = require('../data/db-config');
 const schedule = require('node-schedule');
 
-//Multer(image uploading)
-const multer=require('multer')
-const upload = multer({dest: 'uploads/'})
+
 
 server.use(helmet());
 server.use(express.json());

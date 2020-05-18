@@ -5,6 +5,31 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const bcrypt = require("bcryptjs");
 
+//Multer(image uploading)
+const multer=require('multer')
+const upload = multer({dest: 'uploads/'})
+
+router.put("/:id",upload.single('avatar'), async (req, res, next) => {
+  console.log(req.file);
+  const changes = req.body;
+  const { id } = req.params;
+  try {
+    const UpdatedUser = await Users.updateUser(id, changes);
+    if (UpdatedUser) {
+      res
+        .status(200)
+        .json({ message: "Update Successful", count: UpdatedUser });
+    } else {
+      res
+        .status(400)
+        .json({ error: "Please make sure you filled out all required fields" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Could not update user in database" });
+  }
+});
+
 // Register
 router.post("/register", async (req, res) => {
   let user = req.body;
@@ -177,26 +202,7 @@ router.delete("/:id", async (req, res) => {
   }
 });
 // Change User Info by User ID
-router.put("/:id", async (req, res) => {
-  const changes = req.body;
-  const { id } = req.params;
-  try {
-    const UpdatedUser = await Users.updateUser(id, changes);
-    if (UpdatedUser) {
-      res
-        .status(200)
-        .json({ message: "Update Successful", count: UpdatedUser });
-    } else {
-      res
-        .status(400)
-        .json({ error: "Please make sure you filled out all required fields" });
-    }
-  } catch (error) {
-    console.log(error);
-    console.log(error);
-    res.status(500).json({ error: "Could not update user in database" });
-  }
-});
+
 
 function signToken(user) {
   const payload = {
