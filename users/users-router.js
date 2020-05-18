@@ -4,14 +4,25 @@ const Users = require("./users-model.js");
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const bcrypt = require("bcryptjs");
-
+const uploads = ('uploads')
 //Multer(image uploading)
-const multer=require('multer')
-const upload = multer({dest: 'uploads/'})
+const multer = require('multer')
+const storage = multer.diskStorage({
+  destination: function(req, file, cb){
+    cb(null, uploads)
+
+  },
+  filename: function(req, file, cb){
+    cb(null, file.originalname)
+  }
+})
+const upload = multer({storage: storage});
 
 router.put("/:id",upload.single('avatar'), async (req, res, next) => {
-  console.log(req.file);
-  const changes = req.body;
+  // console.log(req.file);
+  // console.log(req.file.path);
+  console.log(JSON.stringify(req.file.path));
+  const changes = req.body ;
   const { id } = req.params;
   try {
     const UpdatedUser = await Users.updateUser(id, changes);
