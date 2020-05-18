@@ -37,7 +37,7 @@ router.put("/:id",upload.single('avatar'), async (req, res, next) => {
   req.body.avatar = req.file.path
   const { id } = req.params;
   try {
-    const UpdatedUser = await Users.updateUser(id, req.body);
+    const UpdatedUser = await Users.uploadAvatar(id, req.body);
     if (UpdatedUser) {
       res
         .status(200)

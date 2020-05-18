@@ -7,7 +7,7 @@ module.exports = {
     getUserTeamName,
     addUser,
     deleteUser,
-    updateUser,
+    uploadAvatar,
     getUserMetrics,
     updateUserMetrics
 }
@@ -55,7 +55,7 @@ function deleteUser(id) {
         .del()
 }
 
-async function updateUser(id, changes) {
+async function uploadAvatar(id, changes) {
     const [updatedUser] = await db('users')
         .where({ id })
         .update(changes)
