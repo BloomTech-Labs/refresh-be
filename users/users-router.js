@@ -4,12 +4,12 @@ const Users = require("./users-model.js");
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const bcrypt = require("bcryptjs");
-const uploads = ('uploads')
+
 //Multer(image uploading)
 const multer = require('multer')
 const storage = multer.diskStorage({
   destination: function(req, file, cb){
-    cb(null, uploads)
+    cb(null, 'uploads')
 
   },
   filename: function(req, file, cb){
@@ -18,11 +18,11 @@ const storage = multer.diskStorage({
 })
 const upload = multer({storage: storage});
 
-router.put("/:id",upload.single('avatar'), async (req, res, next) => {
+router.put("/:id", async (req, res, next) => {
   // console.log(req.file);
   // console.log(req.file.path);
-  console.log(JSON.stringify(req.file.path));
-  const changes = req.body ;
+  // console.log(JSON.stringify(req.file.path));
+  const changes = req.body;
   const { id } = req.params;
   try {
     const UpdatedUser = await Users.updateUser(id, changes);
@@ -38,6 +38,21 @@ router.put("/:id",upload.single('avatar'), async (req, res, next) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Could not update user in database" });
+  }
+});
+router.post("/",upload.single('avatar'), async (req, res) => {
+    console.log(req.file);
+  const user = req.body //+ req.file.path;
+  try {
+    if (user) {
+      const AddedUser = await Users.addUser(user + req.file.path);
+      res.status(200).json(AddedUser);
+    } else {
+      res.status(400).json({ error: "Please provide a user" });
+    }
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: "Could not add user to the database" });
   }
 });
 
@@ -181,20 +196,7 @@ router.get("/:id/team", (req, res) => {
     });
 });
 // Add User to DB(redundant due to register endpoint)
-router.post("/", async (req, res) => {
-  const user = req.body;
-  try {
-    if (user) {
-      const AddedUser = await Users.addUser(user);
-      res.status(200).json(AddedUser);
-    } else {
-      res.status(400).json({ error: "Please provide a user" });
-    }
-  } catch (error) {
-    console.log(error);
-    res.status(500).json({ error: "Could not add user to the database" });
-  }
-});
+
 // Delete User by User ID
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
