@@ -35,14 +35,12 @@ const upload = multer({
 
 router.put("/:id",upload.single('avatar'), async (req, res, next) => {
   console.log(req.file);
-  console.log(req.file.path);
-  console.log(JSON.stringify(req.file.path));
 
-  const changes = req.body + req.file.path;
-  // const changes = req.body + JSON.stringify(req.file.path);
+  req.body.avatar = req.file.path
   const { id } = req.params;
   try {
-    const UpdatedUser = await Users.updateUser(id, changes);
+    const UpdatedUser = await Users.updateUser(id, req.body);
+    
     if (UpdatedUser) {
       res
         .status(200)
