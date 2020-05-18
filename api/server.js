@@ -10,18 +10,14 @@ const TeamRouter = require('../teams/teams-router');
 const AdminRouter = require('../admin/admin-router');
 const MetricsRouter = require('../metrics/metrics-router');
 
-
 // Node-Schedule 
 const db = require('../data/db-config');
 const schedule = require('node-schedule');
 
-
-
 server.use(helmet());
 server.use(express.json());
 server.use(cors());
-
-server.use('/uploads',express.static('uploads'));
+server.use('/uploads',express.static('uploads')); // Make Uploads folder public
 server.use('/users', UserRouter);
 server.use('/teams', TeamRouter);
 
@@ -31,8 +27,6 @@ server.use('/metrics',MetricsRouter);
 server.get('/', (req, res) => {
     res.send("Refresh Running")
 });
-
-
 
 schedule.scheduleJob('0 0 4 * * *',
   function (fireDate) {

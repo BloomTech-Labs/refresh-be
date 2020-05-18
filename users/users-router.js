@@ -4,43 +4,40 @@ const Users = require("./users-model.js");
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const bcrypt = require("bcryptjs");
-const uploads = ('uploads')
-//Multer(image uploading)
-const multer = require('multer')
 
+//Multer Settings (image uploading)
+const multer = require('multer')
+const uploads = ('uploads')
 const storage = multer.diskStorage({
   destination: function(req, file, cb){
     cb(null, uploads)
-
   },
   filename: function(req, file, cb){
-    cb(null, Date.now() + file.originalname)
+    // Date.Now() here allows back-end to save files with the same name
+    cb(null, Date.now() + file.originalname) 
   }
 })
 const fileFilter = (req,file,cb)=>{
-  // reject file
+  // Only accept jpeg or png's
   if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
     cb(null, true);
   } else{
-    cb(null, false);
+    cb(new Error('Image must be JPEG or PNG and under 5MBS'), false);
   }
 }
 const upload = multer({
   storage: storage, 
   limits:{
-  fileSize: 1024 * 1024 * 5 // 5MBS
+  fileSize: 1024 * 1024 * 5 // Allow Image up to 5MBS
   },
   fileFilter: fileFilter
 });
-
+// Upload Image to User Avatar Field
 router.put("/:id",upload.single('avatar'), async (req, res, next) => {
-  console.log(req.file);
-
   req.body.avatar = req.file.path
   const { id } = req.params;
   try {
     const UpdatedUser = await Users.updateUser(id, req.body);
-    
     if (UpdatedUser) {
       res
         .status(200)
@@ -227,8 +224,6 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Could not remove user from the database" });
   }
 });
-// Change User Info by User ID
-
 
 function signToken(user) {
   const payload = {
