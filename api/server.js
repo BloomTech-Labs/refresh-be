@@ -21,7 +21,7 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
-
+server.use('/uploads',express.static('uploads'));
 server.use('/users', UserRouter);
 server.use('/teams', TeamRouter);
 

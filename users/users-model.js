@@ -66,7 +66,7 @@ async function updateUserMetrics(id, changes) {
     const [updatedUserMetrics] = await db('users')
         .where({ id })
         .update(changes)
-        .returning( 'users', 'users.exercise','users.water', 'users.breaks', 'users.sleep')     
+        .returning( 'users')     
     return updatedUserMetrics
 }
 

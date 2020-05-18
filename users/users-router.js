@@ -14,15 +14,32 @@ const storage = multer.diskStorage({
 
   },
   filename: function(req, file, cb){
-    cb(null, Date.now()+ file.originalname)
+    cb(null, Date.now() + file.originalname)
   }
 })
-const upload = multer({storage: storage});
+const fileFilter = (req,file,cb)=>{
+  // reject file
+  if(file.mimetype === 'image/jpeg' || file.mimetype === 'image/png'){
+    cb(null, true);
+  } else{
+    cb(null, false);
+  }
+}
+const upload = multer({
+  storage: storage, 
+  limits:{
+  fileSize: 1024 * 1024 * 5 // 5MBS
+  },
+  fileFilter: fileFilter
+});
 
 router.put("/:id",upload.single('avatar'), async (req, res, next) => {
   console.log(req.file);
+  console.log(req.file.path);
+  console.log(JSON.stringify(req.file.path));
 
-  const changes = req.body;
+  const changes = req.body + req.file.path;
+  // const changes = req.body + JSON.stringify(req.file.path);
   const { id } = req.params;
   try {
     const UpdatedUser = await Users.updateUser(id, changes);
