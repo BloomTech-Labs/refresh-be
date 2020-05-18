@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../config/secrets");
 const bcrypt = require("bcryptjs");
 
-// Register/ Login Code
+// Register
 router.post("/register", async (req, res) => {
   let user = req.body;
   const hash = bcrypt.hashSync(user.password, 8);
@@ -33,7 +33,7 @@ router.post("/register", async (req, res) => {
   }
 });
 
-
+// Login 
 router.post("/login", (req, res) => {
   let { email, password } = req.body;
   Users.getUserBy({ email })
@@ -58,7 +58,7 @@ router.post("/login", (req, res) => {
       res.status(500).json({ error: "Could not login user" });
     });
 });
-
+// Get All Users
 router.get("/", async (req, res) => {
   try {
     const AllUsers = await Users.getUsersProfiles();
@@ -70,7 +70,7 @@ router.get("/", async (req, res) => {
       .json({ error: "Could not retrieve users from the database" });
   }
 });
-
+// Get User By ID
 router.get("/:id", (req, res) => {
   const { id } = req.params;
 
@@ -90,6 +90,7 @@ router.get("/:id", (req, res) => {
       res.status(500).json({ message: "Failed to get user" });
     });
 });
+// Get User Metrics by User ID
 router.get("/:id/metrics", (req, res) => {
   const { id } = req.params;
 
@@ -108,6 +109,7 @@ router.get("/:id/metrics", (req, res) => {
       res.status(500).json({ message: "Failed to get user" });
     });
 });
+// Change User Metrics by User ID
 router.put("/:id/metrics", async (req, res) => {
   const changes = req.body;
   const { id } = req.params;
@@ -124,7 +126,7 @@ router.put("/:id/metrics", async (req, res) => {
     res.status(500).json({ error: "Could not update Metrics in database" });
   }
 });
-
+// Get User Team Name By User ID
 router.get("/:id/team", (req, res) => {
   const { id } = req.params;
 
@@ -142,7 +144,7 @@ router.get("/:id/team", (req, res) => {
       res.status(500).json({ message: "Failed to get team" });
     });
 });
-
+// Add User to DB(redundant due to register endpoint)
 router.post("/", async (req, res) => {
   const user = req.body;
   try {
@@ -157,7 +159,7 @@ router.post("/", async (req, res) => {
     res.status(500).json({ error: "Could not add user to the database" });
   }
 });
-
+// Delete User by User ID
 router.delete("/:id", async (req, res) => {
   const { id } = req.params;
   try {
@@ -174,7 +176,7 @@ router.delete("/:id", async (req, res) => {
     res.status(500).json({ error: "Could not remove user from the database" });
   }
 });
-
+// Change User Info by User ID
 router.put("/:id", async (req, res) => {
   const changes = req.body;
   const { id } = req.params;
