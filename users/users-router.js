@@ -33,7 +33,7 @@ const upload = multer({
   fileFilter: fileFilter
 });
 // Upload Image to User Avatar Field
-router.put("/:id",upload.single('avatar'), async (req, res, next) => {
+router.put("/avatar/:id",upload.single('avatar'), async (req, res, next) => {
   req.body.avatar = req.file.path
   const { id } = req.params;
   try {
@@ -222,6 +222,26 @@ router.delete("/:id", async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(500).json({ error: "Could not remove user from the database" });
+  }
+});
+router.put("/:id", async (req, res) => {
+  const changes = req.body;
+  const { id } = req.params;
+  try {
+    const UpdatedUser = await Users.updateUser(id, changes);
+    if (UpdatedUser) {
+      res
+        .status(200)
+        .json({ message: "Update Successful", count: UpdatedUser });
+    } else {
+      res
+        .status(400)
+        .json({ error: "Please make sure you filled out all required fields" });
+    }
+  } catch (error) {
+    console.log(error);
+    console.log(error);
+    res.status(500).json({ error: "Could not update user in database" });
   }
 });
 

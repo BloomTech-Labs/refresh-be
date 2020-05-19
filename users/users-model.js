@@ -8,6 +8,7 @@ module.exports = {
     addUser,
     deleteUser,
     uploadAvatar,
+    updateUser,
     getUserMetrics,
     updateUserMetrics
 }
@@ -56,6 +57,13 @@ function deleteUser(id) {
 }
 
 async function uploadAvatar(id, changes) {
+    const [updatedUser] = await db('users')
+        .where({ id })
+        .update(changes)
+        .returning('*')
+    return updatedUser
+}
+async function updateUser(id, changes) {
     const [updatedUser] = await db('users')
         .where({ id })
         .update(changes)
