@@ -7,6 +7,7 @@ module.exports = {
     getUserTeamName,
     addUser,
     deleteUser,
+    uploadAvatar,
     updateUser,
     getUserMetrics,
     updateUserMetrics
@@ -55,6 +56,13 @@ function deleteUser(id) {
         .del()
 }
 
+async function uploadAvatar(id, changes) {
+    const [updatedUser] = await db('users')
+        .where({ id })
+        .update(changes)
+        .returning('*')
+    return updatedUser
+}
 async function updateUser(id, changes) {
     const [updatedUser] = await db('users')
         .where({ id })
@@ -66,7 +74,7 @@ async function updateUserMetrics(id, changes) {
     const [updatedUserMetrics] = await db('users')
         .where({ id })
         .update(changes)
-        .returning( 'users', 'users.exercise','users.water', 'users.breaks', 'users.sleep')     
+        .returning( 'users')     
     return updatedUserMetrics
 }
 
