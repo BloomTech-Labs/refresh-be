@@ -15,9 +15,9 @@ Those in the tech industry are always looking for ways to optimize their output 
 
 - [ReactJS](https://reactjs.org/)
 - [NodeJS](https://nodejs.org/en/)
--[Express](https://expressjs.com/)
--[Multer](https://www.npmjs.com/package/multer/)
--[Node-Schedule](https://www.npmjs.com/package/node-schedule/)
+- [Express](https://expressjs.com/)
+- [Multer](https://www.npmjs.com/package/multer/)
+- [Node-Schedule](https://www.npmjs.com/package/node-schedule/)
 
 
 ### For Future Developers
