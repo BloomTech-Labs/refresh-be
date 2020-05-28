@@ -34,7 +34,7 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 #### Connecting to your DataBase from VsCode
 1) install dotenv and create a .env file, make sure it sits at the root level. 
 2) Look inside the knexfile.js. You'll notice that under development the connection is set to an environment variable.
-3) Please ask your Team Lead for further details
+3) Please ask your TL for .env from the previous labs google drive of passwords and secrets
 
 #### Base url https://lab23-refresh-be.herokuapp.com
 
