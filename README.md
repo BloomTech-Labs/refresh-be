@@ -3,28 +3,38 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/maintainability)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/maintainability)
 [![Test Coverage](https://api.codeclimate.com/v1/badges/dd40d979822303c26785/test_coverage)](https://codeclimate.com/github/Lambda-School-Labs/refresh-be/test_coverage)
 
+#### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
+
+Students and working professionals can experience tunnel vision when working towards an important goal, like labs, and this often leads to low energy, motivation, and sometimes complete burnout.
+
+## Mission
+
+Those in the tech industry are always looking for ways to optimize their output - Refresh looks to accelerate healthy habits by tracking key metrics in a way that makes things fresh and fun so that individuals can optimize their daily output and maintain a healthy lifestyle.
+
+### Built With
+
+- [ReactJS](https://reactjs.org/)
+- [NodeJS](https://nodejs.org/en/)
+- [Express](https://expressjs.com/)
+- [Multer](https://www.npmjs.com/package/multer/)
+- [Node-Schedule](https://www.npmjs.com/package/node-schedule/)
+
+
 ### For Future Developers
 The Back-End uses Postgres as it's database, since the DB sits outside vscode you will need a way to connect to the DB from VsCode. 
 
 #### Downloading Postgres
 
-1) Download Postgres https://www.postgresql.org/ (it will install pgAdmin4) (the default port is 5432)(username is defaulted to "postgres", REMEMBER THE PASSWORD YOU SET)
+1) Download Postgres https://www.postgresql.org/ (it will install pgAdmin4) (the default port is 5432). The default username is "postgres", remember the password you set in the installer. You will need it later.
 2) Open pgAdmin4 on your computer. pgAdmin4 will ask for a master password, this is the password you set when creating an account in the installer
-3) Top Left Click "Servers()", pgAdmin4 will most likely ask for another password, which should be the one you made during the installer
+3) Top Left Click "Servers()", pgAdmin4 will most likely ask for another password, which should be the one you made during the installer or "1234"
 4) After you click on Servers you'll see that the default database is called "postgres"
 5) If you click on Schemas at the bottom you can see any schemas you migrated
 
 #### Connecting to your DataBase from VsCode
 1) install dotenv and create a .env file, make sure it sits at the root level. 
-2) Look inside the knexfile.js. You'll notice that under development the connection is set to an environment variable. We need to define that variable in order to connect to our Database
-3) inside your env file add this <br/> DATABASE_URL="postgres://${POSTGRES_USR}:${POSTGRES_PWD}@postgres:5432/${POSTGRES_DB}<br/>
- <br/>POSTGRES_USR is the username pgadmin4 defaults too. which is the username "postgres"<br/>
- 	POSTGRES_PWD is the password you set during the installer.<br/>
- 	@postgres:5432 is the default port. if you changed the port inside the installer change it here as well.<br/>
- 	POSTGRES_DB is your database name inside pgAdmin4, the default DB is named "postgres" if you made your own database, change it to that name.
-4) at the end it should look like this    
-   DATABASE_URL = postgres://postgres:mypasswordhere@localhost:5432/myDataBaseNameHere
-5) test it out by running a knex migrate:latest inside vscode. 
+2) Look inside the knexfile.js. You'll notice that under development the connection is set to an environment variable.
+3) Please ask your TL for .env information from the previous labs. A google drive of passwords and secrets will be provided.
 
 #### Base url https://lab23-refresh-be.herokuapp.com
 
@@ -92,20 +102,6 @@ The Back-End uses Postgres as it's database, since the DB sits outside vscode yo
 
 
 
-#### Implementation and Docs deployed at [REFRESH DOCS](https://refresh-yo.herokuapp.com/docs) <br>
-
-Students and working professionals can experience tunnel vision when working towards an important goal, like labs, and this often leads to low energy, motivation, and sometimes complete burnout.
-
-## Mission
-
-Those in the tech industry are always looking for ways to optimize their output - Refresh looks to accelerate healthy habits by tracking key metrics in a way that makes things fresh and fun so that individuals can optimize their daily output and maintain a healthy lifestyle.
-
-### Built With
-
-- [ReactJS](https://reactjs.org/)
-- [NodeJS](https://nodejs.org/en/)
-- [Google APIs](https://developers.google.com/apis-explorer)
-- [oAuth2](https://oauth.net/2/)
 
 ### License
 
